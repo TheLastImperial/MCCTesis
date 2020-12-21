@@ -1,0 +1,184 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                         FORMATO DE TESIS FI UNAM                             %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% based on Harish Bhanderi's PhD/MPhil template, then Uni Cambridge
+% http://www-h.eng.cam.ac.uk/help/tpl/textprocessing/ThesisStyle/
+% corrected and extended in 2007 by Jakob Suckale, then MPI-iCBG PhD programme
+% and made available through OpenWetWare.org - the free biology wiki
+
+%                     Under GNU License v3
+
+% ADAPTADO PARA FI-UNAM:  @Tepexic
+
+\documentclass[12pt]{Latex/Classes/PhDthesisPSnPDF}
+%         PUEDEN INCLUIR EN ESTE ESPACIO LOS PAQUETES EXTRA, O BIEN, EN EL ARCHIVO "PhDthesisPSnPDF.cls" EN "./Latex/Classes/"
+
+\usepackage[autocite=superscript, hyperref=true, sorting=nty, backref=true, backend=biber, style=apa, citestyle=authoryear]{biblatex}
+\DeclareLanguageMapping{spanish}{spanish-apa}
+\addbibresource{Bibliografia/referencias.bib}
+\renewcommand*{\nameyeardelim}{\addcomma\space}
+
+\DefineBibliographyStrings{spanish}{%
+  backrefpage = {page},% originally "cited on page"
+  backrefpages = {pages},% originally "cited on pages"
+  andothers = {et\addabbrvspace al\adddot},
+  and = {\&}
+}
+
+\DeclareCiteCommand{\citeauthor}
+  {\boolfalse{citetracker}%
+   \boolfalse{pagetracker}%
+   \usebibmacro{prenote}}
+  {\ifciteindex
+     {\indexnames{labelname}}
+     {}%
+   \printtext[bibhyperref]{\printnames{labelname}}}
+  {\multicitedelim}
+  {\usebibmacro{postnote}}
+  
+\DeclareCiteCommand{\citeyear}
+    {}
+    {\bibhyperref{\printfield{year}}}
+    {\multicitedelim}
+    {}
+
+\DeclareCiteCommand{\citeyearpar}
+    {}
+    {\mkbibparens{\bibhyperref{\printfield{year}}}}
+    {\multicitedelim}
+    {}
+  
+\usepackage[ pdftex, plainpages = false, pdfpagelabels, pdfpagelayout = OneColumn, bookmarks, bookmarksopen = true, bookmarksnumbered = true, breaklinks = true, linktocpage, colorlinks = true,linkcolor = black, urlcolor  = black, citecolor = black, anchorcolor = black, hyperindex = true, hyperfigures]{hyperref}
+
+\usepackage{enumerate} % enumerados
+\usepackage[chapter,Algorithm,ruled]{algorithm}
+\usepackage{verbatim}
+%\usepackage{algorithmic}
+\usepackage{amsfonts}
+\usepackage{algpseudocode}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{float}
+\usepackage{booktabs}
+
+
+
+% http://ftp.isu.edu.tw/pub/Unix/CTAN/macros/latex/contrib/caption/caption.pdf
+\usepackage[font=small]{caption}
+
+
+\usepackage{graphicx}
+\usepackage{subfigure}
+
+\usepackage{times}
+
+\usepackage[left=3cm, right=3cm,top=2.5cm,bottom=2.5cm,footskip=1.25cm]{geometry}
+
+\usepackage{algorithmicx}
+
+
+\usepackage{csquotes}
+
+\usepackage{multirow}
+
+\usepackage{tabularx}
+
+\usepackage{ragged2e}
+\usepackage{anyfontsize}
+\usepackage{minibox}
+\usepackage{setspace}
+\newcommand{\tabitem}{~~\llap{\textbullet}~~}
+\newcommand\pro{\item[$+$]}
+\newcommand\con{\item[$-$]}
+
+\usepackage[final]{pdfpages}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   PORTADA                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\include{Portada/portada}
+
+%\maketitle									% Se redefinió este comando en el archivo de la clase para generar automáticamente la portada a partir de los datos
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                  PRÓLOGO                          %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\frontmatter
+
+% \newpage
+% \thispagestyle{empty}
+% \mbox{}
+
+% \newpage
+% \thispagestyle{empty}
+% \mbox{}
+
+
+
+% \newpage
+% \thispagestyle{empty}
+% \mbox{}
+
+% \newpage
+% \thispagestyle{empty}
+% \mbox{}
+\include{Prologo/Prologo}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   ÍNDICES                         %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%Esta sección genera el índice
+\setcounter{secnumdepth}{3} % organisational level that receives a numbers
+\setcounter{tocdepth}{3}    % print table of contents for level 3
+\tableofcontents            % Genera el índice 
+%: ----------------------- list of figures/tables ------------------------
+\listoffigures              % Genera el ínidce de figuras, comentar línea si no se usa
+\listoftables               % Genera índice de tablas, comentar línea si no se usa
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%s%%%%%%%%%%%%%%%%
+%                   CONTENIDO                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% the main text starts here with the introduction, 1st chapter,...
+\mainmatter
+%\def\baselinestretch{1.5}                   % Interlineado de 1.5
+\spacing{1.5}
+\include{Capitulo1/capitulo}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   APÉNDICES                       %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\appendix
+%\include{Apendice1/Apendice1}               % Colocar los circuitos, manuales, código fuente, pruebas de teoremas, etc.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%                   REFERENCIAS                     %
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\phantomsection 
+\addcontentsline{toc}{chapter}{Bibliograf\'ia}  
+% existen varios estilos de bilbiografía, pueden cambiarlos a placer
+
+
+% \bibliographystyle{apalike} % otros estilos pueden ser abbrv, acm, alpha, apalike, ieeetr, plain, siam, unsrt
+
+%El formato trae otros estilos, o pueden agregar uno que les guste:
+%\bibliographystyle{Latex/Classes/PhDbiblio-case} % title forced lower case
+%\bibliographystyle{Latex/Classes/PhDbiblio-bold} % title as in bibtex but bold
+%\bibliographystyle{Latex/Classes/PhDbiblio-url} % bold + www link if provided
+%\bibliographystyle{Latex/Classes/jmb} % calls style file jmb.bst
+
+\begingroup
+\setstretch{2.0}
+\printbibliography
+\endgroup
+% \begin{spacing}{1.5}
+% \printbibliography
+% \end{spacing}
+% \bibliography{Bibliografia/referencias}             % Archivo .bib
+
+
+
+
+\end{document}
