@@ -8,58 +8,62 @@
 
 \chapter{Introducción}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+El aumento del uso de vehículos motorizados se debe al incremento de la población centrándose en las zonas urbanas y la necesidad de movilidad en la vida cotidiana. Como consecuencia se tiene un aumento de tráfico vehicular, lo cual conlleva a un mayor número de accidentes vehiculares y más gases de efecto invernadero, afectando la salud de la población en general.
+
+Conocer el comportamiento de tráfico vehicular, ayudará a tomar decisiones que ayuden a un flujo vehicular óptimo. Con lo cual se espera obtener un impacto económico con tiempos de transporte menores y de salud con la reducción de gases de efecto invernadero.
+
+Una parte del análisis de tráfico vehicular es determinar la velocidad de los vehículos que se identifican en la secuencia de video. Para esto, se desea utilizar métodos de inteligencia artificial y flujo óptico, como lo son redes neuronales convolucionales y el filtro Kalman.
 
 \section{Definición del problema}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Actualmente existe radares especializados para determinar la velocidad de diferentes objetos como los vehículos, para este caso, estos aparatos son utilizados comúnmente para aplicar multas de tránsito. Por otra parte, implementar la determinación de la velocidad utilizando cámaras de vigilancia implicaría un ahorro, al utilizar equipo que ya se tiene disponible.
+
+Para este problema es necesario resolver diferentes partes del mismo, como lo son:
+
+\begin{itemize}
+\item Identificar el modelo del vehículo.
+\item Determinar la trayectoria del vehículo.
+\item Determinar la velocidad del vehículo.
+\item Para identificar el vehículo se plantea utilizar una red neuronal convolucional.
+\end{itemize}
 
 \section{Hipótesis}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Es posible determinar la velocidad de un vehículo en secuencias de video tomando como referencia las dimensiones del vehículo identificado utilizando técnicas de inteligencia artificial para determinar el modelo y técnicas de flujo óptico para deducir su trayectoria.
 
 \section{Objetivo}
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+
+Determinar la trayectoria y velocidad de un vehículo usando secuencias de video a través de técnicas de inteligencia artificial y visión artificial.
 
 \section{Objetivos específicos}
+
 \begin{itemize}
-\item Lorem
+\item Diseñar e implementar un modelo de clasificación de vehículos mediante secuencias de video usando técnicas de inteligencia artificial.
+\item Implementar algoritmos de flujo óptico para determinar la trayectoria de un vehículo.
+\item Diseñar e implementar un algoritmo para la determinación de la velocidad de vehículos mediante secuencias de video tomando como referencia las dimensiones del vehículo identificado.
 \end{itemize}
 
 \section{Justificación}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Es posible determinar la velocidad de objetos por medio de hardware especializados como los radares de velocidad, sin embargo, al integrar a un video la capacidad de determinar la velocidad de vehículos tiene beneficios en cuanto al costo, ya que no sería necesario comprar un radar de velocidad, puesto que se podría utilizar cámaras de vigilancias comunes.
+
+Con este trabajo se busca aprovechar hardware existentes como lo son cámaras de video vigilancia que estén distribuidas por la ciudad, así como definir las características que deben tener para proporcionar un resultado aceptable.
 
 \section{Estructura de la tesis}
 
-Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+Este trabajo está dividido en 6 capítulos organizados de la siguiente manera:
 
+
+\begin{itemize}
+\item Capítulo 1 - Introducción: Se define el problema, la hipótesis, el objetivo, los objetivos específicos y la justificación de este trabajo.
+
+\item Capítulo 2 - Marco teórico: Se presentan los conceptos clave inteligencia artificial y visión artificial necesarios para comprender el contenido de este trabajo.
+
+\item Capítulo 3 - Estado del arte: Se presentan trabajos relacionados a determinar la velocidad de objetos.
+
+\item Capítulo 4 - Metodología: Se explica el proceso para el desarrollo del sistema, así como las herramientas utilizadas y la razón de utilizar ciertas herramientas.
+
+\item Capítulo 5 - Análisis de los resultados: Se presentan los resultados obtenidos utilizando el sistema y comparándolo con métodos convencionales como los radares de velocidad.
+
+\item Capítulo 6 - Conclusión: Se presenta de manera resumida el proyecto, al mismo tiempo que el aporte del trabajo al área y el trabajo futuro que podría realizarse.
+\end{itemize}
