@@ -1,23 +1,19 @@
 \section{Visión artificial}
 
-Por medio de la visión artificial podemos hacer que una maquina sea capaz de identificar, analizar y procesar imágenes del mundo real. En esta sección se explicarán algunos términos utilizados para este trabajo como lo es el flujo óptico y el filtro Kalman.
+Por medio de la visión artificial podemos hacer que una maquina sea capaz de identificar, analizar y procesar imágenes del mundo real. En esta sección se explicarán como una maquina representa una imagen y el filtro Kalman utilizado para seguimiento de objetos.
 
-\subsection{Seguimiento de objetos}
+\subsection{Representación de imagenes}
 
-Para este trabajo es necesario identificar los vehículos y seguir su trayectoria. Para esto se utilizó el algoritmo del filtro Kalman explicado a continuación.
+\subsection{Filtro Kalman}
 
 El filtro Kalman es una solución recursiva al filtrado lineal de datos discretos. Se encarga de estimar las variables de estado en un sistema dinámico, lo cual, en nuestro caso, sería estimar la siguiente ubicación de un vehículo identificado.
 
-
-
 El filtro de Kalman tiene como objetivo resolver el problema general de estimar el estado $x \space \epsilon \space \Re^{n}$ de un proceso controlado en tiempo discreto, el cual se representa con la siguiente ecuación:
-
 
 \begin{equation}
 \label{eq:kalmanEstado}
     x_{k+1} = A_kx_k + Bu_k + w_k
 \end{equation}
-
 
 Con una medida $z \space \epsilon \space \Re^{m}$:
 
@@ -26,12 +22,9 @@ Con una medida $z \space \epsilon \space \Re^{m}$:
     z_x = H_kx_k + v_k
 \end{equation}
 
-
 Las variables $w_k$ y $v_k$ representan el error del proceso y de la medida respectivamente.
 
-
 La matriz $A$  de dimension $n\times{}n$ en la ecuación \eqref{eq:kalmanEstado} relaciona el estado en el paso de tiempo $k$ con el estado en el paso $k + 1$, en ausencia de una función de excitación o ruido de proceso. La matriz $B$ de dimension $n\times{}1$ relaciona la entrada de control $u \space \epsilon \Re^{1}$ con el estado $x$. La matriz $H$ de dimension $m\times{}n$ en la ecuación de medición \eqref{eq:kalmanMed} relaciona el estado con la medición $z_k$.
-
 
 El algoritmo de filtro Kalman cuenta con 2 fases, la fase predicción (a priori) y la fase de corrección (a posteriori).
 
