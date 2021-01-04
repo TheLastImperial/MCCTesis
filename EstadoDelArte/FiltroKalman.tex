@@ -1,0 +1,64 @@
+\section{Visión artificial}
+
+Por medio de la visión artificial podemos hacer que una maquina sea capaz de identificar, analizar y procesar imágenes del mundo real. En esta sección se explicarán algunos términos utilizados para este trabajo como lo es el flujo óptico y el filtro Kalman.
+
+\subsection{Seguimiento de objetos}
+
+Para este trabajo es necesario identificar los vehículos y seguir su trayectoria. Para esto se utilizó el algoritmo del filtro Kalman explicado a continuación.
+
+El filtro Kalman es una solución recursiva al filtrado lineal de datos discretos. Se encarga de estimar las variables de estado en un sistema dinámico, lo cual, en nuestro caso, sería estimar la siguiente ubicación de un vehículo identificado.
+
+
+
+El filtro de Kalman tiene como objetivo resolver el problema general de estimar el estado $x \space \epsilon \space \Re^{n}$ de un proceso controlado en tiempo discreto, el cual se representa con la siguiente ecuación:
+
+
+\begin{equation}
+\label{eq:kalmanEstado}
+    x_{k+1} = A_kx_k + Bu_k + w_k
+\end{equation}
+
+
+Con una medida $z \space \epsilon \space \Re^{m}$:
+
+\begin{equation}
+\label{eq:kalmanMed}
+    z_x = H_kx_k + v_k
+\end{equation}
+
+
+Las variables $w_k$ y $v_k$ representan el error del proceso y de la medida respectivamente.
+
+
+La matriz $A$  de dimension $n\times{}n$ en la ecuación \eqref{eq:kalmanEstado} relaciona el estado en el paso de tiempo $k$ con el estado en el paso $k + 1$, en ausencia de una función de excitación o ruido de proceso. La matriz $B$ de dimension $n\times{}1$ relaciona la entrada de control $u \space \epsilon \Re^{1}$ con el estado $x$. La matriz $H$ de dimension $m\times{}n$ en la ecuación de medición \eqref{eq:kalmanMed} relaciona el estado con la medición $z_k$.
+
+
+El algoritmo de filtro Kalman cuenta con 2 fases, la fase predicción (a priori) y la fase de corrección (a posteriori).
+
+Para la fase de predicción se toman las siguientes 2 ecuaciones:
+
+\begin{eqnarray}
+    \label{eq:kalmanActUno}
+    \bar{x}_{k+1} = A_k\hat{x}_k + Bu_k\\
+    \label{eq:kalmanActDos}
+    P_{k+1} = A_kP_kTA^{T}_k + Q_k
+\end{eqnarray}
+
+
+Las ecuaciones anteriores pronostican el estado y la covarianza desde $k$ hasta $k+1$. La matriz $A$ representa el estado actual. $Q$ representa la covarianza de la perturbación aleatoria del proceso.
+
+La fase de corrección cuenta con las siguientes ecuaciones:
+
+\begin{eqnarray}
+\label{eq:kalmanCorrUno}
+K_k = P_kH^{T}_k(H_kP_KH^{T}_k + R_k)\\
+\label{eq:kalmanCorrDos}
+\hat{x}_k = \hat{x}_k + K(z_k - H_k \hat{x}_k)\\
+\label{eq:kalmanCorrTres}
+P_k = (I - K_kH_k)P_k
+\end{eqnarray}
+
+La ecuación \eqref{eq:kalmanCorrUno} representa el primer pasa el cual es el cálculo de ganancia de Kalman, $K_t$. El siguiente paso es medir el proceso para obtener $z$, y luego generar una estimación del estado a posteriori incorporando la medición como en la ecuación \eqref{eq:kalmanCorrDos}. El último paso es obtener una estimación de la covarianza del error a posteriori mediante la \eqref{eq:kalmanCorrTres}.
+
+Después de cada actualización y medición, el proceso se repite con las estimaciones a posteriori anteriores utilizadas para proyectar o predecir las nuevas estimaciones a priori.
+
