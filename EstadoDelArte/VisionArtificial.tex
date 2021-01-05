@@ -4,6 +4,22 @@ Por medio de la visión artificial podemos hacer que una maquina sea capaz de id
 
 \subsection{Representación de imagenes}
 
+En computación una imagen se representa como una cuadricula, cada recuadro es llamado pixel el cual es la unidad más pequeña de la imagen y representa un color. Con lo anterior podemos entender que para una imagen de 1000 x 600 tendremos 1000 pixeles en cada fila y 600 pixeles para cada columna.
+
+Las representaciones más comunes de un pixel son:
+
+\begin{itemize}
+\item Escala de grises
+\item A color
+\end{itemize}
+
+
+Para la representación usando escala de grises, en la cual cada pixel tiene un valor entre 0 y 255, siendo cero el color blanco y 255 el color negro. Pudiendo variar este valor para dar diferentes intensidades de grises.
+
+Para los pixeles a color existe diferentes espacios de colores, en este trabajo hablaremos solo sobre el RGB. Los pixeles RGB son representados usando 3 valores de intensidad para los colores rojo, verde y azul. Al igual que la escala de grises cada uno de estos 3 valores puede tener valores en el intervalo de 0 a 255. Al colocar los 3 valores de RGB a 0 podemos representar el color negro, por el contrario, para representar el color blanco cada valor de RGB es de 255.
+
+Los videos son la reproducción consecutiva de imágenes llamados frames con los cuales da la sensación de movimiento, un video puede tener diferentes cantidades de frames por segundo (FPS) siendo hoy en día lo más común tener 60 FPS.
+
 \subsection{Filtro Kalman}
 
 El filtro Kalman es una solución recursiva al filtrado lineal de datos discretos. Se encarga de estimar las variables de estado en un sistema dinámico, lo cual, en nuestro caso, sería estimar la siguiente ubicación de un vehículo identificado.
