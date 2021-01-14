@@ -12,7 +12,14 @@ Una red neuronal es una función flexible que adapta de manera autónoma su comp
 
 Rosenblatt publicó el algoritmo seminal Perceptron: este modelo podía aprender automáticamente los pesos necesarios para clasificar una entrada.
 
-Perceptron toma n entradas y produce una única salida binaria si la suma es mayor que el valor de activación. Se dice que la neurona se "dispara" siempre que se excede el valor de activación y se comporta como una función escalonada (\cite{goyal2018Deep}).
+Perceptron toma n entradas y produce una única salida binaria si la suma es mayor que el valor de activación. Se dice que la neurona se "dispara" siempre que se excede el valor de activación y se comporta como una función escalonada, lo cual se muestra en la ecuación \ref{eq:fnStep} (\cite{goyal2018Deep}).
+
+\begin{equation}
+\label{eq:fnStep}
+    f\left(x\right)=\begin{cases}0 & x -u < 0\\1 & x -u >= 0\end{cases}
+\end{equation}
+
+
 
 Minsky y Papert demostraron que un perceptrón con una función de activación lineal es simplemente un clasificador lineal, incapaz de resolver problemas no lineales (\cite{rosebrock2017deep}). El ejemplo canónico de un problema no lineal es el conjunto de datos XOR Figura \ref{fig:xor}.
 
@@ -20,7 +27,25 @@ Perceptron se puede convertir fácilmente en un algoritmo en línea que procesa 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{MarcoTeorico/imgs/XOR.png}
+    \includegraphics[width=0.5\textwidth]{MarcoTeorico/imgs/XOR.png}
     \caption{Problema XOR, no es linealmente separable.}
     \label{fig:xor}
 \end{figure}
+
+
+\subsection{Redes Neuronales Multicapa}
+
+
+Los perceptrones multicapa o MLP (Multilayer Perceptron) son una red neuronal de propagación hacia adelante y se componen de múltiples perceptrones conectados entre sí y que operan en funciones de activación distintivas para permitir mejores mecanismos de aprendizaje. La arquitectura perceptrón multicapa cuenta como mínimo con 3 capas: una capa de entrada, una o más capas ocultas y una capa de salida (\cite{swamynathan2017Mastering}) Figura \ref{fig:mlp}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{MarcoTeorico/imgs/MLP.png}
+    \caption{Representación básica de red neuronal multicapa.}
+    \label{fig:mlp}
+\end{figure}
+
+Los MLP también se conocen como aproximadores universales, ya que pueden encontrar la relación entre los valores de entrada y los objetivos, utilizando una cantidad suficiente de neuronas en la capa oculta, alterando los pesos o utilizando datos de entrenamiento adicionales para aproximar la función dada hasta cualquier nivel de precisión. A menudo, con el grado de libertad dado a un MLP, puede superar a la red MLP básica, introduciendo más capas ocultas, con menos neuronas en cada una de las capas ocultas y pesos óptimos. Esto ayuda en el proceso de generalización general del modelo (\cite{goyal2018Deep}).
+
+
+
