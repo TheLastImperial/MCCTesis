@@ -47,5 +47,38 @@ Los perceptrones multicapa o MLP (Multilayer Perceptron) son una red neuronal de
 
 Los MLP también se conocen como aproximadores universales, ya que pueden encontrar la relación entre los valores de entrada y los objetivos, utilizando una cantidad suficiente de neuronas en la capa oculta, alterando los pesos o utilizando datos de entrenamiento adicionales para aproximar la función dada hasta cualquier nivel de precisión. A menudo, con el grado de libertad dado a un MLP, puede superar a la red MLP básica, introduciendo más capas ocultas, con menos neuronas en cada una de las capas ocultas y pesos óptimos. Esto ayuda en el proceso de generalización general del modelo (\cite{goyal2018Deep}).
 
+\subsection{Propagación hacia atrás(Backpropagation)}
 
+En las redes neuronales es complicado ajustar sus pesos de entrenamiento por la gran cantidad de conexiones y sus múltiples niveles. Para lograr esta tarea, se utiliza el algoritmo backpropagation, creado por \citeauthor{rumelhart1986Parallel} en \citeyear{rumelhart1986Parallel}.
 
+En el algoritmo Backpropagation calculamos qué tan rápido cambia el error a medida que cambiamos una capa oculta. A partir de ahí, podemos averiguar qué tan rápido cambia el error cuando cambiamos el peso de una conexión individual. Básicamente, intentamos encontrar el camino de descenso más empinado. Comenzamos calculando las derivadas del error con respecto a un solo ejemplo de entrenamiento. Una vez que tenemos las derivadas de error para una capa de unidades ocultas, las usaremos para calcular las derivadas de error para las unidades de la capa siguiente. Y una vez que encontramos las derivadas del error para las actividades de las unidades ocultas, es bastante fácil obtener las derivadas del error para los pesos que conducen a una unidad oculta (\cite{buduma2017Fundamentals}).
+
+En resumen, el algoritmo backpropagation consiste en dos pasos como muestra la figura:
+
+\begin{itemize}
+\item Propagación hacia adelante: Se calculan los pesos de cada una de las neuronas, desde la capa de entrada hasta la capa de salida.
+
+\item Propagación hacia atrás: Se calcula el error y se actualizan los pesos, desde la capa de salida hasta la capa de entrada.
+\end{itemize}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{MarcoTeorico/imgs/Backpropagation.png}
+    \caption{Propagación hacia adelante y propagación hacia atrás.}
+    \label{fig:backpropagation}
+\end{figure}
+
+\subsection{Descenso del Gradiente }
+
+El método del descenso del gradiente es un algoritmo iterativo que minimiza una función de pérdida actualizando posteriormente los parámetros de la función.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{MarcoTeorico/imgs/DescensoGradiente.png}
+    \caption{Mínimo local y global.}
+    \label{fig:descensoGradiente}
+\end{figure}
+
+La Figura \ref{fig:descensoGradiente} muestra cómo podemos tener múltiples picos y valles (Máximos y mínimos) para nuestros valores de perdida. El valor ideal que nos gustaría obtener es nuestro mínimo global, asegurando que nuestros parámetros tomen los valores más óptimos posibles.
+
+El problema es que no tenemos una vista general en la que podamos encontrar de manera sencilla el mínimo global ya que en realidad nos colocaríamos en un lugar aleatorio sin saber dónde está el mínimo global y tendríamos que avanzar hacia una perdida mínima sin subir accidentalmente a la cima de un máximo local.
