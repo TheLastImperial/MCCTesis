@@ -82,3 +82,24 @@ El método del descenso del gradiente es un algoritmo iterativo que minimiza una
 La Figura \ref{fig:descensoGradiente} muestra cómo podemos tener múltiples picos y valles (Máximos y mínimos) para nuestros valores de perdida. El valor ideal que nos gustaría obtener es nuestro mínimo global, asegurando que nuestros parámetros tomen los valores más óptimos posibles.
 
 El problema es que no tenemos una vista general en la que podamos encontrar de manera sencilla el mínimo global ya que en realidad nos colocaríamos en un lugar aleatorio sin saber dónde está el mínimo global y tendríamos que avanzar hacia una perdida mínima sin subir accidentalmente a la cima de un máximo local.
+
+\subsection{Tasa de aprendizaje}
+
+La tasa de aprendizaje es uno de los hiperparámetros más importantes. Tiene un fuerte impacto tanto en la estabilidad como en la eficiencia de los tiempos de entrenamiento y no hay una forma fija de encontrar la más adecuada. La tasa de aprendizaje es la magnitud del ajuste de pesos durante el entrenamiento de la red con el fin de minimizar el error (\cite{valenzuela2020Sistema}).
+
+La imagen muestra que si la tasa es demasiado grande, nuestro entrenamiento es inestable. Si nuestra tasa de aprendizaje es demasiado pequeña, el entrenamiento puede tomar más tiempo para llegar a un entrenamiento adecuado.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.8\textwidth]{MarcoTeorico/imgs/LearningRate.png}
+    \caption{Tasa de aprendizaje.}
+    \label{fig:learningRate}
+\end{figure}
+
+Preferiblemente, nuestra pérdida de entrenamiento y validación casi se imitan entre sí, con solo una pequeña brecha entre la pérdida de entrenamiento y la pérdida de validación, lo que indica un pequeño sobreajuste. Siempre que la brecha no aumente drásticamente, sabemos que existe un nivel aceptable de sobreajuste. Por otro lado, si no logramos mantener esta brecha y las pérdidas de entrenamiento y validación se separan drásticamente, entonces sabemos que corremos el riesgo de sobreajuste. Una vez que la pérdida de validación comienza a aumentar, sabemos que estamos muy sobreajustados (\cite{rosebrock2017deep}).
+
+
+\subsection{Funciones de activación}
+
+Las funciones de activación son una función de escalar a escalar, que produce la activación de la neurona. Usamos funciones de activación para propagar la salida de los nodos de una capa hacia la siguiente capa. Usamos funciones de activación para neuronas ocultas en una red neuronal para introducir la no linealidad del modelado de la red (\cite{patterson2017deep}).
+
