@@ -101,5 +101,64 @@ Preferiblemente, nuestra pérdida de entrenamiento y validación casi se imitan 
 
 \subsection{Funciones de activación}
 
-Las funciones de activación son una función de escalar a escalar, que produce la activación de la neurona. Usamos funciones de activación para propagar la salida de los nodos de una capa hacia la siguiente capa. Usamos funciones de activación para neuronas ocultas en una red neuronal para introducir la no linealidad del modelado de la red (\cite{patterson2017deep}).
+Las funciones de activación son una función de escalar a escalar, que produce la activación de la neurona. Usamos funciones de activación para propagar la salida de los nodos de una capa hacia la siguiente capa y para que las neuronas ocultas en una red neuronal para introducir la no linealidad del modelado de la red (\cite{patterson2017deep}).
 
+
+Las funciones de activación definen el rango de valores que dará como resultado una de las capas de nuestra red neuronal, a partir de una función matemática.
+
+\subsubsection{Función lineal}
+
+La función lineal regresa como salida valores en el rango de $[-\infty,\infty]$ y está dada por la ecuación \ref{eq:linealFunc}:
+
+\begin{equation}
+\label{eq:linealFunc}
+    f(x) = Wx
+\end{equation}
+
+\subsubsection{Sigmoidal}
+
+La función sigmoidal nos da como salida valores en el rango de $[0,1]$ y está definida por la ecuación \ref{eq:sigmoidFunc}:
+
+\begin{equation}
+\label{eq:sigmoidFunc}
+    s(x)={\frac {1}{1+e^{-x}}}
+\end{equation}
+
+\subsubsection{Tangente hiperbólica}
+
+La función tangente hiperbólica proporciona como salida el rango $[-1,1]$ y está definida por la ecuación \ref{eq:tanhFunc}.
+
+\begin{equation}
+\label{eq:tanhFunc}
+    \tanh (x)={\cfrac {e^{x}-e^{-x}}{e^{x}+e^{-x}}}
+\end{equation}
+
+\subsubsection{Softmax}
+
+La función de activación softmax devuelve la distribución de probabilidad sobre clases de salida mutuamente excluyentes. La cual está definida por la siguiente ecuación \ref{eq:softmaxFunc}:
+
+\begin{equation}
+\label{eq:softmaxFunc}
+  \sigma(\overrightarrow{z})_{i}=\frac{e^{z_{i}}}{
+    \displaystyle\sum\limits_{j=1}^K e^{z_{j}}
+  }
+\end{equation}
+
+donde $\overrightarrow{z}$ es el vector de entrada.
+
+$z_i$ son los valores del vector de entrada.
+
+$e^{z_{i}}$ es la función exponencial estándar que se aplica a cada elemento del vector de entrada.
+
+$\displaystyle\sum\limits_{j=1}^K e^{z_{i}}$ es el término de normalización, asegura que todos los valores de salida de la función sumen 1 y cada uno esté en el rango $(0, 1)$, constituyendo así una distribución de probabilidad válida.
+
+$k$ el numero de clases del clasificador multi-clases.
+
+\subsubsection{ReLU}
+
+La funcion Rectificador Lineal(ReLU) regresa como resultado valores en el rango de los números reales positivos $[0, \infty]$, como muestra la ecuación \ref{eq:reluFunc}:
+
+\begin{equation}
+\label{eq:reluFunc}
+  relu(x)=\max(0,x)
+\end{equation}
