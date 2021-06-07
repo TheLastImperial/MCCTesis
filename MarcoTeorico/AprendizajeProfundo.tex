@@ -162,3 +162,27 @@ La funcion Rectificador Lineal(ReLU) regresa como resultado valores en el rango 
 \label{eq:reluFunc}
   relu(x)=\max(0,x)
 \end{equation}
+
+
+\subsection{Funciones de perdida}
+
+Una función de pérdida indica la pérdida de predicción de $\hat{y}$ cuando la salida real es $y$. El objetivo del entrenamiento es entonces minimizar la pérdida en los diferentes ejemplos de entrenamiento. La función asigna una puntuación numérica a la salida de la red $\hat{y}$ dada la verdadera salida esperada $y$ (\cite{goldberg2017Neural}).
+
+Dependiendo de nuestro problema es el tipo de función de perdida que usaremos. Para un problema de regresión se busca tener la perdida lo más cercana a cero y para un problema un problema de clasificación se busca tener el valor más algo o muy cercano a 1 para cada una de las clases para la cual fue entrenada nuestra red neuronal, siempre cuidando que la red neuronal no tenga sobreajuste claro.
+
+Algunas de las funciones de perdida para problemas de  regresion son las siguientes:
+
+\begin{itemize}
+    \item Perdida de error cuadrático medio(MSE, \textit{Mean squared error loss})
+    \item Perdida del error absoluto medio(MAE, \textit{Mean absolute error loss})
+\end{itemize}
+
+Mientras que para problemas de clasificación algunas de las funciones de perdida son las siguientes:
+
+\begin{itemize}
+    \item Perdida de bisagra
+    \item Perdida logística
+\end{itemize}
+
+\subsection{Optimizadores}
+
