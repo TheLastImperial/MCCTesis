@@ -3,20 +3,20 @@
 Para el caso de la implementación de Scikit se utilizaron los siguientes modelos implementados en esta biblioteca:
 
 \begin{itemize}
-    \item Regresion Lineal
-    \item Ridge
-    \item Lasso
-    \item Bayesian Ridge
-    \item Elastic Net
-    \item Random Forest Regression
-    \item Máquina de Soporte Vectorial para Regresion
+    \item Regresión Lineal
+    \item Regresión de crestas
+    \item Lasso (Operador de Selección y Contracción Mínima Absoluta)
+    \item Regresión de la cresta bayesiana
+    \item Regresión Elastic Net
+    \item Regresión Random Forest
+    \item Regresión de Máquina de Soporte Vectorial
 \end{itemize}
 
 Los experimentos con el uso de la biblioteca Scikit se realizaron un total de 800 veces, con estos resultados se obtuvo el valor mínimo, el valor máximo y el promedio de todos los experimentos.
 
 \subsection{Carril central}
 
-La tabla \ref{tab:resultadosScikitCarrilCentral} muestra los resultados para el carril central, en metros sobre segundo.
+La tabla \ref{tab:resultadosScikitCarrilCentral} muestra los resultados para el carril central, en kilometros por hora.
 
 
 \begin{table}[H]
@@ -24,7 +24,7 @@ La tabla \ref{tab:resultadosScikitCarrilCentral} muestra los resultados para el 
     \caption{Resultados para Carril Central}
     \label{tab:resultadosScikitCarrilCentral}
     \begin{tabular}{|l|l|l|l|l|l|l|l|} \hline
-        & \textbf{LR} & \textbf{Ridge} & \textbf{Lasso} & \textbf{Bayesian} & \textbf{Elastic Net} & \textbf{RFR} & \textbf{SVMR} \\ \hline
+        & \textbf{RL} & \textbf{RC} & \textbf{Lasso} & \textbf{RCB} & \textbf{Elastic Net} & \textbf{RRF} & \textbf{RSVM} \\ \hline
 
         \textbf{MIN} & 1.246 & 1.256 & 1.271 & 1.253 & 1.278                & 1.433 & 1.598 \\ \hline
         \textbf{MAX} & 2.16 & 2.142 & 2.149 & 2.153 & 2.156                & 2.282 & 2.441 \\ \hline
@@ -35,7 +35,7 @@ La tabla \ref{tab:resultadosScikitCarrilCentral} muestra los resultados para el 
 
 \subsection{Ultimo Carril}
 
-La tabla \ref{tab:resultadosScikitUltimoCarril} muestra los resultados para el ultimo carril, en metros sobre segundo.
+La tabla \ref{tab:resultadosScikitUltimoCarril} muestra los resultados para el ultimo carril, en kilometros por hora.
 
 
 \begin{table}[H]
@@ -43,7 +43,7 @@ La tabla \ref{tab:resultadosScikitUltimoCarril} muestra los resultados para el u
     \caption{Resultados para Ultimo Carril}
     \label{tab:resultadosScikitUltimoCarril}
     \begin{tabular}{|c|l|l|l|l|l|l|l|} \hline
-        & \multicolumn{1}{c|}{\textbf{LR}} & \multicolumn{1}{c|}{\textbf{Ridge}} & \multicolumn{1}{c|}{\textbf{Lasso}} & \multicolumn{1}{c|}{\textbf{Bayesian}} & \multicolumn{1}{c|}{\textbf{Elastic Net}} & \multicolumn{1}{c|}{\textbf{RFR}} & \multicolumn{1}{c|}{\textbf{SVMR}} \\ \hline
+        & \textbf{RL} & \textbf{RC} & \textbf{Lasso} & \textbf{RCB} & \textbf{Elastic Net} & \textbf{RRF} & \textbf{RSVM} \\ \hline
 
         \textbf{MIN} & 0.738 & 0.738 & 0.738 & 0.738 & 0.760 & 0.842 & 1.516 \\ \hline
         \textbf{MAX} & 1.220 & 1.224 & 1.231 & 1.220 & 1.278 & 1.400 & 2.578 \\ \hline
