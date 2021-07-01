@@ -1,35 +1,26 @@
-
-% this file is called up by thesis.tex
-% content in this file will be fed into the main document
-%----------------------- introduction file header -----------------------
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%  Capítulo 1: Introducción- DEFINIR OBJETIVOS DE LA TESIS              %
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
 \chapter{Introducción}
 
-El aumento del uso de vehículos motorizados se debe al incremento de la población centrándose en las zonas urbanas y la necesidad de movilidad en la vida cotidiana. Como consecuencia se tiene un aumento de tráfico vehicular, lo cual conlleva a un mayor número de accidentes vehiculares y más gases de efecto invernadero, afectando la salud de la población en general.
+El aumento del uso de vehículos motorizados se debe al incremento de la población centrándose en las zonas urbanas y la necesidad de movilidad en la vida cotidiana. Como consecuencia se tiene un aumento de tráfico vehicular, lo cual conlleva a un mayor número de accidentes vehiculares y gases de efecto invernadero, afectando la salud de la población en general. El uso de automóviles es esencial en nuestra vida cotidiana. Según la organización Association for Safe International Road Travel (ASIRT), cada año mueren más de 1,3 millones de personas en accidentes de tráfico, y entre 20 y 50 millones más resultan heridos o incapacitados (\cite{zaki2020Traffic}).
 
-Conocer el comportamiento de tráfico vehicular, ayudará a tomar decisiones que ayuden a un flujo vehicular óptimo. Con lo cual se espera obtener un impacto económico con tiempos de transporte menores y de salud con la reducción de gases de efecto invernadero.
+En caso de accidente, la mayor responsabilidad recae en el conductor del automóvil (\cite{velazquez2017Siniestralidad}). Entre los principales factores que provocan los accidentes de tránsito se encuentran el exceso de velocidad, la conducción distraída, obstáculos en carretera, mala señalización, estado de la infraestructura vial, e iluminación. Según datos del Instituto Nacional de Estadística e Información Geográfica (INEGI, 2011), entre 1997 y 2009, los accidentes en la región aumentaron un 72,7\% en zonas urbanas y rurales (\cite{carro2019Conductas}).
 
-Una parte del análisis de tráfico vehicular es determinar la velocidad de los vehículos que se identifican en la secuencia de video. Para esto, se desea utilizar métodos de inteligencia artificial y flujo óptico, como lo son redes neuronales convolucionales y el filtro Kalman.
+Un elemento importante al revisar la causa de accidentes viales es el exceso de velocidad, por este motivo los estudios de tránsito vehicular se enfocan en revisar las causas de este elemento. Estos estudios requieren de un sistema monitoreo de velocidad eficaz. Además, se requiere de sistemas de control que asistan al conductor al transitar por las calles, conocidos como ADAS(Advanced Driver Assistance Systems) (\cite{carro2019Conductas}).
+
+Actualmente para un estudio de transito se necesita de equipo especializado para proporcionar la característica que se desea analizar, uno de estos dispositivos son los radares de velocidad los cuales utilizan ondas de radio para calcular el tiempo que le toma a la onda viajar hasta el vehículo y de vuelta al radar para determinar la velocidad con la que viaja el vehículo. A su vez estos dispositivos son utilizados en puntos estratégicos de la ciudad para monitorear las velocidades vehiculares, tomar una captura del vehículo y realizar una multa por exceso de velocidad.
+
+Ahora bien, para un estudio de transito la adquirir equipos especializados como los radares de velocidad no son tan viables por su elevado costo, no obstante, actualmente las ciudades cuentan con un sistema de monitoreo por video vigilancia. Es posible tomar este equipo existente en la ciudad y agregarle la facultad de extraer características transito como el conteo vehicular el flujo de tráfico, detectar congestión, accidentes y observar el comportamiento de los conductores entre otros factores. La estimación del tráfico puede proporcionarse a los usuarios y a las patrullas de policía para ayudar en la planificación de las salidas y evitar aglomeramiento de vehículos mediante paneles carreteros o los monitores vehiculares integrados (\cite{impedovo2019Vehicular}).
+
+La inteligencia artificial está revolucionando la sociedad moderna. Los investigadores y desarrolladores tanto de la industria automotriz como de seguridad vial están desarrollando activamente enfoques de conducción autónoma y monitoreo basados en el aprendizaje profundo. Para esto es necesario contar con red neuronal capaz de detectar vehículos en video y determinar su velocidad o varias redes que se encarguen de diferentes tareas, además de necesitar una base de datos con la cual puedan ser entrenadas. En \cite{rao2018Deep} se describe las posibilidades y desafíos de integrar el aprendizaje profundo en vehículos autónomos y se estudian la creación de base de datos para el entrenamiento de dichas redes neuronales.
 
 \section{Definición del problema}
 
-Actualmente existe radares especializados para determinar la velocidad de diferentes objetos como los vehículos, para este caso, estos aparatos son utilizados comúnmente para aplicar multas de tránsito. Por otra parte, implementar la determinación de la velocidad utilizando cámaras de vigilancia implicaría un ahorro, al utilizar equipo que ya se tiene disponible.
+Actualmente existe radares especializados para determinar la velocidad de diferentes objetos como los vehículos, para este caso, estos aparatos son utilizados comúnmente para aplicar multas de tránsito. Por otra parte, implementar la determinación de la velocidad utilizando cámaras de vigilancia implicaría un ahorro, al utilizar equipo que ya se tiene disponible en puntos importantes de la ciudad.
 
-Para este problema es necesario resolver diferentes partes del mismo, como lo son:
-
-\begin{itemize}
-\item Identificar el modelo del vehículo.
-\item Determinar la trayectoria del vehículo.
-\item Determinar la velocidad del vehículo.
-\item Para identificar el vehículo se plantea utilizar una red neuronal convolucional.
-\end{itemize}
+Existen varios problemas para llegar a esta meta, uno de estos es la detección de los vehículos que son tomados en video, esto debe ser de manera automatizada sin necesidad de un operador. Una vez detectado el vehículo se necesita seguirlo a lo largo de todo el video y así tomar el tiempo que le toma al vehículo llegar de un punto a otro. Con la detección del vehículo, el seguimiento y la toma del tiempo de viaje podemos calcular la velocidad.
 
 \section{Hipótesis}
 
-Es posible determinar la velocidad de un vehículo en secuencias de video tomando como referencia las dimensiones del vehículo identificado utilizando técnicas de inteligencia artificial para determinar el modelo y técnicas de flujo óptico para deducir su trayectoria.
+Es posible determinar la velocidad de un vehículo en secuencias de video utilizando técnicas de inteligencia artificial para determinar el modelo y técnicas de flujo óptico para deducir su trayectoria.
 
 \section{Objetivo}
 
@@ -38,16 +29,17 @@ Determinar la trayectoria y velocidad de un vehículo usando secuencias de video
 \section{Objetivos específicos}
 
 \begin{itemize}
-\item Diseñar e implementar un modelo de clasificación de vehículos mediante secuencias de video usando técnicas de inteligencia artificial.
-\item Implementar algoritmos de flujo óptico para determinar la trayectoria de un vehículo.
-\item Diseñar e implementar un algoritmo para la determinación de la velocidad de vehículos mediante secuencias de video tomando como referencia las dimensiones del vehículo identificado.
+    \item Implementar un modelo de clasificación de vehículos mediante secuencias de video usando técnicas de inteligencia artificial.
+    \item Implementar algoritmos de flujo óptico para determinar la trayectoria de un vehículo.
+    \item Generar un conjunto de datos que ayuden a entrenar un modelo para determinar la velocidad de vehículos.
+    \item Diseñar e implementar un algoritmo para la determinación de la velocidad de vehículos mediante secuencias de video.
 \end{itemize}
 
 \section{Justificación}
 
-Es posible determinar la velocidad de objetos por medio de hardware especializados como los radares de velocidad, sin embargo, al integrar a un video la capacidad de determinar la velocidad de vehículos tiene beneficios en cuanto al costo, ya que no sería necesario comprar un radar de velocidad, puesto que se podría utilizar cámaras de vigilancias comunes.
+Es posible determinar la velocidad de objetos por medio de hardware especializados como los radares de velocidad, sin embargo, al integrar a un video la capacidad de determinar la velocidad de vehículos tiene beneficios en cuanto al costo, ya que no sería necesario adquirir un radar de velocidad, para solamente utilizar cámaras de video comunes.
 
-Con este trabajo se busca aprovechar hardware existentes como lo son cámaras de video vigilancia que estén distribuidas por la ciudad, así como definir las características que deben tener para proporcionar un resultado aceptable.
+Con este trabajo se busca aprovechar hardware existentes como lo son cámaras de video vigilancia que están distribuidas por la ciudad, así como definir las características que deben tener para proporcionar un resultado aceptable.
 
 \section{Estructura de la tesis}
 
