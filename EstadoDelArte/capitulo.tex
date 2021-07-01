@@ -85,3 +85,11 @@ En la FlowNetCorr se combinan las dos imágenes en una etapa posterior, después
 Para este trabajo se crearon 2 modelos basados en FlowNet, TimeNet y SpeedNet. TimeNet es un clasificador que puede predecir los tiempos entre fotogramas en milisegundos. SpeedNet es un modelo de regresión que genera una predicción de velocidad en forma de un solo valor.
 
 Tanto el modelo TimeNet como SpeedNet demostraron dar resultados aceptables cuando se tiene una velocidad baja, empeorando cuando la velocidad aumenta.
+
+\subsection{YOLO}
+
+YOLO (\cite{redmon2016Yolo}) implementa la detección de objetos como un problema de regresión a cuadros delimitadores separados espacialmente y probabilidades de clase asociadas. Una sola red neuronal predice el área y las probabilidades de múltiples clases a partir de una imagen. Esto significa que YOLO razona globalmente sobre la imagen completa y todos los objetos de la imagen. Dado que toda la detección es una sola red, afecta directamente en el rendimiento de la detección.
+
+YOLO es implementada como una red neuronal convolucional y es evaluada usando el conjunto de datos PASCAL VOC. Las capas convolucionales iniciales de la red extraen características de la imagen, mientras que las capas completamente conectadas predicen las probabilidades y coordenadas de salida.
+
+Según los autores la red YOLO es extremadamente rápida lo cual la hace ideal para detecciones en tiempo real, procesando imágenes a 45 fotogramas por segundo. Una implementación reducida de la red puede procesar 155 fotogramas por segundo. Por otra parte, YOLO comete más errores de localización, al precio de disminuir la predicción de falsos positivos, superando otros métodos de predicción como DPM y RCNN.
