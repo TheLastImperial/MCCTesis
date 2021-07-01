@@ -1,0 +1,95 @@
+\chapter{Estado del Arte}
+
+Actualmente existen múltiples trabajos que determinan la velocidad de objetos, cada uno de una manera muy particular. En este capítulo se muestran algunos trabajos que se tomaron como referencia para desarrollar el presente trabajo.
+
+\section{Determinación simple velocidad, aceleración y ángulo}
+
+Es posible determinar la velocidad y otras características usando las fórmulas físicas de cada una de ellas. Con lo cual podemos tener una respuesta rápida ya que no se necesita de mucho procesamiento para ejecutar estas fórmulas.
+
+\subsection{Velocidad usando 2 imagenes consecutivas}
+
+\citeauthor{singh2007Estimating} propone determinar la velocidad, aceleración y ángulo de un objeto en  una secuencia de imágenes. Para esto se deben cumplir con las siguientes características:
+
+\begin{itemize}
+\item Se conoce un rango aproximado de valores RGB del objeto.
+\item Se conoce la velocidad a la que la cámara está tomando imágenes.
+\item Se conoce aproximadamente el tamaño de la imagen.
+\item La imagen es de color uniforme.
+\item El fondo es de color uniforme y no es del color del objeto.
+\end{itemize}
+
+Para determinar los valores buscados se dibuja un punto en el centroide del objeto en la primera imagen y en la segunda imagen, a partir de tener los dos centroides es posible calcular la velocidad, aceleración y ángulo del objeto con las siguientes formulas:
+
+\begin{eqnarray}
+    \frac{
+        \sqrt{
+            (x2-x1)^{2} + (y2-y1)^{2}
+        }
+    }{
+        FPS
+    }\\
+    \frac{
+        v2-v1
+    }{
+        FPS
+    }\\
+    \tan^{-1}\frac{y2-y1}{x2-x1}
+\end{eqnarray}
+
+\section{Redes neuronales para determinar velocidad y otras características}
+
+Las redes neuronales pueden ser aplicadas para determinar la velocidad y otras características de objetos en movimiento obteniendo buenos resultados, hasta compararse con dispositivos especializados para esta tarea, sin embargo, esto implica mayor costo computacional para entrenar estas redes neuronales.
+
+\subsection{aUToTrack}
+
+\citeauthor{burnett2020aUToTrack} presentan un nuevo conjunto de datos de detección y seguimiento de objetos (UofTPed50), que utiliza GPS para determinar la posición y velocidad de un peatón. Tambien presentan un sistema de seguimiento y detección de objetos liviano (aUToTrack) que utiliza visión, LIDAR y posicionamiento GPS/IMU para lograr un rendimiento de vanguardia en el punto de referencia de seguimiento de objetos de KITTI. Demostramos que aUToTrack estima con precisión la posición y la velocidad de los peatones, en tiempo real, utilizando solo CPU.
+
+Para poner a prueba el nuevo conjunto de entrenamiento UofTPed50 se utilizó la red SqueezeDet por contar con la característica de ser una de las redes más rápidas. Por otra parte para el seguimiento de objetos se utilizó el conjunto de entrenamiento KITTI con convoluciones rodantes recurrentes, ya que ocupa el primer lugar entre los trabajos publicados en el punto de referencia de detección de objetos 2D.
+
+\subsection{Red Neuronal Perceptron Multicapa}
+
+\citeauthor{kampelmuhler2018Camera} determinan la velocidad relativa de un vehículo utilizando una red neuronal perceptron multicapa la cual fue entrenada usando secuencias de imágenes, obteniendo buenos resultados con un error promedio de 1.12 m/s, el cual es comparable con un radar  LiDAR con un error de 0.71 m/s.
+
+Para determinar la velocidad se identificaron 3 características esenciales: la trayectoria del vehículo en un plano 2D, la profundidad y estimaciones de flujo óptico entre imágenes consecutivas. Al identificar un vehículo en una secuencia de imágenes podemos identificar que este, aumenta o disminuye su tamaño dependiendo la distancia que tiene con respecto al observador, esto complica el aprendizaje para la red neuronal por lo cual se opta por separar la información en cerca, medio y lejos, y entrenar un modelo para cada distancia.
+
+\subsection{Camaras estereo}
+
+\citeauthor{peng2019Improved} determinan la velocidad de vehículos en movimiento con el uso de cámaras estéreos montadas en drones. Su método integra Mask-R-CNN  y K-Means con el algoritmo de pirámide Lucas Kanade. Mask-R-CNN se utiliza para reconocer los objetos que tienen movimientos en relación con el suelo y los cubre con máscaras para mejorar la similitud entre píxeles y reducir los impactos de los ruidosos píxeles en movimiento. Luego, se utiliza el algoritmo piramidal de Lucas Kanade para calcular el valor de flujo óptico. Finalmente, el valor es agrupado por el algoritmo K-Means para abandonar los valores atípicos, y la velocidad del vehículo es calculada por el flujo óptico procesado.
+
+En sus experimentos demuestran que el uso combinado de Lucas Kanade , Mask-R-CNN y K-Means, mejoran sus resultados en comparación del uso de estos métodos por separado o el uso combinado de solo 2 de ellos, aun habiendo realizado experimentos en circunstancias normales, con muchos objetos en movimiento y en circunstancias de poca luz.
+
+\subsection{Arquitectura PWC-Net}
+
+\citeauthor{song2020Learning} determinan la velocidad y distancia de un vehículo usando dos fotogramas consecutivos, de los cuales obtienen las  características profundas, la geometría de la escena y el flujo óptico temporal.
+
+La arquitectura de esta red neuronal profunda se basó en la arquitectura de PWC-Net, la cual es una red de estimación de flujo óptico eficiente. Se extraen diferentes características de diferentes capas de la red para estimar la distancia y la velocidad del vehículo. En primer lugar, se presenta el modelo de regresión de distancia utilizando características profundas y geométricas espaciales de vehículos. Después de eso, se propone el método de estimación de la velocidad con características geométricas adicionales y una pista de flujo óptico temporal. Por último, detallan la canalización de la red centrada en vehículos para reducir la perspectiva y la influencia del movimiento.
+
+\subsection{CNN}
+
+\citeauthor{zhang2017Vehicle} realizaron experimentos para obtener la aceleración, la velocidad y la velocidad angular de un vehículo en movimiento usando cámaras de video posicionadas frente al área de interés. Para sus experimentos utilizaron el dataset KITTI el cual cuenta con imágenes estereoscópicas de la ciudad, así como arquitecturas CNN y la derivación y combinación de canales de entrada para identificar la dirección del flujo y las máscaras de objetos.
+
+Se creó una arquitectura CNN para cada característica buscada, aceleración, velocidad y velocidad angular. Se tomó como línea base una arquitectura CNN de 2 capas, que consta de 2 capas conv-relu-batchnorm-maxpooling y 2 capas afines-relu-batchnorm-dropout.
+
+Este proyecto compara los resultados para 4 arquitecturas CNN: línea de base, AlexNet, ResNet y AlexNet con el aprendizaje por transferencia.  Los resultados muestran que para el conjunto de entrenamiento ResNet tiene los mejores resultados seguido por AlexNet con el aprendizaje por transferencia, AlexNet y la línea base. Sin embargo, para el conjunto de validación  los mejores resultados los muestra la línea base, puesto que el entrenamiento de este modelo es más rápido y es posible buscar los hiperparametros para los mejores resultados. AlexNet con el aprendizaje por transferencia y AlexNet son los segundos mejores y ResNet tiene los peores resultados para el conjunto de validación.
+
+\subsection{FlowNet}
+
+\citeauthor{loor2017Visual} busca determinar la velocidad de los objetos utilizando 2 imágenes consecutivas. Para encontrar la velocidad el autor tomo como base la red neuronal FlowNet la cual ha aprendido a encontrar el flujo óptico en dos imágenes.
+
+FlowNet tiene dos arquitecturas de red diferentes: una arquitectura simple y una arquitectura de correlación. Ambas arquitecturas se basan en la red totalmente convolucional, lo que significa que esta red puede utilizar cualquier tamaño de imagen de entrada para determinar su flujo óptico.
+
+Una FlowNetSimple se entrena usando dos imágenes que se apilan juntas, dando lugar a una imagen de 6 dimensiones. Las siguientes capas se han diseñado como una red genérica, para permitir que la red decida cómo aprender el flujo óptico.
+
+En la FlowNetCorr se combinan las dos imágenes en una etapa posterior, después de que el modelo haya creado representaciones significativas de cada imagen por separado. Para ayudar al modelo a aprender las correspondencias entre la representación de características de las imágenes, se introdujo una capa de correlación.
+
+Para este trabajo se crearon 2 modelos basados en FlowNet, TimeNet y SpeedNet. TimeNet es un clasificador que puede predecir los tiempos entre fotogramas en milisegundos. SpeedNet es un modelo de regresión que genera una predicción de velocidad en forma de un solo valor.
+
+Tanto el modelo TimeNet como SpeedNet demostraron dar resultados aceptables cuando se tiene una velocidad baja, empeorando cuando la velocidad aumenta.
+
+\subsection{YOLO}
+
+YOLO (\cite{redmon2016Yolo}) implementa la detección de objetos como un problema de regresión a cuadros delimitadores separados espacialmente y probabilidades de clase asociadas. Una sola red neuronal predice el área y las probabilidades de múltiples clases a partir de una imagen. Esto significa que YOLO razona globalmente sobre la imagen completa y todos los objetos de la imagen. Dado que toda la detección es una sola red, afecta directamente en el rendimiento de la detección.
+
+YOLO es implementada como una red neuronal convolucional y es evaluada usando el conjunto de datos PASCAL VOC. Las capas convolucionales iniciales de la red extraen características de la imagen, mientras que las capas completamente conectadas predicen las probabilidades y coordenadas de salida.
+
+Según los autores la red YOLO es extremadamente rápida lo cual la hace ideal para detecciones en tiempo real, procesando imágenes a 45 fotogramas por segundo. Una implementación reducida de la red puede procesar 155 fotogramas por segundo. Por otra parte, YOLO comete más errores de localización, al precio de disminuir la predicción de falsos positivos, superando otros métodos de predicción como DPM y RCNN.
