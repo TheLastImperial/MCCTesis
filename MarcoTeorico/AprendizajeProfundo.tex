@@ -2,11 +2,11 @@
 
 \subsection{Redes neuronales}
 
-Una red neuronal se llama así porque los científicos intentaron modelar el cerebro en código informático. El objetivo final es crear una “inteligencia general artificial”, en otras palabras un programa que puede aprender todo lo que una persona podria aprender.
+Una red neuronal se llama así porque se pretende modelar el cerebro en código informático. El objetivo final es crear una “inteligencia general artificial”, en otras palabras, un programa que puede aprender todo lo que una persona podría aprender.
 
 Las redes neuronales artificiales son una clase de algoritmos de aprendizaje máquina que aprenden de los datos y se especializan en el reconocimiento de patrones (\cite{rosebrock2017deep}).
 
-Una red neuronal es una función flexible que adapta de manera autónoma su comportamiento para satisfacer la relación entre la entradas y los resultados esperados y se ha denominado como un aproximador universal (\cite{goyal2018Deep}).
+Una red neuronal es una función flexible que adapta de manera autónoma su comportamiento para satisfacer la relación entre las entradas y los resultados esperados y se ha denominado como un aproximador universal (\cite{goyal2018Deep}).
 
 \subsection{Perceptrón}
 
@@ -21,9 +21,9 @@ Perceptron toma n entradas y produce una única salida binaria si la suma es may
 
 
 
-Minsky y Papert demostraron que un perceptrón con una función de activación lineal es simplemente un clasificador lineal, incapaz de resolver problemas no lineales (\cite{rosebrock2017deep}). El ejemplo canónico de un problema no lineal es el conjunto de datos XOR Figura \ref{fig:xor}.
+Minsky y Papert demostraron que un perceptrón con una función de activación lineal es simplemente un clasificador lineal, incapaz de resolver problemas no lineales (\cite{rosebrock2017deep}). El ejemplo de un problema no lineal es el conjunto de datos XOR Figura \ref{fig:xor}. Esta limitante provoca una disminución en el interés por el modelo Perceptron.
 
-Perceptron se puede convertir fácilmente en un algoritmo en línea que procesa un flujo de ejemplos, actualizando el vector de peso solo si el último ejemplo recibido está mal clasificado. Se garantiza que el perceptrón convergerá en una solución si los datos de entrenamiento son linealmente separables, pero de lo contrario no convergerán(\cite{flach2012Machine}).
+Perceptron se puede convertir fácilmente en un algoritmo lineal que procesa un flujo de ejemplos, actualizando el vector de peso solo si el último ejemplo recibido está mal clasificado. Se garantiza que el perceptrón convergerá en una solución si los datos de entrenamiento son linealmente separables, pero de lo contrario no convergerán(\cite{flach2012Machine}).
 
 \begin{figure}[H]
     \centering
@@ -36,6 +36,8 @@ Perceptron se puede convertir fácilmente en un algoritmo en línea que procesa 
 \subsection{Redes Neuronales Multicapa}
 
 
+Al encontrar que el modelo Perceptrón solo puede resolver problemas lineales las investigaciones para esta área disminuyeron considerablemente, sin embargo, David Rumelhart y James McClelland encontraron que este problema puede ser resuelto al unir múltiples perceptrones uno detrás del otro en diferentes combinaciones.
+
 Los perceptrones multicapa o MLP (Multilayer Perceptron) son una red neuronal de propagación hacia adelante y se componen de múltiples perceptrones conectados entre sí y que operan en funciones de activación distintivas para permitir mejores mecanismos de aprendizaje. La arquitectura perceptrón multicapa cuenta como mínimo con 3 capas: una capa de entrada, una o más capas ocultas y una capa de salida (\cite{swamynathan2017Mastering}) Figura \ref{fig:mlp}.
 
 \begin{figure}[H]
@@ -45,7 +47,7 @@ Los perceptrones multicapa o MLP (Multilayer Perceptron) son una red neuronal de
     \label{fig:mlp}
 \end{figure}
 
-Los MLP también se conocen como aproximadores universales, ya que pueden encontrar la relación entre los valores de entrada y los objetivos, utilizando una cantidad suficiente de neuronas en la capa oculta, alterando los pesos o utilizando datos de entrenamiento adicionales para aproximar la función dada hasta cualquier nivel de precisión. A menudo, con el grado de libertad dado a un MLP, puede superar a la red MLP básica, introduciendo más capas ocultas, con menos neuronas en cada una de las capas ocultas y pesos óptimos. Esto ayuda en el proceso de generalización general del modelo (\cite{goyal2018Deep}).
+Los MLP también se conocen como aproximadores universales, ya que pueden encontrar la relación entre los valores de entrada y los objetivos, utilizando una cantidad suficiente de neuronas en la capa oculta, alterando los pesos o utilizando datos de entrenamiento adicionales para aproximar la función dada hasta cualquier nivel de precisión. A menudo, con el grado de libertad dado a un MLP, puede superar a la red MLP básica, introduciendo más capas ocultas, con menos neuronas en cada una de las capas ocultas y pesos óptimos. Esto ayuda en el proceso de generalización del modelo (\cite{goyal2018Deep}).
 
 \subsection{Propagación hacia atrás(Backpropagation)}
 
@@ -87,7 +89,7 @@ El problema es que no tenemos una vista general en la que podamos encontrar de m
 
 La tasa de aprendizaje es uno de los hiperparámetros más importantes. Tiene un fuerte impacto tanto en la estabilidad como en la eficiencia de los tiempos de entrenamiento y no hay una forma fija de encontrar la más adecuada. La tasa de aprendizaje es la magnitud del ajuste de pesos durante el entrenamiento de la red con el fin de minimizar el error (\cite{valenzuela2020Sistema}).
 
-La imagen muestra que si la tasa es demasiado grande, nuestro entrenamiento es inestable. Si nuestra tasa de aprendizaje es demasiado pequeña, el entrenamiento puede tomar más tiempo para llegar a un entrenamiento adecuado.
+La imagen muestra que, si la tasa es demasiado grande, nuestro entrenamiento es inestable. Si nuestra tasa de aprendizaje es demasiado pequeña, el entrenamiento puede tomar más tiempo para llegar a un entrenamiento adecuado.
 
 \begin{figure}[H]
     \centering
@@ -115,6 +117,15 @@ La función lineal regresa como salida valores en el rango de $[-\infty,\infty]$
     f(x) = Wx
 \end{equation}
 
+La Figura \ref{fig:graficaLineal} muestra la gráfica generada por la Ecuación \ref{eq:linealFunc}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{MarcoTeorico/imgs/GraficaLineal.jpg}
+    \caption{Grafica de función lineal.}
+    \label{fig:graficaLineal}
+\end{figure}
+
 \subsubsection{Sigmoidal}
 
 La función sigmoidal nos da como salida valores en el rango de $[0,1]$ y está definida por la ecuación \ref{eq:sigmoidFunc}:
@@ -124,6 +135,15 @@ La función sigmoidal nos da como salida valores en el rango de $[0,1]$ y está 
     s(x)={\frac {1}{1+e^{-x}}}
 \end{equation}
 
+La Figura \ref{fig:graficaSigmoidal} muestra la gráfica generada por la Ecuación \ref{eq:sigmoidFunc}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{MarcoTeorico/imgs/GraficaSigmoidal.jpg}
+    \caption{Grafica de función Sigmoidal.}
+    \label{fig:graficaSigmoidal}
+\end{figure}
+
 \subsubsection{Tangente hiperbólica}
 
 La función tangente hiperbólica proporciona como salida el rango $[-1,1]$ y está definida por la ecuación \ref{eq:tanhFunc}.
@@ -132,6 +152,15 @@ La función tangente hiperbólica proporciona como salida el rango $[-1,1]$ y es
 \label{eq:tanhFunc}
     \tanh (x)={\cfrac {e^{x}-e^{-x}}{e^{x}+e^{-x}}}
 \end{equation}
+
+La Figura \ref{fig:graficaHiperbolica} muestra la gráfica generada por la Ecuación \ref{eq:tanhFunc}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{MarcoTeorico/imgs/GraficaHiperbolica.jpg}
+    \caption{Grafica de función hiperbolica.}
+    \label{fig:graficaHiperbolica}
+\end{figure}
 
 \subsubsection{Softmax}
 
@@ -163,6 +192,14 @@ La funcion Rectificador Lineal(ReLU) regresa como resultado valores en el rango 
   relu(x)=\max(0,x)
 \end{equation}
 
+La Figura \ref{fig:graficaReLU} muestra la gráfica generada por la Ecuación \ref{eq:reluFunc}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{MarcoTeorico/imgs/GraficaReLU.jpg}
+    \caption{Grafica de función ReLU.}
+    \label{fig:graficaReLU}
+\end{figure}
 
 \subsection{Funciones de perdida}
 
@@ -186,3 +223,15 @@ Mientras que para problemas de clasificación algunas de las funciones de perdid
 
 \subsection{Optimizadores}
 
+Para el entrenamiento de una red neuronal es necesario adaptar los hiperparametros de entrada para generar un buen modelo, en ocasiones suele ser una tarea complicada ya que no hay un manual que nos indique como configurar los hiperparametros de tal manera que el modelo nos de los mejores resultados, por lo tanto, es una tarea de prueba y error.
+
+La tasa de aprendizaje suele ser uno de los hiperparametros más relevantes afectando directamente en el tiempo de entrenamiento de la red. Con ayuda del descenso del gradiente, este hiperparametro puede resultar de mucha ayuda para el entrenamiento, sin embargo, tiene la limitante de que la tasa de aprendizaje es un valor fijo, por otra parte, existen algoritmos que ayudan a reducir el valor de la tasa de aprendizaje para mejorar los resultados del modelo.
+
+Los optimizadores adaptativos son mejoras del algoritmo del descenso del gradiente los cuales cambian el valor de la tasa de aprendizaje para cada parámetro, tomando como referencia los resultados obtenidos. Algunos de los optimizadores más populares son:
+
+\begin{itemize}
+    \item AdaGrad
+    \item RMSProp
+    \item AdaDelta
+    \item Adam
+\end{itemize}

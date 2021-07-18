@@ -1,6 +1,6 @@
 \section{Visión artificial}
 
-Por medio de la visión artificial podemos hacer que una maquina sea capaz de identificar, analizar y procesar imágenes del mundo real. En esta sección se explicarán como una maquina representa una imagen y el filtro Kalman utilizado para seguimiento de objetos.
+Por medio de la visión artificial podemos hacer que una maquina sea capaz de identificar, analizar y procesar imágenes del mundo real. En esta sección se explicará como una maquina representa una imagen para después presentárnosla en una pantalla o simplemente procesarla, además la implantación del filtro Kalman que en este trabajo fue utilizado para el seguimiento de objetos.
 
 \subsection{Representación de imagenes}
 
@@ -14,11 +14,28 @@ Las representaciones más comunes de un pixel son:
 \end{itemize}
 
 
-Para la representación usando escala de grises, en la cual cada pixel tiene un valor entre 0 y 255, siendo cero el color blanco y 255 el color negro. Pudiendo variar este valor para dar diferentes intensidades de grises.
+Cuando se representa una imagen utilizando escala de grises cada pixel tiene un valor numérico en el rango de 0 a 255, con este rango de valores es posible variar la intensidad de color presentado, siendo 0 el valor para representar el color blanco y 255 el color negro, teniendo esto en cuenta podemos interpretar que los valores intermedios son diferentes intensidades de grises, de allí el nombre escala de grises.
 
-Para los pixeles a color existe diferentes espacios de colores, en este trabajo hablaremos solo sobre el RGB. Los pixeles RGB son representados usando 3 valores de intensidad para los colores rojo, verde y azul. Al igual que la escala de grises cada uno de estos 3 valores puede tener valores en el intervalo de 0 a 255. Al colocar los 3 valores de RGB a 0 podemos representar el color negro, por el contrario, para representar el color blanco cada valor de RGB es de 255.
+Para los pixeles a color existe diferentes espacios de colores, en este trabajo hablaremos solo sobre el RGB. Los pixeles RGB son representados usando 3 valores de intensidad para los colores rojo, verde y azul. Cada uno de estos 3 valores tiene un rango del 0 al 255 con lo cual podemos variar los colores presentados. Al igual que la escala de grises cada uno de estos 3 valores puede tener valores en el intervalo de 0 a 255. Al colocar los 3 valores de RGB a 0 se representa el color negro, por el contrario, para representar el color blanco cada valor de RGB debe ser de 255.
 
-Los videos son la reproducción consecutiva de imágenes llamados frames con los cuales da la sensación de movimiento, un video puede tener diferentes cantidades de frames por segundo (FPS) siendo hoy en día lo más común tener 60 FPS.
+Ahora bien, para el caso de la representación de los videos, estos pueden ser representados utilizando escala de grises o a color, ya que estos son imágenes tras imágenes con las cueles tenemos la sensación de movimiento, para el caso de los videos a las imágenes se les llama fotogramas y estos pueden variar su frecuencia, a este cambio en la frecuencia se le conoce como fotogramas por segundo, hoy en día los fotogramas por segundo más comunes son 60, sin embargo, ya hay implementaciones con una mayor cantidad.
+
+Hay otro punto importante a tomar en cuenta en cuento para los videos, además de FPS (Fotogramas por segundo) cuentan con cierta resolución, esta es la cantidad de pixeles que tiene cada fotograma. Existen diferentes resoluciones de las cuales la más común es Full HD, en la siguiente Tabla \ref{tab:resolutions} se muestra el resto de las resoluciones más comunes.
+
+\begin{table}[H]
+    \caption{Resoluciones de video}
+    \label{tab:resolutions}
+    \begin{tabular}{|c|c|c|}
+    \hline
+    \textbf{SIGLAS} & \textbf{NOMBRE} & \textbf{RESOLUCIÓN} \\ \hline
+    \textbf{SD}     & Standard Definition & 640 x 480 píxeles \\ \hline
+    \textbf{QHD}    & Quarter of High Definition & 960 x 540 píxeles \\ \hline
+    \textbf{HD}     & High Definition & 1.280 x 720 píxeles \\ \hline
+    \textbf{FHD}    & Full HD o Full High Definition & 1.920 x 1.080 píxeles \\ \hline
+    \textbf{QHD}    & Quad High Definition & 2.560 x 1.440 píxeles \\ \hline
+    \textbf{UHD}    & Ultra High Definition & 3.840 x 2.160 píxeles \\ \hline
+    \end{tabular}
+\end{table}
 
 \subsection{Filtro Kalman}
 
