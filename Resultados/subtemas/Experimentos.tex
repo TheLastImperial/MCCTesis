@@ -1,0 +1,8 @@
+\section{Experimentos}
+
+Principalmente se implementaron 3 experimentos, el primero es utilizando el cálculo mostrado en la Sección \ref{cap:GenerarModelo}, el segundo es utilizando modelos implementados en la biblioteca Scikit Learn de Python y por último con el uso de Tensor Flow implementado una red neuronal de capaz densas.
+
+En el caso de Scikit y Tensor Flow, tenemos que considerar que para cada entrenamiento podemos obtener diferentes resultados. Esto debido a la inicialización de los pesos ya que esta se realiza de manera aleatoria internamiento para cada uno de ellos. Por esta situación se decidió realizar un número considerable de veces los experimentos con el conjunto de datos creado, con lo cual tendremos diferentes resultados cada vez que se realicen los experimentos, con esto presentaremos el valor máximo de error obtenido con respecto al total de veces que se repitieron los entrenamientos, el valor mínimo y el promedio de todos los entrenamientos.
+
+Para todos los casos fue implementada la métrica de evaluación del Error Absoluto Medio, lo cual significa que las predicciones tienen en promedio un margen de error de N M/S o su equivalente en K/H, con esto podemos darnos una idea de que tan precisa es nuestra predicción con los diferentes modelos implementados.
+

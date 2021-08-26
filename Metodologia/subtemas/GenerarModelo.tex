@@ -1,6 +1,10 @@
 \subsection{Generar Modelo}
 \label{cap:GenerarModelo}
 
+En este trabajo se utilizaron dos maneras para generar un modelo para determinar la velocidad, el primero se basa utilizando la formula física de la velocidad y encontrando un factor de correlación y el segundo es por el entrenamiento de modelos con los que también podemos determinar la velocidad.
+
+\subsection{Generar modelo basado en factor de correlación}
+
 Para determinar la velocidad utilizando el conjunto de datos generado por el sistema partimos de lo más sencillo utilizando la formula física para el cálculo de la velocidad, Ecuación \ref{eq:Velocidad}.
 
 \begin{equation}
@@ -14,6 +18,15 @@ En este caso las muestras fueron tomadas por un Radar que solo nos proporciona l
     \label{eq:ConvertMSKH}
     \frac{M}{S} = \frac{18}{5} \times \frac{K}{H}
 \end{equation}
+
+A partir que tenemos la formula física para el cálculo de la velocidad y la conversión de la velocidad en metros por segundo en lugar de kilómetros por hora, podemos definir el proceso para crear el modelo en el diagrama de flujo que se muestra en la Figura \ref{fig:CrearModeloCustom}.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Metodologia/imgs/CrearModeloCustom.png}
+    \caption{Diagrama de flujo para la creacion de modelo con la formula fisica de la velocidad.}
+    \label{fig:CrearModeloCustom}
+\end{figure}
 
 La Tabla \ref{tab:CaracteristicasSistema} muestra que contamos con los 3 parámetros necesarios para estimar la velocidad, sin embargo, tenemos el valor de la distancia en pixeles, por lo que tenemos que encontrar el valor de la distancia estimada utilizando los valores con los que contamos, lo cual quedaría como muestra la Ecuación \ref{eq:DistanciaEstimada}.
 

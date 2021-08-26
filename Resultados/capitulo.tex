@@ -1,15 +1,12 @@
 \chapter{Resultados}
 
-La implementación del sistema dio como resultado un total de 178 videos tomados, de los cuales solo fueron procesados un total de 29 videos, la baja cantidad de videos procesados fue debido al tiempo de ejecución del sistema, además de que en algunos casos había que volver a procesar un mismo video varias veces, el sistema procesa entre 30 y 45 fotogramas por segundo lo cual se traduce en el mejor de los casos en 1.333 segundos procesar un segundo real de video.
+En esta sección se presentan los resultados de implementar el sistema con el cual se obtuvo un conjunto de datos para realizar experimentos con este y calcular la velocidad vehicular.
 
-Los 29 videos procesados dieron un total de 532 datos generados, con datos se realizaron los experimentos, los cuales comenzaron por el cálculo mostrado en la Sección \ref{cap:GenerarModelo}, el uso de modelos implementados en la biblioteca Scikit Learn de Python para terminar con el uso de Tensor Flow implementado una red neuronal de capaz densas.
-
-Para los experimentos los datos fueron separados por carril 0, 1 y 2, los cuales representan el primer carril, carril centrar y ultimo carril. Para cada uno de ellos tenemos 8 datos, 239 datos y 285 datos respectivamente, para el primer carril fueron omitidas las pruebas puesto que no se cuenta con datos suficientes.
-
-Para todos los casos fue implementada la métrica de evaluación del promedio de error absoluto, con esto podemos darnos una idea de que tan precisa es nuestra predicción con los diferentes modelos implementados.
-
-
+\input{Resultados/subtemas/LugarMuestras}
+\input{Resultados/subtemas/MuestrasObtenidas}
 \input{Resultados/subtemas/Hardware}
+\input{Resultados/subtemas/Experimentos}
 \input{Resultados/subtemas/RegresionLineal}
 \input{Resultados/subtemas/Scikit}
 \input{Resultados/subtemas/TensorFlow}
+\input{Resultados/subtemas/AnalisisResultados}

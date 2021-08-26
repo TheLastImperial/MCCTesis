@@ -12,12 +12,11 @@ Para el caso de la implementación de Scikit se utilizaron los siguientes modelo
     \item Regresión de Máquina de Soporte Vectorial
 \end{itemize}
 
-Los experimentos con el uso de la biblioteca Scikit se realizaron un total de 800 veces, con estos resultados se obtuvo el valor mínimo, el valor máximo y el promedio de todos los experimentos.
+Los experimentos con el uso de la biblioteca Scikit se realizaron un total de 800 veces ya que esta es la cantidad máxima permitida por los recursos del hardware utilizado, con estos resultados se obtuvo el valor mínimo, el valor máximo y el promedio de todos los experimentos.
 
 \subsection{Carril central}
 
-La tabla \ref{tab:resultadosScikitCarrilCentral} muestra los resultados para el carril central, en kilometros por hora.
-
+La Tabla \ref{tab:resultadosScikitCarrilCentral} muestra los resultados para el carril central en kilómetros por hora, podemos notar que el valor mínimo obtenido es para la Regresión Lineal, pero hay promedios cercanos en milésimas para la Regresión Lineal, Regresión Ridge, Lasso, Regresión Bayesiana y Elastic Net.
 
 \begin{table}[H]
     \centering
@@ -26,8 +25,8 @@ La tabla \ref{tab:resultadosScikitCarrilCentral} muestra los resultados para el 
     \begin{tabular}{|l|l|l|l|l|l|l|l|} \hline
         & \textbf{RL} & \textbf{RC} & \textbf{Lasso} & \textbf{RCB} & \textbf{Elastic Net} & \textbf{RRF} & \textbf{RSVM} \\ \hline
 
-        \textbf{MIN} & 1.246 & 1.256 & 1.271 & 1.253 & 1.278                & 1.433 & 1.598 \\ \hline
-        \textbf{MAX} & 2.16 & 2.142 & 2.149 & 2.153 & 2.156                & 2.282 & 2.441 \\ \hline
+        \textbf{MIN} & 1.246 & 1.256 & 1.271 & 1.253 & 1.278 & 1.433 & 1.598 \\ \hline
+        \textbf{MAX} & 2.16 & 2.142 & 2.149 & 2.153 & 2.156 & 2.282 & 2.441 \\ \hline
         \textbf{Prom} & 1.692 & 1.696 & 1.699 & 1.696 & 1.699 & 1.829 & 1.962 \\ \hline
     \end{tabular}
 \end{table}
@@ -35,8 +34,7 @@ La tabla \ref{tab:resultadosScikitCarrilCentral} muestra los resultados para el 
 
 \subsection{Ultimo Carril}
 
-La tabla \ref{tab:resultadosScikitUltimoCarril} muestra los resultados para el ultimo carril, en kilometros por hora.
-
+La tabla \ref{tab:resultadosScikitUltimoCarril} muestra los resultados para el ultimo carril en kilómetros por hora, en este caso tenemos valores mínimos iguales para los modelos de Regresión Lineal, Regresión Ridge, Lasso y Regresión Bayesiana. Mientras que para los promedios los valores más bajos son para la Regresión Lineal y la Regresión Bayesiana.
 
 \begin{table}[H]
     \centering
@@ -44,7 +42,6 @@ La tabla \ref{tab:resultadosScikitUltimoCarril} muestra los resultados para el u
     \label{tab:resultadosScikitUltimoCarril}
     \begin{tabular}{|c|l|l|l|l|l|l|l|} \hline
         & \textbf{RL} & \textbf{RC} & \textbf{Lasso} & \textbf{RCB} & \textbf{Elastic Net} & \textbf{RRF} & \textbf{RSVM} \\ \hline
-
         \textbf{MIN} & 0.738 & 0.738 & 0.738 & 0.738 & 0.760 & 0.842 & 1.516 \\ \hline
         \textbf{MAX} & 1.220 & 1.224 & 1.231 & 1.220 & 1.278 & 1.400 & 2.578 \\ \hline
         \textbf{Prom} & 0.958 & 0.965 & 0.976 & 0.958 & 0.997 & 1.087 & 1.940 \\ \hline

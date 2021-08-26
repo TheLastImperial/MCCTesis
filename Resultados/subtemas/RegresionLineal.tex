@@ -1,6 +1,10 @@
 \section{Regresión lineal para cálculo de la velocidad}
 
-En la Sección SECCION mostramos el cálculo de la velocidad utilizando una regresión simple implementada utilizando solamente la formula básica de la velocidad. Ahora mostraremos los resultados utilizando esta misma metodología en la Tabla \ref{tab:resultadosRLS}.
+En la Sección \ref{cap:GenerarModelo} mostramos el cálculo de la velocidad utilizando una regresión simple implementada utilizando solamente la formula básica de la velocidad, en estos experimentos se utilizó esta misma fórmula para el conjunto de datos creado con el sistema, utilizando solamente el carril central y el ultimo carril.
+
+\subsection{Resultados Regresión lineal para cálculo de la velocidad}
+
+En la Tabla \ref{tab:resultadosRLS} de resultados podemos notar que los mejores resultados están en el último carril con 5.86 K/H, mientras que el carril central tiene 7.74 K/H. Tomamos estos resultados como punto de referencia para mejorar las futuras predicciones, ya que estos no son tan buenos en comparación por ejemplo del margen de error del radar Bushnell utilizado.
 
 \begin{table}[H]
     \centering
@@ -8,8 +12,8 @@ En la Sección SECCION mostramos el cálculo de la velocidad utilizando una regr
     \label{tab:resultadosRLS}
     \begin{tabular}{|l|l|l|}
     \hline
-         & M/S & K/H \\ \hline
-        Carril Central & 2.15 & 7.74 \\ \hline
-        Ultimo Carril & 1.63 & 5.86 \\ \hline
+    \textbf{} & \textbf{M/S} & \textbf{K/H} \\ \hline
+    \textbf{Carril Central} & 2.15 & 7.74 \\ \hline
+    \textbf{Ultimo Carril}  & 1.63 & 5.86 \\ \hline
     \end{tabular}
 \end{table}
