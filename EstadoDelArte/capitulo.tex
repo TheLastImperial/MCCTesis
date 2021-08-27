@@ -65,6 +65,21 @@ Para determinar los valores buscados se dibuja un punto en el centroide del obje
 \citeauthor{luvizon2014Vehicle} nos muestran un sistema que utiliza la detección de texto para localizar las matrículas de los vehículos, la cual es utilizada para seleccionar las características más estables para el seguimiento. La velocidad del vehículo se estima comparando la trayectoria de las características rastreadas con medidas conocidas del mundo real. En los experimentos realizados las velocidades de los vehículos se estimaron con un error absoluto medio de 0.59 km/h.
 
 
+\citeauthor{jalalat2016Vehicle} proponen la detección de vehículos y su velocidad con  un clasificador en cascada, basado en las características de Haar. Un algoritmo de segmentación de primer plano para distinguir los vehículos en movimiento del fondo y limpiar los resultados de detección para combinarlos con  resultados de seguimiento basados en el filtro Kalman y algoritmo de asignación de Munkres. Para lograr una medición de velocidad, se aplica una técnica eficiente de coincidencia de subpíxeles junto con un datos de visión estéreo para calcular los desplazamientos de vehículos por fotograma.
+
+
+\citeauthor{llorca2016Two} determinan la velocidad de vehículos con el uso de dos cámaras montadas en un poste fijo. Usando diferentes distancias focales y orientaciones, cada cámara apunta a un tramo diferente de la carretera de unos pocos metros, lo que implica un escenario desafiante con la estimación de la distancia los errores deben ser del orden de centímetros.  El sistema propuesto determina la distancia relativa a los vehículos con respecto a las cámaras utilizando la placa como referencia demostramos que existe una geometría específica entre las cámaras que minimiza el error de velocidad. Los resultados obtenidos validan la propuesta con errores de velocidad máxima  de menos 3 k/h a velocidades de hasta 80 k/h.
+
+
+\citeauthor{lee2021Study} desarrollaron un módulo para medir la distancia de vehículos en varios carriles simultáneamente usando un dron. El dron está montado con dos sensores LiDAR, y cada sensor emite un punto frontal y un punto trasero, donde los vehiculos son detectados. La velocidad del vehículo se estima utilizando la distancia entre el punto delantero y trasero por el cual pasa el vehículo y el tiempo que tarda en pasar por ambos puntos.
+
+
+\citeauthor{yang2021Robust}, \citeauthor{yang2021Improved}, determinan la velocidad con cámaras estéreo que están ubicadas de fijas en un lugar estratégico de la ciudad. Las cámaras estéreo son las encargadas de identificar la matrícula, los faros y el logo, ya que estas se toman como las características principales ya que siempre aparecen en un vehículo; estas caracterisitcas se utilizan como referencia para determinar la velocidad. En \citeauthor{vakili2020Single}, se usa una estrategia similar identificando solo la placa como la caracteristica principal y usándola para determinar la velocidad del vehículo. Sin embargo, \citeauthor{vakili2020Single}, usa solamente una cámara, en lugar de cámaras estéreo.
+
+
+\citeauthor{bevilacqua2016Egomotion} implementan la transformada de Hough para detectar las líneas carreteras para ser utilizadas como referencia. Para el seguimiento de los vehículos utilizan el popular algoritmo de Kanade-Lucas-Tomasi, para calcular la velocidad se determina la longitud de la región de interés en pixeles la cual equivale a la longitud en metros para después obtener la velocidad con respecto al tiempo en segundos.
+
+
 \section{Redes neuronales para determinar velocidad y otras características}
 
 Las redes neuronales pueden ser aplicadas para determinar la velocidad y otras características de objetos en movimiento obteniendo buenos resultados, hasta compararse con dispositivos especializados para esta tarea, sin embargo, esto implica mayor costo computacional para entrenar estas redes neuronales.
