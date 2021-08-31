@@ -1,9 +1,9 @@
-\subsection{Generar Modelo}
-\label{cap:GenerarModelo}
+\section{Estimación de velocidad}
+\label{cap:EstimacionVelocidad}
 
 En este trabajo se utilizaron dos maneras para generar un modelo para determinar la velocidad, el primero se basa utilizando la formula física de la velocidad y encontrando un factor de correlación y el segundo es por el entrenamiento de modelos con los que también podemos determinar la velocidad.
 
-\subsection{Generar modelo basado en factor de correlación}
+\subsection{Estimar velocidad basado en factor de correlación}
 
 Para determinar la velocidad utilizando el conjunto de datos generado por el sistema partimos de lo más sencillo utilizando la formula física para el cálculo de la velocidad, Ecuación \ref{eq:Velocidad}.
 
@@ -64,4 +64,19 @@ Una vez que tenemos nuestra B promedio podemos sustituirla por B en la Ecuación
 \end{equation}
 
 
+
+\subsection{Estimar velocidad Scikit y Tensor Flow}
+
+El proceso de creación del modelo de Scikit y Tensor Flow son el mismo, este se describe en el diagrama de flujo de la Figura \label{ref:ModeloScikitTensorFlow}.
+
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.9\textwidth]{Metodologia/imgs/ModeloScikitTensorFlow.png}
+    \caption{Diagrama de flujo para estimar velocidad utilizando inteligencia artificial.}
+    \label{fig:ModeloScikitTensorFlow}
+\end{figure}
+
+
+Como podemos notar el proceso para entrenar un modelo tanto en Scikit como Tensor Flow es el proceso más común utilizado. El primer paso es separar el conjunto de datos en un conjunto de entrenamiento y otro de validación normalmente esto se realiza en un porcentaje de 70\% - 30\%. Una vez separado el conjunto de datos se procede al entrenamiento utilizando la herramienta elegida, hasta que se tiene una precisión tan buena como nosotros deseemos. Por último, se utiliza el modelo con el conjunto de validación para garantizar que los resultados obtenidos sean tan buenos como en el conjunto de entrenamiento.
 
