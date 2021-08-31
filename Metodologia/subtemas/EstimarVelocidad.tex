@@ -23,7 +23,41 @@ A partir que tenemos la formula física para el cálculo de la velocidad y la co
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Metodologia/imgs/CrearModeloCustom.png}
+    \begin{tikzpicture}
+        \node(a)[circle, draw=black, minimum size=1.5cm]
+            {Inicio};
+
+        \node(b)[rectangle, draw=black, minimum width=5cm, minimum height=1.7cm]
+            [right=of a]
+            [text width=5cm, align=center]
+            {Calcular distancia estimada};
+        \node(c)[rectangle, draw=black, minimum width=5cm, minimum height=1.7cm]
+            [right=of b]
+            [text width=5cm, align=center]
+            {Encontrar factor de correlación};
+        \node(d)[rectangle, draw=black, minimum width=5cm, minimum height=1.7cm]
+            [below=of c]
+            [text width=5cm, align=center]
+            {Promediar factor de correlación};
+        \node(e)[rectangle, draw=black, minimum width=5cm, minimum height=1.7cm]
+            [left=of d]
+            [text width=5cm, align=center]
+            {Integrar factor de correlación con formula de velocidad};
+
+        \node(f)[circle, draw=black, minimum size=1.5cm]
+            [left=of e]
+            {Fin};
+
+        \draw[->] (a) -- (b);
+        \draw[->] (b) -- (c);
+
+        \draw[->] (c) -- (d);
+        \draw[->] (d) -- (e);
+        \draw[->] (e) -- (f);
+
+
+    \end{tikzpicture}
+
     \caption{Diagrama de flujo para la creacion de modelo con la formula fisica de la velocidad.}
     \label{fig:CrearModeloCustom}
 \end{figure}
@@ -69,10 +103,36 @@ Una vez que tenemos nuestra B promedio podemos sustituirla por B en la Ecuación
 
 El proceso de creación del modelo de Scikit y Tensor Flow son el mismo, este se describe en el diagrama de flujo de la Figura \label{ref:ModeloScikitTensorFlow}.
 
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Metodologia/imgs/ModeloScikitTensorFlow.png}
+    \begin{tikzpicture}[node distance=5mm]
+
+        \node(a)[circle, draw=black, minimum size=1cm]
+            {Inicio};
+
+        \node(b)[rectangle, draw=black, minimum width=3cm, minimum height=1.2cm]
+            [right=of a]
+            [text width=3cm, align=center]
+            {Separar conjunto de datos};
+        \node(c)[rectangle, draw=black, minimum width=3cm, minimum height=1.2cm]
+            [right=of b]
+            [text width=3cm, align=center]
+            {Entrenar modelo};
+        \node(d)[rectangle, draw=black, minimum width=3cm, minimum height=1.2cm]
+            [right=of c]
+            [text width=3cm, align=center]
+            {Validar modelo};
+
+
+        \node(e)[circle, draw=black, minimum size=1cm]
+            [right=of d]
+            {Inicio};
+
+        \draw[->] (a) -- (b);
+        \draw[->] (b) -- (c);
+        \draw[->] (c) -- (d);
+        \draw[->] (d) -- (e);
+    \end{tikzpicture}
     \caption{Diagrama de flujo para estimar velocidad utilizando inteligencia artificial.}
     \label{fig:ModeloScikitTensorFlow}
 \end{figure}

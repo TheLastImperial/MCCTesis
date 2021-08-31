@@ -1,10 +1,56 @@
-\section{Proceso de creación de conjunto de datos}
+\section{Generar conjunto de datos}
 
 El diagrama de flujo de la Figura \ref{fig:DFCreacionCD} muestra el proceso completo para generar un conjunto de datos, en este vemos que una vez que se toman todas las muestras los tres siguientes pasos son iterativos hasta que las hayamos procesado todas.
 
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.9\textwidth]{Metodologia/imgs/FlowSystem.png}
+    \begin{tikzpicture}
+
+        \node(a)[circle, draw=black, minimum size=1.5cm]
+            {Inicio};
+
+        \node(b)[rectangle, draw=black, minimum width=5cm, minimum height=1cm]
+            [below=of a]
+            {Toma de muestras};
+
+        \node(c)[rectangle, draw=black, minimum width=5cm, minimum height=1cm]
+            [below=of b]
+            {Limpieza de las muestras};
+
+        \node(d)[rectangle, draw=black, minimum width=5cm, minimum height=1cm]
+            [below=of c]
+            {Extracción de información};
+
+        \node(e)[rectangle, draw=black, minimum width=5cm, minimum height=1cm]
+            [text width=4.5cm, align=center]
+            [below=of d]
+            {Validación de Extracción de la información};
+
+        \node(f)[diamond, draw=black, minimum size=1.8cm]
+            [right=of d]
+            [text width=1.5cm, align=center]
+            {Existen mas muestras};
+
+        \node(g)[circle, draw=black, minimum size=1.5cm]
+            [right=of f]
+            {Fin};
+
+
+        \draw[->] (a) -- (b);
+        \draw[->] (b) -- (c);
+        \draw[->] (c) -- (d);
+        \draw[->] (d) -- (e);
+
+        \draw[->] (e.east)  -- (f.south);
+        \draw[->] (f.north) --
+            node[text width=1cm,midway,above,align=center ] {Si}
+            (c.east);
+
+        \draw[->] (f) -- node[text width=1cm,midway,above,align=center ] {No} (g);
+
+    \end{tikzpicture}
+
     \caption{Diagrama de flujo para la creacion de conjunto de datos.}
     \label{fig:DFCreacionCD}
 \end{figure}
@@ -126,17 +172,16 @@ La Tabla \ref{tab:CaracteristicasSistema} muestra las características más impo
     \label{tab:CaracteristicasSistema}
     \begin{tabular}{|l|l|}
         \hline
-        \multicolumn{1}{|c|}{\textbf{Característica}} & \multicolumn{1}{c|}{\textbf{Descripción}} \\ \hline
-
-        Angulo Salida & Angulo a partir del punto de entrada hasta el punto de salida \\ \hline
-        Distancia de salida & Distancia recorrida desde el punto de entrada hasta el punto de salida \\ \hline
-        Área Entrada & Área detectada del vehículo en pixeles en el punto de entrada \\ \hline
-        Área Salida & Área detectada del vehículo en pixeles en el punto de salida \\ \hline
-        FPS & Fotogramas por segundo del video \\ \hline
-        Tiempo & Tiempo que le tomo al vehículo para pasar del punto entrada al de salida \\ \hline
-        Velocidad & Velocidad detectada por el radar \\ \hline
-        Carril & Carril por que pasa el vehículo \\ \hline
-        Identificador & Identificador correspondiente a una imagen generada \\ \hline
+        \textbf{Característica} & \multicolumn{1}{c|}{\textbf{Descripción}} \\ \hline
+        \textbf{Angulo Salida} & Angulo a partir del punto de entrada hasta el punto de salida \\ \hline
+        \textbf{Distancia de salida} & Distancia recorrida desde el punto de entrada hasta el punto de salida \\ \hline
+        \textbf{Área Entrada} & Área detectada del vehículo en pixeles en el punto de entrada \\ \hline
+        \textbf{Área Salida} & Área detectada del vehículo en pixeles en el punto de salida \\ \hline
+        \textbf{FPS} & Fotogramas por segundo del video \\ \hline
+        \textbf{Tiempo} & Tiempo que le tomo al vehículo para pasar del punto entrada al de salida \\ \hline
+        \textbf{Velocidad} & Velocidad detectada por el radar \\ \hline
+        \textbf{Carril} & Carril por que pasa el vehículo \\ \hline
+        \textbf{Identificador} & Identificador correspondiente a una imagen generada \\ \hline
     \end{tabular}
 \end{table}
 

@@ -4,12 +4,36 @@ En este capítulo se describirá a detalle cómo se realizó el proceso de toma 
 
 La metodología completa es simple como muestra la Figura \ref{fig:MetodologiaDF}, pero cada uno de sus procesos individuales son más complejos para conseguir una buena predicción.
 
+% \begin{figure}[H]
+%     \centering
+%     \includegraphics[width=1\textwidth]{Metodologia/imgs/MetodologiaDF.png}
+%     \caption{Diagrama de flujo metodología.}
+%     \label{fig:MetodologiaDF}
+% \end{figure}
+
 \begin{figure}[H]
+
+    \begin{tikzpicture}
+
+        \node(a)[rectangle, draw=black, minimum size=1cm]
+            {Generar conjunto de datos};
+        \node(b)[rectangle, draw=black, minimum size=1cm]
+            [right=of a]
+            {Estimación de Velocidad};
+        \node(c)[rectangle, draw=black, minimum size=1cm]
+            [right=of b]
+            {Obtener velocidad};
+
+        \draw[->] (a) -- (b);
+        \draw[->] (b) -- (c);
+
+    \end{tikzpicture}
     \centering
-    \includegraphics[width=1\textwidth]{Metodologia/imgs/MetodologiaDF.png}
     \caption{Diagrama de flujo metodología.}
     \label{fig:MetodologiaDF}
+
 \end{figure}
+
 
 \input{Metodologia/subtemas/GenerarConjuntoDatos}
 \input{Metodologia/subtemas/EstimarVelocidad}
