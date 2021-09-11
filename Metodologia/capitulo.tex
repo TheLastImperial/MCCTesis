@@ -1,31 +1,24 @@
 \chapter{Metodología}
+\label{cap:metodologia}
 
-En este capítulo se describirá a detalle cómo se realizó el proceso de toma de muestras, así como, el proceso completo necesario para generar un conjunto de datos capaz de determinar la velocidad de vehículos.
+En este capítulo se describirá el proceso de obtención de la velocidad de vehículos a partir de secuencias de vídeo. Para realizar esta tarea se decidió recopilar un conjunto de muestras (\textit{dataset}) suficientes para trabajar con ella.  A partir del \textit{dataset}, el problema de obtención de la velocidad lo dividimos en 3 procesos principales (extracción de características, modelo predictivo y obtención de la velocidad). Para la generación del \textit{dataset} fue necesario ir físicamente a una vía terrestre para tomar las muestras en conjunto con un radar y una camara de video de esta manera tomar los vídeos y la velocidad de cada vehículo. El proceso de extracción de características parte de los vídeos o muestras tomados y después de aplicar técnicas de aprendizaje profundo el proceso genera un archivo \enquote*{csv} con las características necesarias de los vehículos en cuestión. A partir del archivo se aplicaron técnicas estadísticas de correlación con la finalidad de relacionar la distancia en pixeles con una distancia en metros, para posteriormente en el proceso de obtención de la velocidad estimar la velocidad del vehículo en cuestión. 
+
+%p de de a detalle cómo se realizó el proceso de toma de muestras, así como, el proceso completo necesario para generar un conjunto de datos capaz de determinar la velocidad de vehículos.
 
 La metodología completa es simple como muestra la Figura \ref{fig:MetodologiaDF}, pero cada uno de sus procesos individuales son más complejos para conseguir una buena predicción.
 
-% \begin{figure}[H]
-%     \centering
-%     \includegraphics[width=1\textwidth]{Metodologia/imgs/MetodologiaDF.png}
-%     \caption{Diagrama de flujo metodología.}
-%     \label{fig:MetodologiaDF}
-% \end{figure}
 
 \begin{figure}[H]
 
     \begin{tikzpicture}
 
         \node(a)[rectangle, draw=black, minimum size=1cm]
-            {Generar conjunto de datos};
+            {Obtención de conjunto de datos};
         \node(b)[rectangle, draw=black, minimum size=1cm]
             [right=of a]
-            {Estimación de Velocidad};
-        \node(c)[rectangle, draw=black, minimum size=1cm]
-            [right=of b]
-            {Obtener velocidad};
+            {Obtención de velocidad};
 
         \draw[->] (a) -- (b);
-        \draw[->] (b) -- (c);
 
     \end{tikzpicture}
     \centering
@@ -35,6 +28,7 @@ La metodología completa es simple como muestra la Figura \ref{fig:MetodologiaDF
 \end{figure}
 
 
-\input{Metodologia/subtemas/GenerarConjuntoDatos}
-\input{Metodologia/subtemas/EstimarVelocidad}
-\input{Metodologia/subtemas/ObtenerVelocidad}
+\input{Metodologia/subtemas/001-ObtenerConjuntoMuestras}
+\input{Metodologia/subtemas/002-ExtraccionCaracteristicas}
+\input{Metodologia/subtemas/003-EstimarVelocidad}
+\input{Metodologia/subtemas/004-ObtenerVelocidad}
