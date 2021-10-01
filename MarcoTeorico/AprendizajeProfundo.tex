@@ -10,7 +10,7 @@ Una red neuronal es una función flexible que adapta de manera autónoma su comp
 
 \subsection{Perceptrón}
 
-Rosenblatt publicó el algoritmo seminal Perceptron: este modelo es capaz de aprender automáticamente los pesos necesarios para clasificar una entrada.
+\citeauthor{rosenblatt1958Perceptron} publicó el algoritmo seminal Perceptron: este modelo es capaz de aprender automáticamente los pesos necesarios para clasificar una entrada.
 
 Perceptron toma $n$ entradas y produce una única salida binaria si la suma es mayor que el valor de activación. Se dice que la neurona se "dispara" siempre que se excede el valor de activación y se comporta como una función escalonada, lo cual se muestra en la Ecuación \ref{eq:fnStep} (\cite{goyal2018Deep}).
 
@@ -21,9 +21,9 @@ Perceptron toma $n$ entradas y produce una única salida binaria si la suma es m
 
 
 
-Minsky y Papert demostraron que un perceptrón con una función de activación lineal es simplemente un clasificador lineal, incapaz de resolver problemas no lineales (\cite{rosebrock2017deep}). El ejemplo de un problema no lineal es el conjunto de datos XOR Figura \ref{fig:xor}. Esta limitante provoca una disminución en el interés por el modelo Perceptron.
+\citeauthor{minsky1969Perceptrons} demostraron que un perceptron con una función de activación lineal es simplemente un clasificador lineal, incapaz de resolver problemas no lineales (\cite{rosebrock2017deep}). El ejemplo de un problema no lineal es el conjunto de datos XOR Figura \ref{fig:xor}. Esta limitante provoca una disminución en el interés por el modelo Perceptron.
 
-Perceptron se puede convertir fácilmente en un algoritmo lineal que procesa un flujo de ejemplos, actualizando el vector de peso solo si el último ejemplo recibido está mal clasificado. Se garantiza que el perceptrón convergerá en una solución si los datos de entrenamiento son linealmente separables, pero de lo contrario no convergerán(\cite{flach2012Machine}).
+Perceptron se puede convertir fácilmente en un algoritmo lineal que procesa un flujo de ejemplos, actualizando el vector de peso solo si el último ejemplo recibido está mal clasificado. Se garantiza que el perceptron convergerá en una solución si los datos de entrenamiento son linealmente separables, pero de lo contrario no convergerán(\cite{flach2012Machine}).
 
 \begin{figure}[H]
     \centering
@@ -36,9 +36,9 @@ Perceptron se puede convertir fácilmente en un algoritmo lineal que procesa un 
 \subsection{Redes Neuronales Multicapa}
 
 
-Al encontrar que el modelo Perceptrón solo puede resolver problemas lineales las investigaciones para esta área disminuyeron considerablemente, sin embargo, David Rumelhart y James McClelland encontraron que este problema puede ser resuelto al unir múltiples perceptrones uno detrás del otro en diferentes combinaciones.
+Al encontrar que el modelo Perceptrón solo puede resolver problemas lineales las investigaciones para esta área disminuyeron considerablemente, sin embargo, \citeauthor{rumelhart1986Parallel} encontraron que este problema puede ser resuelto al unir múltiples perceptrones uno detrás del otro en diferentes combinaciones.
 
-Los perceptrones multicapa o MLP (\textit{Multilayer Perceptron}) son una red neuronal de propagación hacia adelante y se componen de múltiples perceptrones conectados entre sí y que operan en funciones de activación distintivas para permitir mejores mecanismos de aprendizaje. La arquitectura perceptrón multicapa cuenta como mínimo con 3 capas: una capa de entrada, una o más capas ocultas y una capa de salida (\cite{swamynathan2017Mastering}) Figura \ref{fig:mlp}.
+Los perceptrones multicapa o MLP (\textit{Multilayer Perceptron}) son una red neuronal de propagación hacia adelante y se componen de múltiples perceptrones conectados entre sí y que operan en funciones de activación distintivas para permitir mejores mecanismos de aprendizaje. La arquitectura perceptrón multicapa cuenta como mínimo con tres capas: una capa de entrada, una o más capas ocultas y una capa de salida (\cite{swamynathan2017Mastering}) Figura \ref{fig:mlp}.
 
 \begin{figure}[H]
     \centering
@@ -53,7 +53,7 @@ Los MLP también se conocen como aproximadores universales, ya que pueden encont
 
 En las redes neuronales es complicado ajustar sus pesos de entrenamiento por la gran cantidad de conexiones y sus múltiples niveles. Para lograr esta tarea, se utiliza el algoritmo \textit{backpropagation}, creado por \citeauthor{rumelhart1986Parallel} en \citeyear{rumelhart1986Parallel}.
 
-En el algoritmo \textit{Backpropagation} calculamos qué tan rápido cambia el error a medida que cambiamos una capa oculta. A partir de ahí, podemos averiguar qué tan rápido cambia el error cuando cambiamos el peso de una conexión individual. Básicamente, intentamos encontrar el camino de descenso más empinado. Comenzamos calculando las derivadas del error con respecto a un solo ejemplo de entrenamiento. Una vez que tenemos las derivadas de error para una capa de unidades ocultas, las usaremos para calcular las derivadas de error para las unidades de la capa siguiente. Y una vez que encontramos las derivadas del error para las actividades de las unidades ocultas, es bastante fácil obtener las derivadas del error para los pesos que conducen a una unidad oculta (\cite{buduma2017Fundamentals}).
+En el algoritmo \textit{Backpropagation} se calcula qué tan rápido cambia el error a medida que cambia una capa oculta. A partir de ahí, se puede averiguar qué tan rápido cambia el error cuando varia el peso de una conexión individual. Básicamente, pretende encontrar el camino de descenso más empinado. Se comienza calculando las derivadas del error con respecto a un solo ejemplo de entrenamiento. Una vez que se tienen las derivadas de error para una capa de unidades ocultas, se utilizan para calcular las derivadas de error para las unidades de la capa siguiente. Y una vez que se encuentran las derivadas del error para las actividades de las unidades ocultas, es bastante fácil obtener las derivadas del error para los pesos que conducen a una unidad oculta (\cite{buduma2017Fundamentals}).
 
 En resumen, el algoritmo \textit{backpropagation} consiste en dos pasos como muestra la figura:
 
@@ -81,15 +81,15 @@ El método del descenso del gradiente es un algoritmo iterativo que minimiza una
     \label{fig:descensoGradiente}
 \end{figure}
 
-La Figura \ref{fig:descensoGradiente} muestra cómo podemos tener múltiples picos y valles (Máximos y mínimos) para nuestros valores de perdida. El valor ideal que nos gustaría obtener es nuestro mínimo global, asegurando que nuestros parámetros tomen los valores más óptimos posibles.
+La Figura \ref{fig:descensoGradiente} muestra cómo se puede tener múltiples picos y valles (Máximos y mínimos) para nuestros valores de perdida. El valor ideal que nos gustaría obtener es el mínimo global, asegurando que los parámetros tomen los valores más óptimos posibles.
 
-El problema es que no tenemos una vista general en la que podamos encontrar de manera sencilla el mínimo global ya que en realidad nos colocaríamos en un lugar aleatorio sin saber dónde está el mínimo global y tendríamos que avanzar hacia una perdida mínima sin subir accidentalmente a la cima de un máximo local.
+El problema es que no se cuenta con una vista general en la que sea posible encontrar de manera sencilla el mínimo global ya que en realidad se inicializa en un lugar aleatorio sin saber dónde está el mínimo global y se avanza hacia una perdida mínima sin subir accidentalmente a la cima de un máximo local.
 
 \subsection{Tasa de aprendizaje}
 
 La tasa de aprendizaje es uno de los hiperparámetros más importantes. Tiene un fuerte impacto tanto en la estabilidad como en la eficiencia de los tiempos de entrenamiento y no hay una forma fija de encontrar la más adecuada. La tasa de aprendizaje es la magnitud del ajuste de pesos durante el entrenamiento de la red con el fin de minimizar el error (\cite{valenzuela2020Sistema}).
 
-La Figura \ref{fig:learningRate} muestra que, si la tasa es demasiado grande, nuestro entrenamiento es inestable. Si nuestra tasa de aprendizaje es demasiado pequeña, el entrenamiento puede tomar más tiempo para llegar a un entrenamiento adecuado.
+La Figura \ref{fig:learningRate} muestra que, si la tasa es demasiado grande, el entrenamiento es inestable. Si la tasa de aprendizaje es demasiado pequeña, el entrenamiento puede tomar más tiempo para llegar al ideal.
 
 \begin{figure}[H]
     \centering
@@ -98,7 +98,7 @@ La Figura \ref{fig:learningRate} muestra que, si la tasa es demasiado grande, nu
     \label{fig:learningRate}
 \end{figure}
 
-Preferiblemente, la pérdida de entrenamiento y validación casi se imitan entre sí, con solo una pequeña brecha entre la pérdida de entrenamiento y la pérdida de validación, lo que indica un pequeño sobreajuste. Siempre que la brecha no aumente drásticamente, sabemos que existe un nivel aceptable de sobreajuste. Por otro lado, si no logramos mantener esta brecha y las pérdidas de entrenamiento y validación se separan drásticamente, entonces sabemos que corremos el riesgo de sobreajuste. Una vez que la pérdida de validación comienza a aumentar, sabemos que estamos muy sobreajustados (\cite{rosebrock2017deep}).
+Preferiblemente, la pérdida de entrenamiento y validación casi se imitan entre sí, con solo una pequeña brecha entre la pérdida de entrenamiento y la pérdida de validación, lo que indica un pequeño sobreajuste. Siempre que la brecha no aumente drásticamente, existe un nivel aceptable de sobreajuste. Por otro lado, si no logra mantener esta brecha y las pérdidas de entrenamiento y validación se separan drásticamente, entonces se sabe que se corre el riesgo de sobreajuste. Una vez que la pérdida de validación comienza a aumentar, se sabe que estamos muy sobreajustados (\cite{rosebrock2017deep}).
 
 
 \subsection{Funciones de activación}
@@ -185,7 +185,7 @@ $k$ el numero de clases del clasificador multi-clases.
 
 \subsubsection{ReLU}
 
-La funcion Rectificador Lineal(ReLU) regresa como resultado valores en el rango de los números reales positivos $[0, \infty]$, como muestra la Ecuación \ref{eq:reluFunc}:
+La función Rectificador Lineal(ReLU) regresa como resultado valores en el rango de los números reales positivos $[0, \infty]$, como muestra la Ecuación \ref{eq:reluFunc}:
 
 \begin{equation}
 \label{eq:reluFunc}
@@ -205,7 +205,7 @@ La Figura \ref{fig:graficaReLU} muestra la gráfica generada por la Ecuación \r
 
 Una función de pérdida indica la pérdida de predicción de $\hat{y}$ cuando la salida real es $y$. El objetivo del entrenamiento es entonces minimizar la pérdida en los diferentes ejemplos de entrenamiento. La función asigna una puntuación numérica a la salida de la red $\hat{y}$ dada la verdadera salida esperada $y$ (\cite{goldberg2017Neural}).
 
-Dependiendo de nuestro problema es el tipo de función de perdida que usaremos. Para un problema de regresión se busca tener la perdida lo más cercana a cero y para un problema un problema de clasificación se busca tener el valor más alto o muy cercano a 1 para cada una de las clases para la cual fue entrenada nuestra red neuronal, siempre cuidando que la red neuronal no tenga sobreajuste.
+Dependiendo del problema es el tipo de función de perdida que se utilizara. Para un problema de regresión se busca tener la perdida lo más cercana a cero y para un problema de clasificación se busca tener el valor más alto o muy cercano a 1 para cada una de las clases para la cual fue entrenada la red neuronal, siempre cuidando que la red neuronal no tenga sobreajuste.
 
 Algunas de las funciones de perdida para problemas de  regresión son las siguientes:
 

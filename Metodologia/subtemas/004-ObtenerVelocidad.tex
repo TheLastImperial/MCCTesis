@@ -2,7 +2,7 @@
 
 Utilizando el conjunto de datos creado por el sistema para generar el modelo que se propone en la Sección \ref{cap:EstimacionVelocidad} podemos determinar la velocidad simplemente adquiriendo los datos de la distancia en pixeles y el tiempo más nuestra B promedio, con esto es solo cuestión de sustituir los valores en la Ecuación \ref{eq:VelocidadBPromedio}.
 
-Por ejemplo, calculamos nuestra B promedio la cual es igual a 0.0162, el sistema obtiene la distancia en pixeles y el tiempo que le tomo si vehículo pasar del punto A al punto B, los cuales son igual a 962 y 0.933 respectivamente, ahora solo es cuestión de sustituir estos valores para conseguir la velocidad estimada.
+Por ejemplo, calculamos nuestra B promedio la cual es igual a 0.0162, el sistema obtiene la distancia en pixeles y el tiempo que le tomo al vehículo pasar del punto A al punto B, los cuales son igual a 962 y 0.933 respectivamente, ahora solo es cuestión de sustituir estos valores para conseguir la velocidad estimada.
 
 \begin{equation}
     \label{eq:EjemploImplementacion}
@@ -10,11 +10,11 @@ Por ejemplo, calculamos nuestra B promedio la cual es igual a 0.0162, el sistema
 \end{equation}
 
 
-No obstante, esta estimación está en M/S, entonces debemos convertirlo a K/H de la siguiente manera.
+No obstante, esta estimación está en M/S, entonces se necesita convertirlo a K/H de la siguiente manera.
 
 \begin{equation}
     \label{eq:EjmploKH}
      16.703\times \frac{18}{5} = 60.13 \: k/h
 \end{equation}
 
-Este es el resultado de estimar la velocidad de un vehículo utilizando el método propuesto, por otro lado, este es un método simple el cual nos ayudó como punto de referencia para futuros experimentos, por ejemplo, usando bibliotecas como Scikit para utilizar modelos ya existentes en esta biblioteca o Tensor Flow para crear una red neuronal con las características que mejor se adecuen a este caso.
+Este es el resultado de estimar la velocidad de un vehículo utilizando el método propuesto, este es un método simple el cual ayudó como punto de referencia para futuros experimentos, por ejemplo, usando bibliotecas como Scikit para utilizar modelos ya existentes en esta biblioteca o Tensor Flow para crear una red neuronal con las características que mejor se adecuen a este caso.

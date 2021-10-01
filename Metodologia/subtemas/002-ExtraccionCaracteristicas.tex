@@ -1,6 +1,6 @@
 \section{Obtención de velocidad}
 
-Como se menciono anteriormente en la Sección \ref{cap:metodologia} la obtención de la velocidad se divide en tres partes las cuales están representadas en el Figura \ref{fig:DFObtencionDeVelocidad} y se describen a lo largo de esta sección.
+Como se mencionó anteriormente en la Sección \ref{cap:metodologia} la obtención de la velocidad se divide en tres partes las cuales están representadas en el Figura \ref{fig:DFObtencionDeVelocidad} y se describen a lo largo de esta sección.
 
 \begin{figure}[H]
     \centering
@@ -36,9 +36,9 @@ Como se menciono anteriormente en la Sección \ref{cap:metodologia} la obtenció
 
 \subsection{Extracción de caracteristicas }
 
-Una vez que hemos tomado la muestra y generado el archivo CSV relacionado podemos ejecutar el sistema para extraer las características que nos interesa junto a la velocidad detectada por el radar de velocidad.
+Una vez que se tienen las muestras y se genera el archivo CSV relacionado podemos ejecutar el sistema para extraer las características que nos interesa junto a la velocidad detectada por el radar de velocidad.
 
-El sistema se encarga de leer el video utilizando la biblioteca OpenCV con la cual examina fotograma por fotograma, e identifica los vehículos utilizando la red neuronal YOLO, una vez que tiene identificados todos los vehículos dibuja la caja correspondiente a cada uno de ellos. La Figura \ref{fig:LugarDeteccion} muestra 2 vehículos detectados, los cuales están dentro de un recuadro.
+El sistema se encarga de leer el video utilizando la biblioteca OpenCV con la cual examina fotograma por fotograma, e identifica los vehículos utilizando la red neuronal YOLO, una vez que tiene identificados todos los vehículos dibuja la caja correspondiente a cada uno de ellos. La Figura \ref{fig:LugarDeteccion} muestra dos vehículos detectados, los cuales están dentro de un recuadro.
 
 \begin{figure}[H]
     \centering
@@ -47,7 +47,7 @@ El sistema se encarga de leer el video utilizando la biblioteca OpenCV con la cu
     \label{fig:LugarDeteccion}
 \end{figure}
 
-El seguimiento de los vehículos se realiza por medio del Filtro Kalman para determinar su ubicación en el próximo fotograma. El sistema se encarga de guardar todas las ubicaciones de los vehículos en el transcurso del tiempo, con lo cual es capaz dibujar todo el trayecto que han tenido cada uno de ellos y con el uso de regresión lineal podemos generar una recta que corresponde a las trayectorias de los vehículos, la Figura \ref{fig:LugarSeguimiento} muestra un vehículo detectado en un recuadro blanco, así como un par de líneas una amarilla y otra roja que corresponden al seguimiento del mismo y a la recta calculada correspondiente al seguimiento.
+El seguimiento de los vehículos se realiza por medio del Filtro Kalman para determinar su ubicación en el próximo fotograma. El sistema se encarga de guardar todas las ubicaciones de los vehículos en el transcurso del tiempo, con lo cual es capaz dibujar todo el trayecto que han tenido cada uno de ellos y con el uso de regresión lineal se crea una recta que corresponde a las trayectorias de los vehículos, la Figura \ref{fig:LugarSeguimiento} muestra un vehículo detectado en un recuadro blanco, así como un par de líneas una amarilla y otra roja que corresponden al seguimiento y a la recta calculada correspondiente al seguimiento.
 
 \begin{figure}[H]
     \centering
@@ -56,9 +56,9 @@ El seguimiento de los vehículos se realiza por medio del Filtro Kalman para det
     \label{fig:LugarSeguimiento}
 \end{figure}
 
-Otra característica que podemos identificar en la Figura \ref{fig:LugarSeguimiento} es la creación de un triángulo en color negro, con el cual podemos identificar el ángulo detectado para el vehículo.
+Otra característica que se identifica en la Figura \ref{fig:LugarSeguimiento} es la creación de un triángulo en color negro, con el cual se identifica el ángulo detectado para el vehículo.
 
-Cando el sistema detecta que un vehículo pasa por el punto A, este guarda la información del estado del vehículo Figura \ref{fig:PuntoA}, puede haber múltiples vehículos pasando en ese momento y todos serán detectados por YOLO, sin embargo, podemos identificar el vehículo del cual se está guardando su estado con el recuadro blanco, ya que para el resto de vehículos se dibuja un recuadro amarillo.
+Cando el sistema detecta que un vehículo pasa por el punto A, este guarda la información del estado del vehículo Figura \ref{fig:PuntoA}, puede haber múltiples vehículos pasando en ese momento y todos serán detectados por YOLO, sin embargo, para identificar el vehículo del cual se está guardando su estado con el recuadro blanco, ya que para el resto de vehículos se dibuja un recuadro amarillo.
 
 \begin{figure}[H]
     \centering
@@ -97,7 +97,7 @@ La Tabla \ref{tab:CaracteristicasSistema} muestra las características más impo
 \end{table}
 
 
-El sistema además de generar un archivo CSV, nos crea una imagen de salida la cual corresponde a una línea del archivo resultante, esta imagen está formada por dos imágenes una al lado de la otra, la imagen de la izquierda representa el vehículo cuando entra en el punto A y la imagen de la derecha es cuando el vehículo pasa por el punto B. La Figura \ref{fig:Completo} muestra un ejemplo de esta imagen de salida.
+El sistema además de generar un archivo CSV, crea una imagen de salida la cual corresponde a una línea del archivo resultante, esta imagen está formada por dos imágenes una al lado de la otra, la imagen de la izquierda representa el vehículo cuando entra en el punto A y la imagen de la derecha es cuando el vehículo pasa por el punto B. La Figura \ref{fig:Completo} muestra un ejemplo de esta imagen de salida.
 
 \begin{figure}[H]
     \centering
@@ -112,11 +112,11 @@ El sistema además de generar un archivo CSV, nos crea una imagen de salida la c
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-Una vez que el sistema genera nuestras imágenes de salida y el archivo CSV resultante debemos validar que el vehículo detectado sea el correcto y que el área de detección del vehículo sea lo más completa posible.
+Una vez que el sistema genera nuestras imágenes de salida y el archivo CSV resultante se valida que el vehículo detectado sea el correcto y que el área de detección del vehículo sea lo más completa posible.
 
-Para el caso de validar que el vehículo sea el correcto debemos ver cada una de las imágenes generadas y leer la descripción en el archivo CSV de entrada, en caso de identificar un vehículo que no corresponda debemos modificar los segundos en el archivo CSV de entrada de tal manera que el sistema detecte el vehículo  correcto, existen dos casos en los que el sistema no podrá identificar el vehículo, que el vehículo correcto sea tapado por otro o que al vehículo no se le haya podido generar su seguimiento completo del punto A al B de forma correcta, para estos caso debemos eliminar la línea correspondiente en el archivo de entrada, para ambos casos ya sea que se tenga que modificar los segundos o se tenga que eliminar la línea debemos ejecutar el sistema nuevamente para que el sistema genere todo de nuevo.
+Para el caso de validar que el vehículo sea el correcto es necesario ver cada una de las imágenes generadas y leer la descripción en el archivo CSV de entrada, en caso de identificar un vehículo que no corresponda se debe modificar los segundos en el archivo CSV de entrada de tal manera que el sistema detecte el vehículo  correcto, existen dos casos en los que el sistema no podrá identificar el vehículo, que el vehículo correcto sea tapado por otro o que al vehículo no se le haya podido generar su seguimiento completo del punto A al B de forma correcta, para este caso se elimina la línea correspondiente en el archivo de entrada, para ambos casos ya sea que se tenga que modificar los segundos o se tenga que eliminar la línea es necesario ejecutar el sistema nuevamente para que el sistema genere todo de nuevo.
 
-Para validar que el área de detección del vehículo sea lo más completa posible también debemos realizar una inspección visual de las imágenes generadas, en estas podemos identificar cuando un vehículo ha sido detectado completamente, como muestra la Figura \ref{fig:ImagenValida}.
+Para validar que el área de detección del vehículo sea lo más completa posible también se realiza una inspección visual de las imágenes generadas, en estas se identifica cuando un vehículo ha sido detectado completamente, como muestra la Figura \ref{fig:ImagenValida}.
 
 \begin{figure}[H]
     \centering
@@ -134,5 +134,5 @@ Por otra parte, hay ocasiones en la cuales el sistema solo detecta parte del veh
     \label{fig:ImagenInvalida}
 \end{figure}
 
-Una vez que encontramos una imagen invalida procedemos a eliminar la línea correspondiente en el archivo CSV de salida, esta línea la podemos identificar por el identificador del final ya que este corresponde a la imagen. Para este caso no es necesario volver a ejecutar el sistema, pero se recomienda hacer un respaldo del archivo CSV original para futuras referencias.
+Una vez que se identifica una imagen inválida se elimina la línea correspondiente en el archivo CSV de salida, esta línea se reconoce por el identificador del final, ya que este corresponde a la imagen. Para este caso no es necesario volver a ejecutar el sistema, pero se recomienda hacer un respaldo del archivo CSV original para futuras referencias.
 

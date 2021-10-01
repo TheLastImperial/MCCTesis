@@ -14,7 +14,9 @@ La estimación del tráfico puede proporcionarse a los usuarios y a las patrulla
 
 La inteligencia artificial está revolucionando la sociedad moderna. Los investigadores y desarrolladores tanto de la industria automotriz como de seguridad vial están desarrollando activamente enfoques de conducción autónoma y monitoreo basados en el aprendizaje profundo. Para esto es necesario contar con una red neuronal capaz de detectar vehículos capturados mediante vídeo con la finalidad de determinar su velocidad, clasificarlos, detectar accidentes, por mencionar algunas tareas.
 
-\citeauthor{rao2018Deep} describen las posibilidades y desafíos de integrar el aprendizaje profundo en vehículos autónomos en donde se estudia la creación de base de datos para el entrenamiento de dichas redes neuronales. En este trabajo se presenta un proceso y un sistema para la creación de un conjunto de datos el cual es utilizado para  determinar la velocidad de vehículos con ayuda de inteligencia artificial.
+\citeauthor{rao2018Deep} describen las posibilidades y desafíos de integrar el aprendizaje profundo en vehículos autónomos en donde se estudia la creación de base de datos para el entrenamiento de dichas redes neuronales. En este trabajo se presenta una herramienta para 
+%proceso y un sistema para la creación de un conjunto de datos el cual es utilizado para 
+determinar la velocidad vehicular a partir de secuencias de imágenes. Para el desarrollo de esta herramienta fue necesario la elaboración de un conjunto de datos experimental propio para después con técnicas de inteligencia artificial y estadísticas extraer la información necesaria para la estimación de la velocidad.
 
 
 
@@ -22,34 +24,35 @@ La inteligencia artificial está revolucionando la sociedad moderna. Los investi
 
 Actualmente hay un incremento de la población en las grandes ciudades, entre algunas razones del crecimiento es que, estas tienden a proporcionar más trabajos. Este incremento de población ha provocado diferentes problemas entre ellos el de movilidad. En las ciudades grandes o pequeñas, los vehículos de motor son el principal medio con el cual la población es capaz de trasladarse ya sea para la recreación o para llegar a sus lugares de trabajo. El aumento de población y aumento de vehículos también son causantes de gran cantidad de emisiones de gases de efectos invernaderos, los cuales a su vez provocan problemas de salud para la población en general.
 
-Un flujo de vehículos sin pausas prolongadas ayudan a disminuir los problemas de tráfico y la reducción de contaminación, ya que un vehículo detenido siempre continuo con el motor encendido. Mejorar el flujo vehicular es importante para disminuir las consecuencias de la gran cantidad de vehículos. Los análisis de tráfico identifican características como las horas pico, accidentes viales, la velocidad, el conteo de vehículos, entre otros. El presente trabajo está centrado en el desarrollo de una herramienta capaz de determinar la velocidad a la que viajan los vehículos a partir de secuencias de vídeo.
+Un flujo de vehículos sin pausas prolongadas ayudan a disminuir los problemas de tráfico y la reducción de contaminación, ya que un vehículo detenido siempre continuo con el motor encendido. Mejorar el flujo vehicular es importante para disminuir las consecuencias de la gran cantidad de vehículos. Los análisis de tráfico identifican características como las horas pico, accidentes viales, la velocidad, el conteo de vehículos, entre otros. El presente trabajo está centrado en el desarrollo de una herramienta capaz de determinar la velocidad a la que viajan los vehículos a partir de secuencias de imágenes.
 
-El enfoque tradicional para realizar estudios de tránsito está influenciado por el uso de equipo especial. Estos se pueden instalar bajo la superficie de la carretera tales como espires inductivas, sensores de campo magnético, contadores de ejes sensores capacitivos y piezoeléctricos. Por otro lado, se pueden instalar encima de la carretera, como los son los detectores de radares de microondas, detectores de radar láser, sensores de campo magnético, sensores infrarrojos pasivos y activos, sensores ultrasónicos y entre otros instrumentos, los cuales tienen un costo elevado además de necesitar una instalación especializada.
+El enfoque tradicional para realizar estudios de tránsito está influenciado por el uso de equipo especial. Estos se pueden instalar bajo la superficie de la carretera tales como espires inductivas, sensores de campo magnético, contadores de ejes sensores capacitivos y piezoeléctricos. Por otro lado, se pueden instalar encima de la carretera, como los son los detectores de radares de microondas, detectores de radar láser, sensores de campo magnético, sensores infrarrojos pasivos y activos, sensores ultrasónicos y entre otros instrumentos. Los cuales tienen un costo elevado además de necesitar una instalación especializada.
 
-Las cámaras de videovigilancia son dispositivos instalados en puntos estratégicos de las grandes ciudades, es por esto que se busca agregarles la capacidad de medir la velocidad de los vehículos con la ayuda de inteligencia artificial, buscando aprovechar al máximo la infraestructura existente y ahorrar en los costos de nuevos dispositivos.
+Las cámaras de videovigilancia son dispositivos instalados en puntos estratégicos de las grandes ciudades. Es por esto que se busca agregarles la capacidad de estimar la velocidad de los vehículos con la ayuda de inteligencia artificial. Buscando aprovechar la infraestructura existente y ahorrar en la adquisición de nuevos dispositivos especializados.
 
 \section{Hipótesis}
 
-Se puede determinar la velocidad de vehículos en movimiento en secuencias de vídeo utilizando técnicas de inteligencia artificial y visión artificial.
+Es posible determinar la velocidad de vehículos en movimiento a partir de secuencias de imágenes utilizando técnicas de inteligencia artificial y visión artificial.
 
 \section{Objetivo}
 
-Determinar la trayectoria y velocidad de un vehículo usando secuencias de vídeo a través de técnicas de inteligencia artificial y visión artificial.
+Determinar la trayectoria y velocidad de un vehículo usando secuencias de imágenes a través de técnicas de inteligencia artificial y visión artificial.
 
 \section{Objetivos específicos}
 
 \begin{itemize}
-    \item Implementar un modelo de clasificación de vehículos mediante secuencias de vídeo usando técnicas de inteligencia artificial.
-    \item Implementar algoritmos de flujo óptico para determinar la trayectoria de un vehículo.
-    \item Generar un conjunto de datos que ayuden a entrenar un modelo para determinar la velocidad de vehículos.
-    \item Diseñar e implementar un algoritmo para la determinación de la velocidad de vehículos mediante secuencias de vídeo.
+    \item Generar un conjunto de datos que permitan diseñar y entrenar un modelo capaz de terminar la velocidad de un vehículo a partir de secuencias de imágenes.
+    \item Diseñar e implementar un modelo que permita la detección de un vehículo. 
+    \item Diseñar e implementar un algoritmo de flujo óptico para determinar la trayectoria de un vehículo.
+    \item Diseñar e implementar una herramienta para la determinación de la velocidad de vehículos mediante secuencias de imágenes.
 \end{itemize}
 
 \section{Justificación}
 
 Con la implementación de un sistema para determinar la velocidad de vehículos en cámaras de videovigilancia, damos a los centros de monitoreo datos para analizar e identificar los puntos más importantes en los que hay que poner especial atención para evitar posibles accidentes viales que podrían costar la perdida de vidas o simplemente el retraso en los tiempos de traslados provocados por la congestión  de tráfico lo a su vez ayuda a disminuir los gases de efecto invernadero nocivos para la salud.
 
-Además, con la integración del sistema propuesto se espera un ahorro económico, puesto que no es necesario adquirir equipo especializado para determinar la velocidad de vehículos.
+Además, con la integración del sistema propuesto se espera un ahorro económico, puesto que no es necesario adquirir equipo especializado para determinar la velocidad de vehículos, por ejemplo de radar de velocidad Bushnell tiene un costo promedio de 6,000 pesos mexicanos, sin embargo, este dispositivo solo puede guardar la velocidad en pantalla, sin tener evidencia visual del vehículo al que se le tomó la velocidad, por otra parte, con la ayuda de cámaras de videovigilancia y este sistema es posible agregar la funcionalidad para determinar la velocidad de vehículos, aprovechando equipos existentes en la mayoría de las grandes ciudades, además de darle doble funcionalidad a estos equipos a los cuales no hay que realizar una instalación extra que provoquen pausar el tráfico, como en el caso de lazos inductivos, ya que el sistema no es invasivo con sistemas de vigilancia existentes.
+
 
 \section{Estructura de la tesis}
 

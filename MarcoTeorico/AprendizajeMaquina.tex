@@ -15,28 +15,28 @@ La RAE define aprender como adquirir el conocimiento de algo por medio del estud
 
 Comúnmente el conjunto de datos es dividido para cada proceso, entrenamiento y validación, en la práctica lo más común es separar el conjunto de un porcentaje de 70-30, siendo 70\% para el proceso de entrenamiento y 30\% para la validación.
 
-Mas adelante se presentan las métricas que se utilizan para evaluar el modelo por medio del conjunto de datos de validación. En el aprendizaje maquina tenemos tres tipos diferentes de aprendizaje: aprendizaje supervisado, aprendizaje no supervisado y aprendizaje semi-supervisado, a continuación, se describen los tres tipos de aprendizaje, sin embargo, en este trabajo solo se hablará con más detalle sobre el aprendizaje supervisado.
+Mas adelante se presentan las métricas que se utilizan para evaluar el modelo por medio del conjunto de datos de validación. En el aprendizaje maquina se tienen tres tipos diferentes de aprendizaje: aprendizaje supervisado, aprendizaje no supervisado y aprendizaje semi-supervisado, a continuación, se describen los tres tipos de aprendizaje, sin embargo, en este trabajo solo se hablará con más detalle sobre el aprendizaje supervisado.
 
 \begin{itemize}
 
     \item Aprendizaje supervisado: Es un proceso de entrenamiento en el que se realizan predicciones sobre los datos de entrada y luego se corrigen las predicciones incorrectas. El proceso continúa hasta que se obtiene un error bajo o un número máximo de iteraciones. Para esto es necesario que nuestros datos de entrada tengan cierta etiqueta con el significado de cada uno de nuestros datos.
 
-    \item Aprendizaje no supervisado: En este aprendizaje no tenemos nuestros datos con la etiqueta correspondiente a su valor. Para este caso es el entrenamiento el encargado de encontrar cierto patrón en los datos con el cual asignara una etiqueta a cada uno de ellos.
+    \item Aprendizaje no supervisado: En este aprendizaje no se cuenta con la etiqueta correspondiente a su valor para cada dato. Para este caso es el entrenamiento el encargado de encontrar cierto patrón en los datos con el cual asignara una etiqueta a cada uno de ellos.
 
-    \item Aprendizaje semi-supervisado: En el aprendizaje semi-supervisado tenemos datos etiquetados y datos sin etiquetar. El proceso de entrenamiento toma los datos conocidos, los analiza y etiqueta cada uno de los datos no etiquetados para usarlos como datos de entrenamiento adicionales. El algoritmo semi-supervisado aprende la “estructura" de los datos.
+    \item Aprendizaje semi-supervisado: En el aprendizaje semi-supervisado se tienen los datos etiquetados y datos sin etiquetar. El proceso de entrenamiento toma los datos conocidos, los analiza y etiqueta cada uno de los datos no etiquetados para usarlos como datos de entrenamiento adicionales. El algoritmo semi-supervisado aprende la “estructura" de los datos.
 
 \end{itemize}
 
 
 \subsection{Aprendizaje supervisado}
 
-En la Sección \ref{sec:MachineLearning} menciono un poco sobre el aprendizaje supervisado, ahora vamos a hablar sobre dos tipos de problemas que nos podemos encontrar al resolverlos utilizando aprendizaje máquina.
+En la Sección \ref{sec:MachineLearning} se toco el tema del aprendizaje supervisado, ahora se profundizara sobre los dos tipos de problemas que podemos encontrar al resolverlos utilizando aprendizaje máquina.
 
 \subsubsection{Clasificación}
 
 En el aprendizaje maquina la clasificación consiste en que el algoritmo aprenda los patrones que definen un conjunto de datos perteneciente a una clase especifica. Los valores de salida del modelo es la categoría correspondiente a los datos de entrada que pueden ser dos o más opciones bien definidas.
 
-La clasificación binaria es la forma más simple de clasificación en esta se tienen solo dos valores de salida (0 o 1). Esta clasificación nos sirve para responder a la simple pregunta si pertenece o no a una clase en concreto. Por ejemplo, podemos identificar si una transacción bancaria es fraudulenta o no.
+La clasificación binaria es la forma más simple de clasificación en esta se tienen solo dos valores de salida (0 o 1). Esta clasificación sirve para responder a la simple pregunta si pertenece o no a una clase en concreto. Por ejemplo, identificar si una transacción bancaria es fraudulenta o no.
 
 Existen una gran variedad de conjuntos de datos con una gran cantidad de clases como MNIST, Animals, CIFAR-10, Flowers-17 entre otros cada uno de estos son útiles para validar el correcto funcionamiento de una red neuronal.
 
@@ -53,7 +53,7 @@ Para todo aquel problema que implique separar un conjunto de datos en diferentes
 
 Los problemas de regresión predicen un valor real. En otras palabras, la función que estima la variable dependiente conociendo la variable independiente.
 
-La regresión es utilizada para aquellos problemas que implican predecir valores numéricos, un ejemplo de esto son las predicciones de ráfagas de vientos las cuales dando como entrada diferentes características del ambiente podemos predecir la velocidad del viento.
+La regresión es utilizada para aquellos problemas que implican predecir valores numéricos, un ejemplo de esto son las predicciones de ráfagas de vientos las cuales dando como entrada diferentes características del ambiente es posible predecir la velocidad del viento.
 
 \subsubsection{Regresión Lineal}
 
@@ -145,7 +145,7 @@ El subajuste ocurre cuando el modelo no puede obtener una pérdida suficientemen
 \end{figure}
 
 
-Por otro lado, tenemos un sobreajuste cuando la red modela los datos de entrenamiento demasiado bien y no se generaliza a los datos de validación (\cite{rosebrock2017deep}). En este caso tenemos que las predicciones solo serán buenas para aquellos que se utilice el mismo conjunto de datos que en el entrenamiento, Figura \ref{fig:underFiting}.
+Por otro lado, un sobreajuste es cuando la red modela los datos de entrenamiento demasiado bien y no se generaliza a los datos de validación (\cite{rosebrock2017deep}). En este caso, las predicciones solo serán buenas para aquellos datos que se utilicen en el mismo conjunto de datos que en el entrenamiento, Figura \ref{fig:underFiting}.
 
 \begin{figure}[H]
     \centering
