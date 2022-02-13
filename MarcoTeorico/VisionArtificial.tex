@@ -1,17 +1,22 @@
 \section{Visión artificial}
 
-La visión artificial intenta describir el mundo que vemos en imágenes y reconstruir sus propiedades (\cite{szeliski2010computer}), con ayuda de la visión artificial es posible darle la capacidad a una maquina para que sea capaz de identificar, analizar y procesar imágenes del mundo real. En esta sección se explicará como una maquina representa una imagen para después presentárnosla en una pantalla o simplemente procesarla, además la implantación del filtro Kalman que en este trabajo fue utilizado para el seguimiento de objetos.
+La visión artificial intenta describir el mundo que vemos en imágenes y reconstruir sus propiedades (\cite{szeliski2010computer}), con ayuda de la visión artificial es posible darle la capacidad a una máquina para identificar, analizar y procesar imágenes del mundo real. En esta sección se explicará como, una máquina representa una imagen para después representarla en una pantalla o simplemente procesarla. Por otro lado se define el filtro Kalman el cual fue utilizado para el seguimiento de objetos.
 
 \subsection{Representación de imágenes}
 
-En computación una imagen se representa como una cuadricula, donde cada recuadro es llamado píxel. Un píxel es la unidad más pequeña de la imagen y representa un color (\cite{rosebrock2017deep}). Con lo anterior podemos entender que para una imagen de 1000 x 600 tendremos 1000 píxeles en cada fila y 600 píxeles para cada columna resultando 600,000 píxeles en total. Además, son dos las representaciones más comunes de un píxel (i.e escala de grises, color).
+En computación una imagen se representa como una cuadrícula, donde cada recuadro es llamado píxel. Un píxel es la unidad más pequeña de la imagen y representa un color (\cite{rosebrock2017deep}). Con lo anterior se entiende, que para una imagen de 1000 x 600 se tienen, 1000 píxeles en cada fila y 600 píxeles para cada columna resultando 600,000 píxeles en total. Además, son dos las representaciones más comunes de un píxel (i.e escala de grises, color).
 
-Cuando se representa una imagen utilizando escala de grises cada píxel tiene un valor numérico en el rango de 0 a 255. Con este rango de valores es posible variar la intensidad de color presentado, siendo 0 el valor para representar el color blanco y 255 el color negro. Teniendo esto en cuenta se puede interpretar que los valores intermedios son diferentes intensidades de grises, de ahí el nombre escala de grises.
+%\begin{itemize}
+%\item Escala de grises
+%\item A color
+%\end{itemize}
 
-Para los píxeles a color existe diferentes espacios de colores, en este trabajo solo se hablara acerca del espacio de color RGB. Los píxeles RGB son representados usando 3 valores de intensidad para los colores rojo, verde y azul. Cada uno de estos 3 valores tiene un rango del 0 al 255 con lo cual se puede variar los colores presentados. Al igual que la escala de grises cada uno de estos 3 valores puede tener valores en el intervalo de 0 a 255. Al colocar los 3 valores de RGB a '0' (cero) se representa el color negro, por el contrario, para representar el color blanco los 3 valores de RGB deben ser de 255.
+Cuando se representa una imagen utilizando escala de grises cada píxel tiene un valor numérico en el rango de 0 a 255. Con este rango de valores es posible variar la intensidad de color presentado, siendo 0 el valor para representar el color negro y 255 el color blanco. Teniendo esto en cuenta se puede interpretar que los valores intermedios son diferentes intensidades de grises, de ahí el nombre escala de grises.
 
-Ahora bien, para el caso de la representación de los vídeos, estos se pueden representar utilizando escala de grises o a color. Ya que los vídeos son una secuencia de imágenes con las cuales se genera la sensación de movimiento. Para el caso de los vídeos, al conjunto de imágenes que forman el vídeo se les llama fotogramas y pueden variar en su frecuencia. A la frecuencia de imágenes contenidas en un tiempo determinado se le conoce como fotogramas por segundo. Hoy en día los fotogramas por segundo más comunes son 60, sin embargo, ya hay implementaciones con una mayor cantidad.
-La resolución tanto de una imagen como de un vídeo se establece por la cantidad de píxeles en el eje X y el eje Y. Existen diferentes resoluciones de las cuales la más común es \textit{Full HD}, en la siguiente Tabla \ref{tab:resolutions} se muestra el resto de las resoluciones más comunes.
+Para los píxeles a color existen diferentes espacios de colores, en este trabajo solo se hablara acerca del espacio de color RGB. Los píxeles RGB son representados usando 3 valores de intensidad para los colores rojo, verde y azul. Cada uno de estos 3 valores tiene un rango del 0 al 255 con lo cual se pueden variar los colores presentados. Al igual que la escala de grises cada uno de estos 3 valores pueden tener valores en el intervalo de 0 a 255. Al colocar los 3 valores de RGB a '0' (cero) se representa el color negro, por el contrario, para representar el color blanco los 3 valores de RGB deben ser de 255.
+
+Ahora bien, para el caso de la representación de los videos, estos se pueden representar utilizando escala de grises o a color. Ya que los videos son una secuencia de imágenes con las cuales se genera la sensación de movimiento. Para el caso de los videos, al conjunto de imágenes que forman el video se les llama fotogramas y pueden variar en su frecuencia. A la frecuencia de imágenes contenidas en un tiempo determinado se le conoce como fotogramas por segundo. Hoy en día los fotogramas por segundo más comunes son 60, sin embargo, ya hay implementaciones con una mayor cantidad.
+La resolución tanto de una imagen como de un video se establece por la cantidad de píxeles en el eje X y el eje Y. Existen diferentes resoluciones de las cuales la más común es \textit{Full HD}, en la Tabla \ref{tab:resolutions} se muestra el resto de las resoluciones más comunes.
 
 \begin{table}[H]
     \caption{Resoluciones de video}
@@ -31,14 +36,17 @@ La resolución tanto de una imagen como de un vídeo se establece por la cantida
 
 \subsection{Filtro Kalman}
 
-El filtro Kalman es una solución recursiva al filtrado lineal de datos discretos (\cite{welch1995introduction}). Se encarga de estimar las variables de estado en un sistema dinámico, lo cual, en el caso del presente trabajo esto implica estimar la siguiente ubicación de un vehículo identificado.
+El filtro Kalman es una solución recursiva al filtrado lineal de datos discretos (\cite{welch1995introduction}). Se encarga de estimar las variables de estado en un sistema dinámico, lo cual, en el caso del presente trabajo, implica estimar la siguiente ubicación de un vehículo identificado.
 
-El filtro de Kalman tiene como objetivo resolver el problema general de estimar el estado $x \space \epsilon \space \mathbb{R} ^{n}$ de un proceso controlado en tiempo discreto, el cual se representa con la Ecuación \ref{eq:kalmanEstado}:
+El filtro de Kalman tiene como objetivo resolver el problema general de estimar el estado $x \space \epsilon \space \mathbb{R} ^{n}$ de un proceso controlado en tiempo discreto, el cual se representa con la Ecuación \ref{eq:kalmanEstado}.
+
+La matriz $A$  de dimensión $n\times{}n$ en la Ecuación \ref{eq:kalmanEstado} relaciona el estado en el paso de tiempo $k$ con el estado en el paso $k + 1$, en ausencia de una función de excitación o ruido de proceso. La matriz $B$ de dimensión $n\times{}1$ relaciona la entrada de control $u \space \epsilon \mathbb{R}^{1}$ con el estado $x$. La matriz $H$ de dimensión $m\times{}n$ en la ecuación de medición ( Ecuación \ref{eq:kalmanMed}) relaciona el estado con la medición $z_k$.
 
 \begin{equation}
 \label{eq:kalmanEstado}
     x_{k+1} = A_kx_k + Bu_k + w_k
 \end{equation}
+\myequations{Filtro Kalman. Ecuación de estado}
 
 Con una medida $z \space \epsilon \space \mathbb{R}^{m}$:
 
@@ -46,12 +54,11 @@ Con una medida $z \space \epsilon \space \mathbb{R}^{m}$:
 \label{eq:kalmanMed}
     z_x = H_kx_k + v_k
 \end{equation}
+\myequations{Filtro Kalman. Relación estado y medición}
 
 Las variables $w_k$ y $v_k$ representan el error del proceso y de la medida respectivamente.
 
-La matriz $A$  de dimensión $n\times{}n$ en la Ecuación \ref{eq:kalmanEstado} relaciona el estado en el paso de tiempo $k$ con el estado en el paso $k + 1$, en ausencia de una función de excitación o ruido de proceso. La matriz $B$ de dimensión $n\times{}1$ relaciona la entrada de control $u \space \epsilon \mathbb{R}^{1}$ con el estado $x$. La matriz $H$ de dimensión $m\times{}n$ en la ecuación de medición ( Ecuación \ref{eq:kalmanMed}) relaciona el estado con la medición $z_k$.
-
-El algoritmo de filtro Kalman cuenta con dos fases, la fase predicción (a priori) y la fase de corrección (a posteriori), Figura \ref{fig:AlgoritmoFiltroKalman}.
+El algoritmo de filtro Kalman cuenta con dos fases, la fase predicción (a priori) y la fase de corrección (a posteriori), según se aprecia en la Figura \ref{fig:AlgoritmoFiltroKalman}.
 
 \begin{figure}[H]
     \centering
@@ -88,7 +95,7 @@ El algoritmo de filtro Kalman cuenta con dos fases, la fase predicción (a prior
     \draw[->, very thick] (b.south) .. controls +(down:1.8cm) and +(down:1.8cm) .. (a.south);
     
     \end{tikzpicture}
-    \caption{Algoritmo filtro Kalman.}
+    \caption{Algoritmo filtro Kalman (\cite{welch1995introduction}).}
     \label{fig:AlgoritmoFiltroKalman}
 \end{figure}
 
@@ -101,18 +108,17 @@ Para la fase de predicción se toman las Ecuaciones \ref{eq:kalmanActUno} y \ref
     P_{k+1} = A_kP_kTA^{T}_k + Q_k
 \end{eqnarray}
 
+Las ecuaciones anteriores, pronostican el estado y la covarianza desde $k$ hasta $k+1$. La matriz $A$ representa el estado actual. $Q$ representa la covarianza de la perturbación aleatoria del proceso.
 
-Las ecuaciones anteriores pronostican el estado y la covarianza desde $k$ hasta $k+1$. La matriz $A$ representa el estado actual. $Q$ representa la covarianza de la perturbación aleatoria del proceso.
-
-La fase de corrección cuenta con las siguientes Ecuaciones \ref{eq:kalmanCorrUno}, \ref{eq:kalmanActDos} y \ref{eq:kalmanCorrTres}:
+La fase de corrección cuenta con las Ecuaciones \ref{eq:kalmanCorrUno}, \ref{eq:kalmanCorrDos} y \ref{eq:kalmanCorrTres}:
 
 \begin{eqnarray}
-\label{eq:kalmanCorrUno}
-K_k = P_kH^{T}_k(H_kP_KH^{T}_k + R_k)\\
-\label{eq:kalmanCorrDos}
-\hat{x}_k = \hat{x}_k + K(z_k - H_k \hat{x}_k)\\
-\label{eq:kalmanCorrTres}
-P_k = (I - K_kH_k)P_k
+    \label{eq:kalmanCorrUno}
+    K_k = P_kH^{T}_k(H_kP_KH^{T}_k + R_k)\\
+    \label{eq:kalmanCorrDos}
+    \hat{x}_k = \hat{x}_k + K(z_k - H_k \hat{x}_k)\\
+    \label{eq:kalmanCorrTres}
+    P_k = (I - K_kH_k)P_k
 \end{eqnarray}
 
 La Ecuación \ref{eq:kalmanCorrUno} representa el primer pasa el cual es el cálculo de ganancia de Kalman, $K_t$. El siguiente paso es medir el proceso para obtener $z$, y luego generar una estimación del estado a posteriori incorporando la medición como en la Ecuación \ref{eq:kalmanCorrDos}. El último paso es obtener una estimación de la covarianza del error a posteriori mediante la Ecuación \ref{eq:kalmanCorrTres}.

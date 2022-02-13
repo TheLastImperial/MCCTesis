@@ -1,29 +1,16 @@
 \chapter{Metodología}
 \label{cap:metodologia}
 
-En este capítulo se describe el proceso de obtención de la velocidad de vehículos a partir de secuencias de imágenes, para realizar esta tarea se recopiló un conjunto de datos (\textit{dataset}) suficientes para trabajar con ella.  A partir del \textit{dataset}, el problema de obtención de la velocidad fue dividido en tres procesos principales (extracción de características, modelo predictivo y obtención de la velocidad). Para la generación del \textit{dataset} fue necesario ir físicamente a una vía terrestre para tomar las muestras utilizando un radar de velocidad y una cámara de video. El proceso de extracción de características parte de los vídeos o muestras tomados y después aplicar técnicas de aprendizaje profundo el proceso genera un archivo \enquote*{csv} con las características necesarias de los vehículos en cuestión. A partir del archivo se aplican técnicas estadísticas de correlación con la finalidad de relacionar la distancia en píxeles con una distancia en metros, para posteriormente en el proceso de obtención de la velocidad estimar la velocidad del vehículo. 
+En este capítulo se describe el proceso de obtención de la velocidad de vehículos a partir de secuencias de imágenes. Para realizar esta tarea se recopiló un conjunto de datos (\textit{dataset}) suficiente para  realizar la tarea de estimación de la velocidad,  a partir del \textit{dataset}. El problema de obtención de la velocidad fue dividido en tres procesos principales (extracción de características, modelo predictivo y obtención de la velocidad). Para la generación del \textit{dataset} fue necesario ir físicamente a una vía terrestre. Una vez en la vialidad, se utilizó una cámara para capturar la secuencias de imágenes y un radar para medir la velocidad del vehículo. El proceso de extracción de características parte de los videos (secuencias de imágenes) para después aplicar técnicas de aprendizaje profundo. Resultando en un archivo con extensión csv con las características esenciales con los vehículos en cuestión. A partir del archivo con extensión csv se aplicaron técnicas estadísticas de correlación con la finalidad de relacionar la distancia en píxeles con una distancia en metros. Para posteriormente estimar la velocidad del vehículo (obtención de la velocidad). 
 
 
-La metodología completa es simple como muestra la Figura \ref{fig:MetodologiaDF}, pero cada uno de sus procesos individuales son más complejos para conseguir una buena predicción.
-
+La metodología completa se divide en dos grandes procesos como lo muestra la Figura \ref{fig:MetodologiaDF}. El proceso de obtención del conjunto de datos, que consistió en la generación de muestras de campo con las cuales se realizó esta investigación. Y a partir de las muestras recolectadas se realizó el proceso de obtención de la velocidad.
 
 \begin{figure}[H]
-
-    \begin{tikzpicture}
-
-        \node(a)[rectangle, draw=black, minimum size=1cm]
-            {Obtención de conjunto de datos};
-        \node(b)[rectangle, draw=black, minimum size=1cm]
-            [right=of a]
-            {Obtención de velocidad};
-
-        \draw[->] (a) -- (b);
-
-    \end{tikzpicture}
     \centering
-    \caption{Diagrama de flujo metodología.}
+    \includegraphics[width=0.5\textwidth]{Metodologia/imgs/ProcesoObtencionVelocidad.png}
+    \caption{Proceso de obtención de la velocidad.}
     \label{fig:MetodologiaDF}
-
 \end{figure}
 
 

@@ -1,106 +1,168 @@
 \chapter{Estado del Arte}
 
-Actualmente existen múltiples trabajos que determinan la velocidad de objetos, cada uno de una manera muy particular. En este capítulo se muestran algunos trabajos que se tomaron como referencia para desarrollar el presente trabajo.
+Actualmente existen múltiples trabajos que determinan la velocidad de objetos, cada uno de una manera muy particular. En este capítulo se muestran algunos trabajos divididos por la metodología utilizada, los cuales se tomaron como referencia para desarrollar el presente trabajo. 
+\section{Detección de acuerdo a simple cálculo con fórmula física }
 
-\section{Determinación de velocidad con métodos de visión artificial}
+\citeauthor{singh2007Estimating} (\cite{singh2007Estimating}) propone determinar la velocidad, aceleración y ángulo de un objeto en una secuencia de imágenes. Para esto se deben cumplir con las siguientes características: 
 
-Es posible determinar la velocidad y otras características usando las fórmulas físicas de cada una de ellas. Con lo cual podemos tener una respuesta rápida, ya que no se necesita de mucho procesamiento para ejecutar estas fórmulas.
+\begin{itemize} 
+    \item Se conoce un rango aproximado de valores RGB del objeto. 
+    \item Se conoce la velocidad a la que la cámara está tomando imágenes. 
+    \item Se conoce aproximadamente el tamaño de la imagen. 
+    \item La imagen es de color uniforme. 
+    \item El fondo es de color uniforme y no es del color del objeto. 
+\end{itemize} 
 
-\citeauthor{singh2007Estimating} propone determinar la velocidad, aceleración y ángulo de un objeto en  una secuencia de imágenes. Para esto se deben cumplir con las siguientes características:
-
-\begin{itemize}
-\item Se conoce un rango aproximado de valores RGB del objeto.
-\item Se conoce la velocidad a la que la cámara está tomando imágenes.
-\item Se conoce aproximadamente el tamaño de la imagen.
-\item La imagen es de color uniforme.
-\item El fondo es de color uniforme y no es del color del objeto.
-\end{itemize}
-
-Para determinar los valores buscados se dibuja un punto en el centroide del objeto en la primera imagen y en la segunda imagen, a partir de tener los dos centroides es posible calcular la velocidad, aceleración y ángulo del objeto con las siguientes fórmulas:
+Para determinar los valores buscados se dibuja un punto en el centroide del objeto en la primera imagen y en la segunda imagen, a partir de tener los dos centroides es posible calcular la velocidad, aceleración y ángulo del objeto con las Ecuaciones \ref{eq:singhDistance}, \ref{eq:singhSpeed} y \ref{eq:singhAngle}: 
 
 \begin{eqnarray}
-    \frac{
-        \sqrt{
-            (x2-x1)^{2} + (y2-y1)^{2}
-        }
-    }{
-        FPS
-    }\\
-    \frac{
-        v2-v1
-    }{
-        FPS
-    }\\
-    \tan^{-1}\frac{y2-y1}{x2-x1}
-\end{eqnarray}
+    \label{eq:singhDistance}
+    \frac{ 
+        \sqrt{ 
+            (x2-x1)^{2} + (y2-y1)^{2} 
+        } 
+    }{ 
+        FPS 
+    }\\ 
+    \label{eq:singhSpeed}
+    \frac{ 
+        v2-v1 
+    }{ 
+        FPS 
+    }\\ 
+    \label{eq:singhAngle}
+    \tan^{-1}\frac{y2-y1}{x2-x1} 
+\end{eqnarray} 
+
+\section{Detección de acuerdo a región de interés }
+
+La región de interés es una metodología la cual se utiliza una máscara para solo tomar en cuenta el área con la cual se va a trabajar. \citeauthor{li2014Video} (\cite{li2014Video}) desarrollan un sistema para recopilar datos de tráfico a partir de video, el sistema reconoce y realiza el seguimiento de múltiples vehículos y sus velocidades medias. Proponen la sustracción de fondo adaptativo basado en imágenes en color, se eliminan sombras y la configuración de la región de detección para mejorar la robustez del sistema. El conteo de vehículos tiene una precisión de 97.4\%, un error de clasificación de 8.3\% y un error absoluto de 2.3 kilómetros por hora. 
+
+\citeauthor{kurniawan2018Speed} (\cite{kurniawan2018Speed}) proponen un sistema que puede monitorear la velocidad de algunos vehículos y determinar qué vehículos han superado la velocidad máxima permitida mediante el seguimiento del vehículo utilizando un método basado en coincidencias. Se utilizó el método de transformación proyectiva para calcular la velocidad de un vehículo. Este método se utiliza para transformar la imagen capturada en la imagen de la vista superior en forma de rectángulo. Según los resultados de las pruebas en el sistema a una velocidad de 30 fotogramas por segundo, la precisión de la velocidad de cálculo es de 97.01\% cuando no hay sombra y 83.86\% con sombra. Este sistema también puede determinar el tipo de vehículo de automóvil o motocicleta detectado que se rompe con una precisión del 89.62\%. 
+
+\citeauthor{jalalat2016Vehicle} (\cite{jalalat2016Vehicle}) proponen la detección de vehículos y su velocidad con un clasificador en cascada, basado en las características de Haar. Un algoritmo de segmentación de primer plano para distinguir los vehículos en movimiento del fondo y limpiar los resultados de detección para combinarlos con resultados de seguimiento basados en el filtro Kalman y algoritmo de asignación de Munkres. Para lograr una medición de velocidad, se aplica una técnica eficiente de coincidencia de sub píxeles junto con datos estéreo para calcular los desplazamientos de vehículos por fotograma. 
+
+\section{Detección usando cámaras estéreo y placa del vehículo }
+
+En algunos trabajos utilizan hardware especializado como las cámaras stereo las cuales con ayuda de dos cámaras posicionadas a una distancia especifica son capaces de determinar la profundidad de la escena, algunos trabajos utilizan estas cámaras y características comunes de un vehículo como la placa para calcular la velocidad a la que viajan. 
+
+\citeauthor{yang2019Vehicle} (\cite{yang2019Vehicle}) proponen el uso de cámaras estéreo calibradas con las cuales estiman la velocidad de vehículos. Este desarrollo usa un sistema optimizado de detectores de múltiples áreas de un solo disparo que puede detectar de manera eficiente las matrículas en las dos vistas capturadas videos estéreo. El sistema funciona solo en el área de la placa, se calculan las coordenadas en un plano 3D correspondientes a los puntos de coincidencia estéreo. La velocidad se mide dividiendo la distancia entre dos puntos 3D por intervalo de cuadros. El sistema tiene un error de velocidad de –1.6 a +1.1 Km y una tasa de error máxima del 3.80\%. 
+
+\citeauthor{luvizon2014Vehicle} (\cite{luvizon2014Vehicle}) nos muestran un sistema que utiliza la detección de texto para localizar las matrículas de los vehículos, la cual es utilizada para seleccionar las características más estables para el seguimiento. La velocidad del vehículo se estima comparando la trayectoria de las características rastreadas con medidas conocidas del mundo real. En los experimentos realizados las velocidades de los vehículos se estimaron con un error absoluto medio de 0.59 km/h. 
+
+\citeauthor{llorca2016Two} (\cite{llorca2016Two}) determinan la velocidad de vehículos con el uso de dos cámaras montadas en un poste fijo. Usando diferentes distancias focales y orientaciones, cada cámara apunta a un tramo diferente de la carretera de unos pocos metros, lo que implica un escenario desafiante con la estimación de la distancia los errores deben ser del orden de centímetros.  El sistema propuesto determina la distancia relativa a los vehículos con respecto a las cámaras utilizando la placa como referencia se demuestra que existe una geometría específica entre las cámaras que minimiza el error de velocidad. Los resultados obtenidos validan la propuesta con errores de velocidad máxima de menos 3 k/h a velocidades de hasta 80 k/h. 
+
+\citeauthor{yang2021Robust} (\cite{yang2021Robust}), \citeauthor{yang2021Improved} (\cite{yang2021Improved}), determinan la velocidad con cámaras estéreo que están ubicadas de fijas en un lugar estratégico de la ciudad. Las cámaras estéreo son las encargadas de identificar la matrícula, los faros y el logo, ya que estas se toman como las características principales, ya que siempre aparecen en un vehículo; estas características se utilizan como referencia para determinar la velocidad. En \citeauthor{vakili2020Single} (\cite{vakili2020Single}), se usa una estrategia similar identificando solo la placa como la característica principal y usándola para determinar la velocidad del vehículo. Sin embargo, \citeauthor{vakili2020Single}, usa solamente una cámara, en lugar de cámaras estéreo. 
+
+\section{Detección de acuerdo a líneas carreteras }
+
+Las líneas carreteras sirven como punto de referencia para determinar la velocidad, ya que estas tienen una distancia fija, la cual puede ser utilizada como referencia para determinar la distancia que recorrió el vehículo al que se desea calcular la velocidad. 
+
+\citeauthor{schoepflin2003Dynamic} (\cite{schoepflin2003Dynamic}) muestran un algoritmo de tres etapas para calibrar cámaras de tráfico en carretera y rastrear vehículos para crear un sensor de velocidad del tráfico. El algoritmo primero estima la posición de la cámara en relación con la carretera usando el movimiento y los bordes de los vehículos. Dada la posición de la cámara, el algoritmo calibra la cámara estimando los límites del carril y el punto de fuga de las líneas a lo largo de la carretera. El algoritmo transforma las coordenadas de la imagen del rastreador de vehículos en coordenadas del mundo real utilizando un modelo de cámara simplificado. 
+
+\citeauthor{bevilacqua2016Egomotion} (\cite{bevilacqua2016Egomotion}) implementan la transformada de Hough para detectar las líneas carreteras para ser utilizadas como referencia. Para el seguimiento de los vehículos utilizan el popular algoritmo de Kanade-Lucas-Tomasi, para calcular la velocidad se determina la longitud de la región de interés en pixeles la cual equivale a la longitud en metros para después obtener la velocidad con respecto al tiempo en segundos. 
+
+\citeauthor{anil2015Real} (\cite{anil2015Real}) proponen un framework híbrido para el seguimiento de múltiples vehículos con la combinación del filtro Kalman y el algoritmo húngaro para resolver el problema de las obstrucciones. La estimación de la velocidad puede ser realizada sin la necesidad de calibrar las cámaras a utilizar, ya que utiliza las líneas del pavimento para realizar una estimación con un error máximo de 3 kilómetros por hora. 
+
+ 
+\section{Detección de acuerdo a centroide del vehículo}
+
+Cuando no se tiene la distancia real que recorre un vehículo es común utilizar como referencia el centroide del área detectada de un vehículo ya que tomando dos imágenes como referencia esta establece una distancia recorrida en pixeles. 
+
+\citeauthor{kamoji2020Image} (\cite{kamoji2020Image}) proponen procesar un video cuadro a cuadro, en el cual cada cuadro se procesa con \textit{Image Enhancement} para mejorar las características de la imagen, el vehículo se identifica con un cuadro delimitador aplicado al vehículo, para notar el movimiento en cada cuadro, el movimiento del vehículo se anota con cambio en el píxel y el cálculo de la velocidad se determina usando la fórmula de distancia considerando pixeles por metro. 
+
+\citeauthor{lee2021Study} (\cite{lee2021Study}) desarrollo un módulo para medir la distancia de vehículos en varios carriles simultáneamente usando un dron. El dron está montado con dos sensores LiDAR, y cada sensor emite un punto frontal y un punto trasero, donde los vehículos son detectados. La velocidad del vehículo se estima utilizando la distancia entre el punto delantero y trasero por el cual pasa el vehículo y el tiempo que tarda en pasar por ambos puntos. 
+
+\section{Detección usando redes neuronales}
+
+Las redes neuronales son ampliamente utilizadas ya que el poder de cómputo ha aumentado considerablemente, para determinar la velocidad las redes neuronales son utilizadas tanto directa como indirectamente algunos trabajos las utilizan para determinar la velocidad a partir de características obtenidas con hardware especializado, mientras que otros solo la utilizan en ciertas partes como la detección de objetos. 
+
+YOLO (\cite{redmon2016Yolo}) implementa la detección de objetos como un problema de regresión a cuadros delimitadores separados espacialmente y probabilidades de clase asociadas. Una sola red neuronal predice el área y las probabilidades de múltiples clases a partir de una imagen. Esto significa que YOLO razona globalmente sobre la imagen completa y todos los objetos de la imagen. Dado que toda la detección es una sola red, afecta directamente en el rendimiento de la detección. YOLO es implementada como una red neuronal convolucional y es evaluada usando el conjunto de datos PASCAL VOC. Las capas convolucionales iniciales de la red extraen características de la imagen, mientras que las capas completamente conectadas predicen las probabilidades y coordenadas de salida. Según los autores la red YOLO es extremadamente rápida lo cual la hace ideal para detecciones en tiempo real, procesando imágenes a 45 fotogramas por segundo. Una implementación reducida de la red puede procesar 155 fotogramas por segundo. Por otra parte, YOLO comete más errores de localización, al precio de disminuir la predicción de falsos positivos, superando otros métodos de predicción como DPM y RCNN. 
+
+\citeauthor{kampelmuhler2018Camera} (\cite{kampelmuhler2018Camera}) determinan la velocidad relativa de un vehículo utilizando una red neuronal perceptrón multicapa la cual fue entrenada usando secuencias de imágenes, obteniendo buenos resultados con un error promedio de 1.12 m/s, el cual es comparable con un radar  LiDAR con un error de 0.71 m/s. Para determinar la velocidad se identificaron 3 características esenciales: la trayectoria del vehículo en un plano 2D, la profundidad y estimaciones de flujo óptico entre imágenes consecutivas. Al identificar un vehículo en una secuencia de imágenes podemos identificar que este, aumenta o disminuye su tamaño dependiendo la distancia que tiene con respecto al observador, esto complica el aprendizaje para la red neuronal por lo cual se opta por separar la información en cerca, medio y lejos, y entrenar un modelo para cada distancia. 
+
+\citeauthor{zhang2017Vehicle} (\cite{zhang2017Vehicle}) realizaron experimentos para obtener la aceleración, la velocidad y la velocidad angular de un vehículo en movimiento usando cámaras de video posicionadas frente al área de interés. Para sus experimentos utilizaron el conjunto de datos KITTI el cual cuenta con imágenes estereoscópicas de la ciudad, así como arquitecturas CNN y la derivación y combinación de canales de entrada para identificar la dirección del flujo y las máscaras de objetos. Se creó una arquitectura CNN para cada característica buscada, aceleración, velocidad y velocidad angular. Se tomó como línea base una arquitectura CNN de dos capas, que consta de dos capas conv-relu-batchnorm-maxpooling y 2 capas afines-relu-batchnorm-dropout. Este proyecto compara los resultados para cuatro arquitecturas CNN: línea de base, AlexNet, ResNet y AlexNet con el aprendizaje por transferencia.  Los resultados muestran que para el conjunto de entrenamiento ResNet tiene los mejores resultados seguidos por AlexNet con el aprendizaje por transferencia, AlexNet y la línea base. Sin embargo, para el conjunto de validación los mejores resultados los muestra la línea base, puesto que el entrenamiento de este modelo es más rápido y es posible buscar los hiperparametros para los mejores resultados. AlexNet con el aprendizaje por transferencia y AlexNet son los segundos mejores y ResNet tiene los peores resultados para el conjunto de validación. 
+
+\citeauthor{dong2019Vehicle} (\cite{dong2019Vehicle}) proponen un método alternativo de extremo a extremo basado en redes convolucionales tridimensionales. El método propuesto basa la estimación de la velocidad promedio del vehículo en información de imágenes de video. El método se caracteriza por las siguientes tres características. Primero, el uso de bloques no locales en el modelo para capturar mejor la dependencia espacio-temporal de largo alcance. En segundo lugar, el uso de flujo óptico como entrada en el modelo. El flujo óptico incluye la información sobre la velocidad y la dirección del movimiento de los píxeles en una imagen. En tercer lugar, se construyó una red convolucional de múltiples escalas. Esta red extrae información sobre diversas características de los vehículos en movimiento. El método propuesto muestra resultados experimentales prometedores en un conjunto de datos de uso común con un error absoluto medio (MAE) de 2.71 km/h y un error cuadrático medio (MSE) de 14.62. 
+
+\citeauthor{song2020Learning} (\cite{song2020Learning}) determinan la velocidad y distancia de un vehículo usando dos fotogramas consecutivos, de los cuales obtienen las características profundas, la geometría de la escena y el flujo óptico temporal. La arquitectura de esta red neuronal profunda se basó en la arquitectura de PWC-Net, la cual es una red de estimación de flujo óptico eficiente. Se extraen diferentes características de diferentes capas de la red para estimar la distancia y la velocidad del vehículo. En primer lugar, se presenta el modelo de regresión de distancia utilizando características profundas y geométricas espaciales de vehículos. Después de eso, se propone el método de estimación de la velocidad con características geométricas adicionales y una pista de flujo óptico temporal. Por último, detallan la canalización de la red centrada en vehículos para reducir la perspectiva y la influencia del movimiento. 
+
+\citeauthor{bell2020Accurate} (\cite{bell2020Accurate}) utilizan una cámara de video para estimar la velocidad vehicular. Con el uso de YOLOv2 se encargan de detectar los vehículos de la escena, mientras que el algoritmo de seguimiento en tiempo real en línea simple para el seguimiento de vehículos. La transformación del metraje de la cámara al Sistema de coordenadas de cuadrícula nacional británico, permitió la derivación de distancias del mundo real en la superficie plana de la carretera y las estimaciones simultáneas de la velocidad del vehículo. Las estimaciones lograron una raíz del error cuadrático medio y un error porcentual absoluto medio de 0.625 m/s y 20.922\%, respectivamente. 
+
+\citeauthor{loor2017Visual} (\cite{loor2017Visual}) busca determinar la velocidad de los objetos utilizando dos imágenes consecutivas. Para encontrar la velocidad el autor tomo como base la red neuronal FlowNet la cual ha aprendido a encontrar el flujo óptico en dos imágenes. FlowNet tiene dos arquitecturas de red diferentes: una arquitectura simple y una arquitectura de correlación. Ambas arquitecturas se basan en la red totalmente convolucional, lo que significa que esta red puede utilizar cualquier tamaño de imagen de entrada para determinar su flujo óptico. Una FlowNetSimple se entrena usando dos imágenes que se apilan juntas, dando lugar a una imagen de seis dimensiones. Las siguientes capas se han diseñado como una red genérica, para permitir que la red decida cómo aprender el flujo óptico. En la FlowNetCorr se combinan las dos imágenes en una etapa posterior, después de que el modelo haya creado representaciones significativas de cada imagen por separado. Para ayudar al modelo a aprender las correspondencias entre la representación de características de las imágenes, se introdujo una capa de correlación. Para este trabajo se crearon dos modelos basados en FlowNet, TimeNet y SpeedNet. TimeNet es un clasificador que puede predecir los tiempos entre fotogramas en milisegundos. SpeedNet es un modelo de regresión que genera una predicción de velocidad en forma de un solo valor. Tanto el modelo TimeNet como SpeedNet demostraron dar resultados aceptables cuando se tiene una velocidad baja, empeorando cuando la velocidad aumenta. 
+
+\citeauthor{peng2019Improved} (\cite{peng2019Improved}) determinan la velocidad de vehículos en movimiento con el uso de cámaras estéreos montados en drones. Su método integra Mask-R-CNN y K-Means con el algoritmo de pirámide Lucas Kanade. Mask-R-CNN se utiliza para reconocer los objetos que tienen movimientos en relación con el suelo y los cubre con máscaras para mejorar la similitud entre píxeles y reducir los impactos de los ruidosos píxeles en movimiento. Luego, se utiliza el algoritmo piramidal de Lucas Kanade para calcular el valor de flujo óptico. Finalmente, el valor es agrupado por el algoritmo K-Means para abandonar los valores atípicos, y la velocidad del vehículo es calculada por el flujo óptico procesado. En sus experimentos demuestran que el uso combinado de Lucas Kanade , Mask-R-CNN y K-Means, mejoran sus resultados en comparación del uso de estos métodos por separado o el uso combinado de solo dos de ellos, aun habiendo realizado experimentos en circunstancias normales, con muchos objetos en movimiento y en circunstancias de poca luz. 
 
 
-\citeauthor{anil2015Real} proponen un framework híbrido para el seguimiento de múltiples vehículos con la combinación del filtro Kalman y el algoritmo húngaro para resolver el problema de las obstrucciones. La estimación de la velocidad puede ser realizada sin la necesidad de calibrar las cámaras a utilizar, ya que utiliza las líneas del pavimento para realizar una estimación con un error máximo de 3 kilómetros por hora.
+\section{Resumen}
+
+En este capitulo se presentaron los diferentes trabajos relacionados al análisis vehicular enfocándose en el cálculo de la velocidad, así como los trabajos de mayor impacto para realizar esta tarea o parte de ella utilizando cámaras de video.
+
+La Tabla \ref{tab:resumenEstadoArte} muestra la agrupación de los trabajos escritos en este capitulo, comenzando por 
+\citeauthor{singh2007Estimating} quien utiliza la metodología mas simple, la cual sirve como punto de partida utilizando las fórmulas físicas. 
+\citeauthor{llorca2016Two},
+\citeauthor{yang2019Vehicle},
+\citeauthor{yang2021Robust},
+\citeauthor{yang2021Improved},
+\citeauthor{luvizon2014Vehicle} y
+\citeauthor{vakili2020Single}
+hacen uso de una cámara, dos cámaras o una cámara estéreo para tomar videos donde pasan los vehículos a los que se les busca determinar su velocidad, estos trabajos utilizan como referencia la placa del vehículo o características que podemos encontrar frecuentemente en un vehículo como las luces, gracias a estas características es posible determinar la trayectoria y las estimaciones de la distancia recorrida.
+
+\citeauthor{bevilacqua2016Egomotion},
+\citeauthor{schoepflin2003Dynamic} y 
+\citeauthor{anil2015Real} utilizan una cámara de video con la cual identifican las lineas carreteras, las cuales son utilizadas como punto de referencia para estimar la distancia recorrida por los vehículos y así calcular la velocidad de los mismos.
+
+\citeauthor{kamoji2020Image} utiliza una cámara y el centroide del vehículo como punto de referencia, por otra parte \citeauthor{lee2021Study} también toma como referencia el centroide del vehículo, pero utilizan un dron con dos sistemas LiDAR con los cuales detectan los vehículos cuando pasan por dos puntos para calcular la velocidad a la que pasan.
+
+\citeauthor{li2014Video},
+\citeauthor{kurniawan2018Speed} y 
+\citeauthor{jalalat2016Vehicle}
+hacen uso de una cámara de video para procesar las imágenes enfocándose solo en el área por la que pasan los vehículos y con un proceso mas completo eliminar completamente todo el fondo dejando solo los vehículos.
+
+\citeauthor{bell2020Accurate},
+\citeauthor{dong2019Vehicle},
+\citeauthor{burnett2020aUToTrack},
+\citeauthor{kampelmuhler2018Camera},
+\citeauthor{song2020Learning},
+\citeauthor{zhang2017Vehicle} y 
+\citeauthor{loor2017Visual}
+utilizan métodos de inteligencia artificial desde las mas simples como los son las perceptrón multi capa y las redes neuronales convoluciones hasta redes como Faster R-CNN, SqueezeDet, PWC-Net, AlexNet y FlowNet.
+
+Por último el trabajo de \citeauthor{redmon2016Yolo} presentan YOLO, la red neuronal YOLO es capaz de identificar múltiples objetos en una imagen con una sola inferencia. Este trabajo no esta enfocado al análisis de trafico vehicular, sin embargo, es ampliamente utilizado en trabajos relacionados por lo cual es importante mencionarlo.
+
+\begin{table}[H]
+    \centering
+    \caption{Resumen estado del arte}
+    \label{tab:resumenEstadoArte}
+
+    \begin{tabular}{|p{0.3\textwidth}|l|p{0.3\textwidth}|l|}
+        \hline
+        \textbf{} & \textbf{Hardware} & \textbf{Referencia para estimación} & \textbf{Red Neuronal} \\ \hline
+        \citeauthor{singh2007Estimating} & &Los objetos y el fondo deben ser de un color en concreto. Centroide & \\ \hline
+        \citeauthor{llorca2016Two} & Dos cámaras & Placa vehicular & \\ \hline
+        \citeauthor{yang2019Vehicle} & Cámaras estéreo & Placa vehicular & \\ \hline
+        \citeauthor{yang2021Robust} & Cámaras estéreo & Placa vehicular & \\ \hline
+        \citeauthor{yang2021Improved} & Cámaras estéreo & Placa vehicular & \\ \hline
+        \citeauthor{luvizon2014Vehicle} & Cámara & Placa vehicular & \\ \hline
+        \citeauthor{vakili2020Single} & Cámara & Placa vehicular & \\ \hline
+        \citeauthor{bevilacqua2016Egomotion} & Cámara & Lineas carreteras & \\ \hline
+        \citeauthor{schoepflin2003Dynamic} & Cámara & Lineas carreteras & \\ \hline
+        \citeauthor{anil2015Real} & Cámara & Lineas carreteras & \\ \hline
+        \citeauthor{kamoji2020Image} & Cámara & Centroide del vehículo & \\ \hline
+        \citeauthor{lee2021Study} & \begin{tabular}[c]{@{}l@{}}Dron\\ LiDAR\end{tabular} & Centroide del vehículo & \\ \hline
+        \citeauthor{li2014Video} & Cámara & Región de interés & \\ \hline
+        \citeauthor{kurniawan2018Speed} & Cámara & Región de interés & \\ \hline
+        \citeauthor{jalalat2016Vehicle} & Cámara & Región de interés & \\ \hline
+        \citeauthor{bell2020Accurate} & \begin{tabular}[c]{@{}l@{}}Cámara\\ GNSS\\ IMU\end{tabular} & & \begin{tabular}[c]{@{}l@{}}YOLOv2 \\ Faster R-CNN\end{tabular} \\ \hline
+        \citeauthor{dong2019Vehicle} & Cámara & & 3D CNN \\ \hline
+        \citeauthor{burnett2020aUToTrack} & \begin{tabular}[c]{@{}l@{}}GPS\\ LiDAR\\ IMU\\ Cámara\end{tabular} & & SqueezeDet \\ \hline
+        \citeauthor{kampelmuhler2018Camera}  & Cámara & & MLP \\ \hline
+        \citeauthor{song2020Learning} & Cámara & & PWC-Net \\ \hline
+        \citeauthor{zhang2017Vehicle} & Cámara & & \begin{tabular}[c]{@{}l@{}}Faster-RCNN\\ CNN\\ AlexNet\end{tabular} \\ \hline
+        \citeauthor{loor2017Visual} & Cámara & & \begin{tabular}[c]{@{}l@{}}FlowNet\\ TimeNet\\ SpeedNet\\ CNN\end{tabular} \\ \hline
+        \citeauthor{redmon2016Yolo} & Imágenes & & CNN \\ \hline
+    
+    \end{tabular}
+\end{table}
 
 
-\citeauthor{li2014Video} desarrollan un sistema para recopilar datos de tráfico a partir de video, el sistema reconoce y se realiza el seguimiento de múltiples vehículos y sus velocidades medias. Propone la sustracción de fondo adaptativo basado en imágenes en color, se eliminan sombras y la configuración de la región de detección para mejorar la robustez del sistema. El conteo de vehículos tiene una precisión de 97.4\%, un error de clasificación de 8.3\% y un error absoluto de 2.3 kilómetros por hora.
-
-
-\citeauthor{khan2019Multiple} proponen un sistema para realizar el seguimiento de vehículo y determinar el exceso de velocidad de vehículos. Para el seguimiento se aplica la diferenciación de cuadros para la detección de objetos. En la diferenciación de fotogramas, se calcula el modelo de fondo y el fotograma actual se resta del fotograma anterior, que se calcula durante el modelado. Después con el análisis de manchas se rastrean los objetos en la región de interés. El sistema propuesto tiene una precisión de 90\% para la detección y la medición de la velocidad.
-
-
-\citeauthor{yang2019Vehicle} proponen el uso de cámaras estéreo calibradas con las cuales estiman la velocidad de vehículos. Este desarrollo usa un sistema optimizado Red de detectores multibox de un solo disparo que puede detectar de manera eficiente las matrículas en las dos vistas capturadas videos estéreo. El sistema funciona solo en el área de la placa, se calculan las coordenadas en un plano 3D correspondientes a los puntos de coincidencia estéreo. La velocidad se mide dividiendo la distancia entre dos puntos 3D por intervalo de cuadros. El sistema tiene un error de velocidad de –1.6 a +1.1 Km y una tasa de error máxima del 3.80\%.
-
-
-\citeauthor{kamoji2020Image} proponen procesar un video cuadro a cuadro, en el cual cada cuadro se procesa con \textit{Image Enhancement} para mejorar las características de la imagen, el vehículo se identifica con un cuadro delimitador aplicado al vehículo, para notar el movimiento en cada cuadro, el movimiento del vehículo se anota con cambio en el píxel y el cálculo de la velocidad se determina usando la fórmula de distancia considerando pixeles por metro.
-
-
-\citeauthor{kurniawan2018Speed} proponen un sistema que puede monitorear la velocidad de algunos vehículos y determinar qué vehículos han superado la velocidad máxima permitida mediante el seguimiento del vehículo utilizando un método basado en coincidencias. Se utilizó el método de transformación proyectiva para calcular la velocidad de un vehículo. Este método se utiliza para transformar la imagen capturada en la imagen de la vista superior en forma de rectángulo. Según los resultados de las pruebas en el sistema a una velocidad de fotogramas de 30 FPS, la precisión de la velocidad de cálculo es del 97.01\% cuando no hay sombra y 83.86\% cuando hay sombra. Este sistema también puede determinar el tipo de vehículo de automóvil o motocicleta detectado que se rompe con una precisión del 89.62\%.
-
-
-\citeauthor{peng2019Improved} determinan la velocidad de vehículos en movimiento con el uso de cámaras estéreos montados en drones. Su método integra Mask-R-CNN  y K-Means con el algoritmo de pirámide Lucas Kanade. Mask-R-CNN se utiliza para reconocer los objetos que tienen movimientos en relación con el suelo y los cubre con máscaras para mejorar la similitud entre píxeles y reducir los impactos de los ruidosos píxeles en movimiento. Luego, se utiliza el algoritmo piramidal de Lucas Kanade para calcular el valor de flujo óptico. Finalmente, el valor es agrupado por el algoritmo K-Means para abandonar los valores atípicos, y la velocidad del vehículo es calculada por el flujo óptico procesado. En sus experimentos demuestran que el uso combinado de Lucas Kanade , Mask-R-CNN y K-Means, mejoran sus resultados en comparación del uso de estos métodos por separado o el uso combinado de solo dos de ellos, aun habiendo realizado experimentos en circunstancias normales, con muchos objetos en movimiento y en circunstancias de poca luz.
-
-
-\citeauthor{schoepflin2003Dynamic} nos muestran un algoritmo de tres etapas para calibrar cámaras de tráfico en carretera y rastrear vehículos para crear un sensor de velocidad del tráfico. El algoritmo primero estima la posición de la cámara en relación con la carretera usando el movimiento y los bordes de los vehículos. Dada la posición de la cámara, el algoritmo calibra la cámara estimando los límites del carril y el punto de fuga de las líneas a lo largo de la carretera. El algoritmo transforma las coordenadas de la imagen del rastreador de vehículos en coordenadas del mundo real utilizando un modelo de cámara simplificado.
-
-
-\citeauthor{yan2010Research} presenta un método de medición de la velocidad de vehículos en video y un análisis del error de la calibración de la cámara con el método Tsai de dos etapas. En primer lugar, los parámetros internos y externos de la cámara se obtuvieron según el método de dos etapas de Tsai. El desplazamiento del punto característico del mismo vehículo en cada imagen se extrajo y se convirtió al sistema de coordenadas mundiales. Por último, la velocidad de los vehículos se realizó con la diferencia de tiempo entre dos cuadros secuenciales. El resultado experimental muestra que el método de medición de la velocidad del vehículo no solo es simple y práctico, sino también muy robusto y preciso con un error cuadrático medio de 1.6273.
-
-
-\citeauthor{luvizon2014Vehicle} nos muestran un sistema que utiliza la detección de texto para localizar las matrículas de los vehículos, la cual es utilizada para seleccionar las características más estables para el seguimiento. La velocidad del vehículo se estima comparando la trayectoria de las características rastreadas con medidas conocidas del mundo real. En los experimentos realizados las velocidades de los vehículos se estimaron con un error absoluto medio de 0.59 km/h.
-
-
-\citeauthor{jalalat2016Vehicle} proponen la detección de vehículos y su velocidad con  un clasificador en cascada, basado en las características de Haar. Un algoritmo de segmentación de primer plano para distinguir los vehículos en movimiento del fondo y limpiar los resultados de detección para combinarlos con  resultados de seguimiento basados en el filtro Kalman y algoritmo de asignación de Munkres. Para lograr una medición de velocidad, se aplica una técnica eficiente de coincidencia de sub píxeles junto con datos estéreo para calcular los desplazamientos de vehículos por fotograma.
-
-
-\citeauthor{llorca2016Two} determinan la velocidad de vehículos con el uso de dos cámaras montadas en un poste fijo. Usando diferentes distancias focales y orientaciones, cada cámara apunta a un tramo diferente de la carretera de unos pocos metros, lo que implica un escenario desafiante con la estimación de la distancia los errores deben ser del orden de centímetros.  El sistema propuesto determina la distancia relativa a los vehículos con respecto a las cámaras utilizando la placa como referencia demostramos que existe una geometría específica entre las cámaras que minimiza el error de velocidad. Los resultados obtenidos validan la propuesta con errores de velocidad máxima  de menos 3 k/h a velocidades de hasta 80 k/h.
-
-
-\citeauthor{lee2021Study} desarrollaron un módulo para medir la distancia de vehículos en varios carriles simultáneamente usando un dron. El dron está montado con dos sensores LiDAR, y cada sensor emite un punto frontal y un punto trasero, donde los vehículos son detectados. La velocidad del vehículo se estima utilizando la distancia entre el punto delantero y trasero por el cual pasa el vehículo y el tiempo que tarda en pasar por ambos puntos.
-
-
-\citeauthor{yang2021Robust}, \citeauthor{yang2021Improved}, determinan la velocidad con cámaras estéreo que están ubicadas de fijas en un lugar estratégico de la ciudad. Las cámaras estéreo son las encargadas de identificar la matrícula, los faros y el logo, ya que estas se toman como las características principales, ya que siempre aparecen en un vehículo; estas caracterisitcas se utilizan como referencia para determinar la velocidad. En \citeauthor{vakili2020Single}, se usa una estrategia similar identificando solo la placa como la característica principal y usándola para determinar la velocidad del vehículo. Sin embargo, \citeauthor{vakili2020Single}, usa solamente una cámara, en lugar de cámaras estéreo.
-
-
-\citeauthor{bevilacqua2016Egomotion} implementan la transformada de Hough para detectar las líneas carreteras para ser utilizadas como referencia. Para el seguimiento de los vehículos utilizan el popular algoritmo de Kanade-Lucas-Tomasi, para calcular la velocidad se determina la longitud de la región de interés en pixeles la cual equivale a la longitud en metros para después obtener la velocidad con respecto al tiempo en segundos.
-
-
-\section{Redes neuronales para determinar velocidad y otras características}
-
-Las redes neuronales pueden ser aplicadas para determinar la velocidad y otras características de objetos en movimiento obteniendo buenos resultados, hasta compararse con dispositivos especializados para esta tarea, sin embargo, esto implica mayor costo computacional para entrenar estas redes neuronales.
-
-
-\citeauthor{bell2020Accurate} utilizan una cámara de video para estimar la velocidad vehicular. Con el uso de YOLOv2 se encargan de detectar los vehículos de la escena, mientras que el algoritmo de seguimiento en tiempo real en línea simple para el seguimiento de vehículos. La transformación del metraje de la cámara al Sistema de coordenadas de cuadrícula nacional británico, permitió la derivación de distancias del mundo real en la superficie plana de la carretera y las estimaciones simultáneas de la velocidad del vehículo. Las estimaciones lograron una raíz del error cuadrático medio y un error porcentual absoluto medio de 0.625 m/s y 20.922\%, respectivamente.
-
-
-\citeauthor{dong2019Vehicle} proponen un método alternativo de extremo a extremo basado en redes convolucionales tridimensionales. El método propuesto basa la estimación de la velocidad promedio del vehículo en información de imágenes de video. El método se caracteriza por las siguientes tres características. Primero, el uso de bloques no locales en el modelo para capturar mejor la dependencia espacio-temporal de largo alcance. En segundo lugar, el uso de flujo óptico como entrada en el modelo. El flujo óptico incluye la información sobre la velocidad y la dirección del movimiento de los píxeles en una imagen. En tercer lugar, se construyó una red convolucional de múltiples escalas. Esta red extrae información sobre diversas características de los vehículos en movimiento. El método propuesto muestra resultados experimentales prometedores en un conjunto de datos de uso común con un error absoluto medio (MAE) de 2.71 km/h y un error cuadrático medio (MSE) de 14.62.
-
-
-\citeauthor{burnett2020aUToTrack} presentan un nuevo conjunto de datos de detección y seguimiento de objetos (UofTPed50), que utiliza GPS para determinar la posición y velocidad de un peatón. También presentan un sistema de seguimiento y detección de objetos liviano (aUToTrack) que utiliza visión, LIDAR y posicionamiento GPS/IMU para lograr un rendimiento de vanguardia en el punto de referencia de seguimiento de objetos de KITTI. Demostramos que aUToTrack estima con precisión la posición y la velocidad de los peatones, en tiempo real, utilizando solo CPU. Para poner a prueba el nuevo conjunto de entrenamiento UofTPed50 se utilizó la red SqueezeDet por contar con la característica de ser una de las redes más rápidas. Por otra parte para el seguimiento de objetos se utilizó el conjunto de entrenamiento KITTI con convoluciones rodantes recurrentes, ya que ocupa el primer lugar entre los trabajos publicados en el punto de referencia de detección de objetos 2D.
-
-
-\citeauthor{kampelmuhler2018Camera} determinan la velocidad relativa de un vehículo utilizando una red neuronal perceptron multicapa la cual fue entrenada usando secuencias de imágenes, obteniendo buenos resultados con un error promedio de 1.12 m/s, el cual es comparable con un radar  LiDAR con un error de 0.71 m/s. Para determinar la velocidad se identificaron 3 características esenciales: la trayectoria del vehículo en un plano 2D, la profundidad y estimaciones de flujo óptico entre imágenes consecutivas. Al identificar un vehículo en una secuencia de imágenes podemos identificar que este, aumenta o disminuye su tamaño dependiendo la distancia que tiene con respecto al observador, esto complica el aprendizaje para la red neuronal por lo cual se opta por separar la información en cerca, medio y lejos, y entrenar un modelo para cada distancia.
-
-
-\citeauthor{song2020Learning} determinan la velocidad y distancia de un vehículo usando dos fotogramas consecutivos, de los cuales obtienen las  características profundas, la geometría de la escena y el flujo óptico temporal. La arquitectura de esta red neuronal profunda se basó en la arquitectura de PWC-Net, la cual es una red de estimación de flujo óptico eficiente. Se extraen diferentes características de diferentes capas de la red para estimar la distancia y la velocidad del vehículo. En primer lugar, se presenta el modelo de regresión de distancia utilizando características profundas y geométricas espaciales de vehículos. Después de eso, se propone el método de estimación de la velocidad con características geométricas adicionales y una pista de flujo óptico temporal. Por último, detallan la canalización de la red centrada en vehículos para reducir la perspectiva y la influencia del movimiento.
-
-\citeauthor{zhang2017Vehicle} realizaron experimentos para obtener la aceleración, la velocidad y la velocidad angular de un vehículo en movimiento usando cámaras de video posicionadas frente al área de interés. Para sus experimentos utilizaron el conjunto de datos KITTI el cual cuenta con imágenes estereoscópicas de la ciudad, así como arquitecturas CNN y la derivación y combinación de canales de entrada para identificar la dirección del flujo y las máscaras de objetos. Se creó una arquitectura CNN para cada característica buscada, aceleración, velocidad y velocidad angular. Se tomó como línea base una arquitectura CNN de dos capas, que consta de dos capas conv-relu-batchnorm-maxpooling y 2 capas afines-relu-batchnorm-dropout. Este proyecto compara los resultados para cuatro arquitecturas CNN: línea de base, AlexNet, ResNet y AlexNet con el aprendizaje por transferencia.  Los resultados muestran que para el conjunto de entrenamiento ResNet tiene los mejores resultados seguidos por AlexNet con el aprendizaje por transferencia, AlexNet y la línea base. Sin embargo, para el conjunto de validación  los mejores resultados los muestra la línea base, puesto que el entrenamiento de este modelo es más rápido y es posible buscar los hiperparametros para los mejores resultados. AlexNet con el aprendizaje por transferencia y AlexNet son los segundos mejores y ResNet tiene los peores resultados para el conjunto de validación.
-
-\citeauthor{loor2017Visual} busca determinar la velocidad de los objetos utilizando dos imágenes consecutivas. Para encontrar la velocidad el autor tomo como base la red neuronal FlowNet la cual ha aprendido a encontrar el flujo óptico en dos imágenes. FlowNet tiene dos arquitecturas de red diferentes: una arquitectura simple y una arquitectura de correlación. Ambas arquitecturas se basan en la red totalmente convolucional, lo que significa que esta red puede utilizar cualquier tamaño de imagen de entrada para determinar su flujo óptico. Una FlowNetSimple se entrena usando dos imágenes que se apilan juntas, dando lugar a una imagen de seis dimensiones. Las siguientes capas se han diseñado como una red genérica, para permitir que la red decida cómo aprender el flujo óptico. En la FlowNetCorr se combinan las dos imágenes en una etapa posterior, después de que el modelo haya creado representaciones significativas de cada imagen por separado. Para ayudar al modelo a aprender las correspondencias entre la representación de características de las imágenes, se introdujo una capa de correlación. Para este trabajo se crearon dos modelos basados en FlowNet, TimeNet y SpeedNet. TimeNet es un clasificador que puede predecir los tiempos entre fotogramas en milisegundos. SpeedNet es un modelo de regresión que genera una predicción de velocidad en forma de un solo valor. Tanto el modelo TimeNet como SpeedNet demostraron dar resultados aceptables cuando se tiene una velocidad baja, empeorando cuando la velocidad aumenta.
-
-YOLO (\cite{redmon2016Yolo}) implementa la detección de objetos como un problema de regresión a cuadros delimitadores separados espacialmente y probabilidades de clase asociadas. Una sola red neuronal predice el área y las probabilidades de múltiples clases a partir de una imagen. Esto significa que YOLO razona globalmente sobre la imagen completa y todos los objetos de la imagen. Dado que toda la detección es una sola red, afecta directamente en el rendimiento de la detección. YOLO es implementada como una red neuronal convolucional y es evaluada usando el conjunto de datos PASCAL VOC. Las capas convolucionales iniciales de la red extraen características de la imagen, mientras que las capas completamente conectadas predicen las probabilidades y coordenadas de salida. Según los autores la red YOLO es extremadamente rápida lo cual la hace ideal para detecciones en tiempo real, procesando imágenes a 45 fotogramas por segundo. Una implementación reducida de la red puede procesar 155 fotogramas por segundo. Por otra parte, YOLO comete más errores de localización, al precio de disminuir la predicción de falsos positivos, superando otros métodos de predicción como DPM y RCNN.
