@@ -1,0 +1,20 @@
+\subsection{Obtención de la velocidad}
+
+Para la obtención de la velocidad se parte de las características extraídas de las secuencias de imágenes y la Ecuación \ref{eq:VelocidadBPromedio} o el modelo generado en la Sección \ref{cap:EstimarVelocidadBasadoFactorCorrelacion}.
+
+Por ejemplo, se calcula el valor de B promedio el cual es igual a 0.0162, el sistema obtiene la distancia en pixeles y el tiempo que le tomo al vehículo pasar del punto A al punto B, los cuales son igual a 962 y 0.933 respectivamente, ahora solo es cuestión de sustituir estos valores para conseguir la velocidad estimada.
+
+\begin{equation}
+    \label{eq:EjemploImplementacion}
+    Velocidad = \frac{962 }{0.933} \times 0.0162 = 16.703 \: m/s
+\end{equation}
+
+
+No obstante, esta estimación está en M/S, entonces se necesita convertirlo a K/H usando la Ecuación \ref{eq:EjmploKH}.
+
+\begin{equation}
+    \label{eq:EjmploKH}
+     16.703\:m/s\times \frac{18}{5} = 60.13 \: k/h
+\end{equation}
+
+Este es el resultado de estimar la velocidad de un vehículo utilizando el método propuesto, este es un método simple el cual ayudó como punto de referencia para futuros experimentos, por ejemplo, usando bibliotecas como Scikit para utilizar modelos ya existentes en esta biblioteca o Tensor Flow para crear una red neuronal con las características que mejor se adecuen a este caso.

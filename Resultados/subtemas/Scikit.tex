@@ -1,53 +1,54 @@
-\section{Scikit Learn}
+\section{Modelos de Regresión}
 
-Para el caso de la implementación de Scikit se utilizaron los siguientes modelos implementados en esta biblioteca:
+Para el caso de los modelos de regresión, la implementación fue realizada utilizando la libreria de Scikit-Learn para implementar los siguientes modelos:
 
 \begin{itemize}
-    \item Regresión Lineal
-    \item Regresión de crestas
-    \item Lasso (Operador de Selección y Contracción Mínima Absoluta)
-    \item Regresión de la cresta bayesiana
-    \item Regresión Elastic Net
-    \item Regresión Random Forest
-    \item Regresión de Máquina de Soporte Vectorial
+    \item Regresión Lineal (RL)
+    \item Regresión de crestas (RC)
+    \item Lasso (Operador de Selección y Contracción Mínima Absoluta - Lasso)
+    \item Regresión de la cresta bayesiana (RCB)
+    \item Regresión Elastic Net (Elastic Net)
+    \item Regresión Random Forest (RRF)
+    \item Regresión de Máquina de Soporte Vectorial (RSVM)
 \end{itemize}
 
-Los experimentos con el uso de la biblioteca Scikit se realizaron un total de 800 veces, con estos resultados se obtuvo el valor mínimo, el valor máximo y el promedio de todos los experimentos.
+Para los experimentos usando la biblioteca Scikit se realizó el entrenamiento de los modelos un total de 800 veces, ya que esta es la cantidad máxima permitida por los recursos del hardware utilizado, con estos resultados se obtiene el valor mínimo, el valor máximo y el promedio de todos los experimentos.
 
 \subsection{Carril central}
 
-La tabla \ref{tab:resultadosScikitCarrilCentral} muestra los resultados para el carril central, en kilometros por hora.
-
+La Tabla \ref{tab:resultadosScikitCarrilCentral} muestra los resultados para el carril central en kilómetros por hora, el valor mínimo obtenido es para la Regresión Lineal, pero hay promedios cercanos en milésimas para la Regresión Lineal (RL), Regresión Ridge (RC), Lasso (Lasso), Regresión Bayesiana (RCB) y Elastic Net (Elastic net).
 
 \begin{table}[H]
     \centering
-    \caption{Resultados para Carril Central}
+    \caption{Resultados para carril central}
     \label{tab:resultadosScikitCarrilCentral}
-    \begin{tabular}{|l|l|l|l|l|l|l|l|} \hline
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+    \hline
         & \textbf{RL} & \textbf{RC} & \textbf{Lasso} & \textbf{RCB} & \textbf{Elastic Net} & \textbf{RRF} & \textbf{RSVM} \\ \hline
-
-        \textbf{MIN} & 1.246 & 1.256 & 1.271 & 1.253 & 1.278                & 1.433 & 1.598 \\ \hline
-        \textbf{MAX} & 2.16 & 2.142 & 2.149 & 2.153 & 2.156                & 2.282 & 2.441 \\ \hline
-        \textbf{Prom} & 1.692 & 1.696 & 1.699 & 1.696 & 1.699 & 1.829 & 1.962 \\ \hline
+        \textbf{MIN} & 1.246 & 1.256 & 1.271 & 1.252 & 1.278 & 1.434 & 1.597 \\ \hline
+        \textbf{MAX} & 2.158 & 2.140 & 2.148 & 2.153 & 2.155 & 2.282 & 2.441 \\ \hline
+        \textbf{D.Est.} & 0.143 & 0.142 & 0.143 & 0.143 & 0.143 & 0.141 & 0.163 \\ \hline
+        \textbf{Prom.} & 1.694 & 1.694 & 1.699 & 1.695 & 1.701 & 1.828 & 1.960 \\ \hline
     \end{tabular}
 \end{table}
 
 
-\subsection{Ultimo Carril}
+\subsection{Último Carril}
 
-La tabla \ref{tab:resultadosScikitUltimoCarril} muestra los resultados para el ultimo carril, en kilometros por hora.
-
+La Tabla \ref{tab:resultadosScikitUltimoCarril} muestra los resultados para el último carril en kilómetros por hora, en este caso los valores mínimos iguales para los modelos de Regresión Lineal (RL), Regresión Ridge (RC), Lasso (Lasso) y Regresión Bayesiana (RCB). Mientras que para los promedios los valores más bajos son para la Regresión Lineal (RL) y la Regresión Bayesiana (RCB).
 
 \begin{table}[H]
     \centering
-    \caption{Resultados para Ultimo Carril}
+    \caption{Resultados para último carril}
     \label{tab:resultadosScikitUltimoCarril}
-    \begin{tabular}{|c|l|l|l|l|l|l|l|} \hline
+    \begin{tabular}{|l|l|l|l|l|l|l|l|}
+    \hline
         & \textbf{RL} & \textbf{RC} & \textbf{Lasso} & \textbf{RCB} & \textbf{Elastic Net} & \textbf{RRF} & \textbf{RSVM} \\ \hline
-
-        \textbf{MIN} & 0.738 & 0.738 & 0.738 & 0.738 & 0.760 & 0.842 & 1.516 \\ \hline
-        \textbf{MAX} & 1.220 & 1.224 & 1.231 & 1.220 & 1.278 & 1.400 & 2.578 \\ \hline
-        \textbf{Prom} & 0.958 & 0.965 & 0.976 & 0.958 & 0.997 & 1.087 & 1.940 \\ \hline
+        \textbf{MIN} & 0.738 & 0.737 & 0.739 & 0.738 & 0.758 & 0.841 & 1.514 \\ \hline
+        \textbf{MAX} & 1.222 & 1.223 & 1.233 & 1.222 & 1.278 & 1.400 & 2.576 \\ \hline
+        \textbf{D. Est.} & 0.081 & 0.081 & 0.082 & 0.081 & 0.084 & 0.094 & 0.141 \\ \hline
+        \textbf{Prom.} & 0.956 & 0.965 & 0.975 & 0.956 & 0.997 & 1.087 & 1.939 \\ \hline
     \end{tabular}
 \end{table}
+
 
